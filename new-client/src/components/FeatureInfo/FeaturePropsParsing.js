@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import gfm from "remark-gfm";
 import FeaturePropFilters from "./FeaturePropsFilters";
+import ShowHideLayersComponent from "./ShowHideLayersComponent";
 import AppModel from "models/AppModel.js";
 
 import {
@@ -111,6 +112,9 @@ export default class FeaturePropsParsing {
     // First strip the curly brackets, e.g. {foobar} -> foobar
     placeholder = placeholder.substring(1, placeholder.length - 1);
 
+    // Next, remove any whitespace that may surround the value
+    placeholder = placeholder.trim();
+
     // Placeholders to be fetch from external components will include "@@", and
     // they need to be treated differently from "normal" placeholders (sans @@).
     if (placeholder.includes("@@") && !placeholder.includes("@@@")) {
@@ -120,8 +124,16 @@ export default class FeaturePropsParsing {
       // Grab the actual value of this placeholder from the properties collections
       const propertyValue = this.properties[propertyName];
 
-      // If they key was not found in the properties object, or the value is empty, we can't go on.
-      if (
+      // If this should be taken care of by the showHideLayers method, we have a special case
+      if (pluginName === "showHideLayers") {
+        return `{${
+          this.pendingPromises.push(
+            this.#fetchShowHideLayersComponent(propertyName, this.properties)
+          ) - 1
+        }}`;
+      }
+      // Else if they key was not found in the properties object, or the value is empty, we can't go on.
+      else if (
         propertyValue === undefined ||
         propertyValue === null ||
         propertyValue.trim() === ""
@@ -144,10 +156,12 @@ export default class FeaturePropsParsing {
           ) - 1
         }}`;
       }
-    } else if (placeholder.includes("|")) {
+    }
+    // Another option is that the placeholder needs to be passed by our filters:
+    else if (placeholder.includes("|")) {
       return FeaturePropFilters.applyFilters(this.properties, placeholder);
     }
-    // Just a "normal" placeholder, e.g. {foobar}
+    // If we got this far, it's just a "normal" placeholder, e.g. {foobar}
     else {
       // Attempt to grab the actual value from the Properties collection, if not found, fallback to empty string.
       // Note that we must replace equal sign in property value, else we'd run into trouble, see #812.
@@ -162,6 +176,15 @@ export default class FeaturePropsParsing {
         // …unless it's undefined or null - in that case, return an empty string.
       );
     }
+  };
+
+  #fetchShowHideLayersComponent = (propertyName, properties) => {
+    return (
+      <ShowHideLayersComponent
+        templateString={propertyName}
+        featureAttributes={properties}
+      />
+    );
   };
 
   #fetchExternal = (propertyValue, pluginName) => {
