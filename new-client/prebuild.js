@@ -12,7 +12,7 @@ let data =
 cleanUpNewlines();
 
 function updateGitHash(params) {
-  const key = "REACT_APP_GIT_HASH";
+  const key = "VITE_APP_GIT_HASH";
   const regex = new RegExp(`${key}=.*`);
 
   let gitHash = execSync("git rev-parse HEAD").toString();
@@ -25,7 +25,7 @@ function updateGitHash(params) {
 }
 
 function updateBuildDate() {
-  const key = "REACT_APP_BUILD_DATE";
+  const key = "VITE_APP_BUILD_DATE";
   const regex = new RegExp(`${key}=.*`);
   if (data.indexOf(key) === -1) {
     data += `${key}=0`;
@@ -34,6 +34,7 @@ function updateBuildDate() {
 }
 
 function writeToEnvLocal() {
+  console.log("data: ", data);
   cleanUpNewlines();
   fs.writeFileSync(envLocalFile, data);
 }

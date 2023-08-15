@@ -5,16 +5,16 @@ import Plugin from "./Plugin";
 import SnapHelper from "./SnapHelper";
 import { bindMapClickEvent } from "./Click";
 
-import ConfigMapper from "utils/ConfigMapper";
-import CoordinateSystemLoader from "utils/CoordinateSystemLoader";
-import { hfetch } from "utils/FetchWrapper";
-import { isMobile } from "utils/IsMobile";
-import { getMergedSearchAndHashParams } from "utils/getMergedSearchAndHashParams";
-// import ArcGISLayer from "./layers/ArcGISLayer.js";
-// import DataLayer from "./layers/DataLayer.js";
-import WMSLayer from "./layers/WMSLayer.js";
-import WMTSLayer from "./layers/WMTSLayer.js";
-import WFSVectorLayer from "./layers/VectorLayer.js";
+import ConfigMapper from "../utils/ConfigMapper";
+import CoordinateSystemLoader from "../utils/CoordinateSystemLoader";
+import { hfetch } from "../utils/FetchWrapper";
+import { isMobile } from "../utils/IsMobile";
+import { getMergedSearchAndHashParams } from "../utils/getMergedSearchAndHashParams";
+// import ArcGISLayer from "./layers/ArcGISLayer";
+// import DataLayer from "./layers/DataLayer";
+import WMSLayer from "./layers/WMSLayer";
+import WMTSLayer from "./layers/WMTSLayer";
+import WFSVectorLayer from "./layers/VectorLayer";
 // TODO: Uncomment and ensure they show as expected
 // import {
 // defaults as defaultControls,
@@ -241,7 +241,7 @@ class AppModel {
     const promises = [];
     plugins.forEach((plugin) => {
       const dir = ["Search"].includes(plugin) ? "components" : "plugins";
-      const prom = import(`../${dir}/${plugin}/${plugin}.js`)
+      const prom = import(`../${dir}/${plugin}/${plugin}.jsx`)
         .then((module) => {
           const toolConfig =
             this.config.mapConfig.tools.find(
