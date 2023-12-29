@@ -599,7 +599,9 @@ class LayerItem extends React.PureComponent {
       console.log(this);
       this.props.enqueueSnackbar(
         `Serverfel: attributtabellen för lagret "${this.caption}" kunde inte visas`,
-        { variant: "error" },
+        {
+          variant: "error",
+        },
       );
     }
   };

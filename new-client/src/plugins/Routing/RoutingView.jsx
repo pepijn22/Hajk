@@ -117,7 +117,10 @@ class RoutingView extends React.PureComponent {
       case "manual":
         this.selectStartSnackbar = this.props.enqueueSnackbar(
           "Klicka i kartan för att välja startpunkt.",
-          { variant: "info", persist: true },
+          {
+            variant: "info",
+            persist: true,
+          },
         );
         this.props.model.activateStartMode();
         break;
@@ -132,7 +135,10 @@ class RoutingView extends React.PureComponent {
       this.setState({ endSelectionInProgress: true }, (e) => {
         this.selectEndSnackbar = this.props.enqueueSnackbar(
           "Klicka i kartan för att välja din destination.",
-          { variant: "info", persist: true },
+          {
+            variant: "info",
+            persist: true,
+          },
         );
         this.props.model.activateEndMode();
       });

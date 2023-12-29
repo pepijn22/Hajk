@@ -241,9 +241,9 @@ const SavedSketch = ({
                 disableInteractive
                 title={`Arbetsytan uppdaterades senast ${sketchInfo.date}`}
               >
-                <Typography variant="caption">
-                  {`Uppdaterad: ${sketchInfo.date?.split(" ")[0]}`}
-                </Typography>
+                <Typography variant="caption">{`Uppdaterad: ${
+                  sketchInfo.date?.split(" ")[0]
+                }`}</Typography>
               </Tooltip>
             </Grid>
           </Grid>

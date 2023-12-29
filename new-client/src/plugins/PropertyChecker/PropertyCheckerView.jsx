@@ -132,7 +132,10 @@ function PropertyCheckerView(props) {
       // …show the snackbar and save ID for later.
       snackbarId.current = enqueueSnackbar(
         "Klicka i kartan för att välja fastighet",
-        { variant: "info", persist: true },
+        {
+          variant: "info",
+          persist: true,
+        },
       );
     } else {
       // Hide the snackbar when draw interaction is inactivated.
