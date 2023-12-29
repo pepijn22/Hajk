@@ -24,7 +24,7 @@ const FeaturePagination = (props) => {
   const getPageNumerFromId = (id) => paginationCollection.indexOf(id) + 1;
   const getIdFromPageNumber = useCallback(
     (page) => paginationCollection[page - 1],
-    [paginationCollection]
+    [paginationCollection],
   );
 
   // Set the initial pagination page to the currently selected ID's index+1
@@ -34,7 +34,7 @@ const FeaturePagination = (props) => {
   // If no key exists, null will be returned. In that case, we want to default
   // to "1", which will show the Alert.
   const [showKeyboardNavigationHint, setShowKeyboardNavigationHint] = useState(
-    localStorage.getItem("showKeyboardNavigationHint") ?? "1"
+    localStorage.getItem("showKeyboardNavigationHint") ?? "1",
   );
 
   // Shorthand for later
@@ -52,7 +52,7 @@ const FeaturePagination = (props) => {
       setSelectedFeatureId(getIdFromPageNumber(v));
       setPage(v);
     },
-    [getIdFromPageNumber, setSelectedFeatureId]
+    [getIdFromPageNumber, setSelectedFeatureId],
   );
 
   // Handler for keydown events
@@ -73,7 +73,7 @@ const FeaturePagination = (props) => {
           break;
       }
     },
-    [page, sumPages, handlePaginationChange]
+    [page, sumPages, handlePaginationChange],
   );
 
   // Bind the onkeydown event

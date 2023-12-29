@@ -64,7 +64,7 @@ class KmlModel {
   // initiation of the KML-model.
   #handleInitiationParametersMissing = () => {
     throw new Error(
-      "Failed to initiate KML-model, - required parameters missing. \n Required parameters: map, layerName"
+      "Failed to initiate KML-model, - required parameters missing. \n Required parameters: map, layerName",
     );
   };
 
@@ -85,9 +85,9 @@ class KmlModel {
         mapDiv.addEventListener(
           eventName,
           this.#preventDefaultDropBehavior,
-          false
+          false,
         );
-      }
+      },
     );
     // We're gonna need to add some more listeners (for dragEnter etc.).
     mapDiv.addEventListener("drop", this.#handleDrop, false);
@@ -225,7 +225,7 @@ class KmlModel {
   #setFeatureStyle = (feature) => {
     if (!feature) {
       console.warn(
-        "Cannot apply a style on nothing. (Supplied feature is nullish)."
+        "Cannot apply a style on nothing. (Supplied feature is nullish).",
       );
     }
     // First, we try to get the style from the feature props
@@ -264,7 +264,7 @@ class KmlModel {
       feature.setStyle(this.#createFeatureStyle(parsedStyle));
     } catch (error) {
       console.error(
-        `KML-model: Style attribute could not be parsed. Error: ${error}`
+        `KML-model: Style attribute could not be parsed. Error: ${error}`,
       );
     }
   };
@@ -280,7 +280,7 @@ class KmlModel {
       style[0].setFill(
         new Fill({
           color: [0, 0, 0, 0],
-        })
+        }),
       );
     }
     // Finally, we apply the style on the feature.
@@ -584,7 +584,7 @@ class KmlModel {
     // If we do have compatible features, we can create the kml-xml
     const postData = this.#parser.writeFeatures(
       compatibleFeatures,
-      `${this.#layerName}-kml-export`
+      `${this.#layerName}-kml-export`,
     );
     // Then we'll call the save-as method from file-saver, which will
     // initiate the download-process for the user.
@@ -593,7 +593,7 @@ class KmlModel {
         new Blob([postData], {
           type: "application/vnd.google-earth.kml+xml;charset=utf-8",
         }),
-        `Ritexport - ${new Date().toLocaleString()}.kml`
+        `Ritexport - ${new Date().toLocaleString()}.kml`,
       );
       return {
         status: "SUCCESS",
@@ -627,11 +627,11 @@ class KmlModel {
       if (this.#drawModel) {
         clonedFeature.set(
           "EXTRACTED_STYLE",
-          JSON.stringify(this.#drawModel.extractFeatureStyleInfo(feature))
+          JSON.stringify(this.#drawModel.extractFeatureStyleInfo(feature)),
         );
         clonedFeature.set(
           "TEXT_SETTINGS",
-          JSON.stringify(feature.get("TEXT_SETTINGS"))
+          JSON.stringify(feature.get("TEXT_SETTINGS")),
         );
       }
       // If we're dealing with a circle, we have to make sure to simplify
@@ -644,7 +644,7 @@ class KmlModel {
         clonedFeature.set("CIRCLE_RADIUS", circleGeometry.getRadius());
         clonedFeature.set(
           "CIRCLE_CENTER",
-          JSON.stringify(circleGeometry.getCenter())
+          JSON.stringify(circleGeometry.getCenter()),
         );
         // Create the simplified geometry
         const simplifiedGeometry = fromCircle(circleGeometry, 96);

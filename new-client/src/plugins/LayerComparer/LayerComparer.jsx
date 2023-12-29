@@ -121,7 +121,7 @@ const LayerComparer = (props) => {
               Sluta jämföra
             </Button>
           ),
-        }
+        },
       );
     }
   }, [layer1, layer2, props.map, closeSnackbar, enqueueSnackbar]);

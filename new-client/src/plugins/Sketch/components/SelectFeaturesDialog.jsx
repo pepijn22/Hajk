@@ -157,6 +157,6 @@ export default function SelectFeaturesDialog({
         <Button onClick={handleAbort}>Avbryt</Button>
       </DialogActions>
     </Dialog>,
-    document.getElementById("map")
+    document.getElementById("map"),
   );
 }

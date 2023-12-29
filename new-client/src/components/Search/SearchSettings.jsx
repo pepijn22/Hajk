@@ -113,7 +113,7 @@ class SearchSettings extends React.PureComponent {
                       onChange={() => {
                         this.localUpdateSearchOptions(
                           "searchInVisibleLayers",
-                          !searchOptions.searchInVisibleLayers
+                          !searchOptions.searchInVisibleLayers,
                         );
                       }}
                       color="primary"
@@ -143,7 +143,7 @@ class SearchSettings extends React.PureComponent {
                       onChange={() =>
                         this.localUpdateSearchOptions(
                           "wildcardAtStart",
-                          !searchOptions.wildcardAtStart
+                          !searchOptions.wildcardAtStart,
                         )
                       }
                       color="primary"
@@ -163,7 +163,7 @@ class SearchSettings extends React.PureComponent {
                       onChange={() =>
                         this.localUpdateSearchOptions(
                           "wildcardAtEnd",
-                          !searchOptions.wildcardAtEnd
+                          !searchOptions.wildcardAtEnd,
                         )
                       }
                       color="primary"
@@ -183,7 +183,7 @@ class SearchSettings extends React.PureComponent {
                       onChange={() =>
                         this.localUpdateSearchOptions(
                           "matchCase",
-                          !searchOptions.matchCase
+                          !searchOptions.matchCase,
                         )
                       }
                       color="primary"
@@ -213,7 +213,7 @@ class SearchSettings extends React.PureComponent {
                           "activeSpatialFilter",
                           searchOptions.activeSpatialFilter === "intersects"
                             ? "within"
-                            : "intersects"
+                            : "intersects",
                         )
                       }
                       color="primary"
@@ -241,7 +241,7 @@ class SearchSettings extends React.PureComponent {
                       onChange={() =>
                         this.localUpdateSearchOptions(
                           "enableLabelOnHighlight",
-                          !searchOptions.enableLabelOnHighlight
+                          !searchOptions.enableLabelOnHighlight,
                         )
                       }
                       color="primary"

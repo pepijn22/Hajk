@@ -45,7 +45,7 @@ export default class MapViewModel {
         // mechanism as exposed in AppModel
         this.appModel.setLayerVisibilityFromParams(
           mapSettings.layers,
-          mapSettings.groupLayers
+          mapSettings.groupLayers,
         );
       }
 

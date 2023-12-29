@@ -26,7 +26,7 @@ class ExternalLinks extends React.PureComponent {
     super(props);
     this.type = "ExternalLinks"; // Special case - plugins that don't use BaseWindowPlugin must specify .type here
     this.config = props.appModel.config.mapConfig.tools.find(
-      (t) => t.type === "externalLinks"
+      (t) => t.type === "externalLinks",
     );
 
     // If config isn't found.... it is time to return.
@@ -87,7 +87,7 @@ class ExternalLinks extends React.PureComponent {
         coordinates[0],
         coordinates[1],
         o.projection,
-        o.decimals
+        o.decimals,
       );
       // Replace the replaceKey with the converted coordinates.
       url = url.replace(o.replaceKey, newCoord[o.key]);
@@ -108,7 +108,7 @@ class ExternalLinks extends React.PureComponent {
       this.openUri(uri, "_blank");
     } catch (err) {
       console.warn(
-        `ExternalLinks: openUri: Could not open Uri:\n${uri}\n${err}`
+        `ExternalLinks: openUri: Could not open Uri:\n${uri}\n${err}`,
       );
     }
   };
@@ -122,7 +122,7 @@ class ExternalLinks extends React.PureComponent {
           onClick={(event) => this.handleItemClick(event, item)}
         >
           {item.name}
-        </MenuItem>
+        </MenuItem>,
       );
     });
     return menuItems;

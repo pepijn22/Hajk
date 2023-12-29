@@ -164,7 +164,7 @@ class ExportModel {
 
     function rgbToHex(rgbString) {
       const matches = /rgb(a)?\((\d+), (\d+), (\d+)(, [\d.]+)?\)/.exec(
-        rgbString
+        rgbString,
       );
       if (matches !== null) {
         let r = parseInt(matches[2]);
@@ -427,12 +427,12 @@ class ExportModel {
       (layer) =>
         layer instanceof Vector &&
         layer.getVisible() &&
-        layer.get("name") !== "pluginExport"
+        layer.get("name") !== "pluginExport",
     );
 
     vectorLayers = vectorLayers
       .map((layer) =>
-        translateVector(layer.getSource().getFeaturesInExtent(extent), layer)
+        translateVector(layer.getSource().getFeaturesInExtent(extent), layer),
       )
       .filter((layer) => layer.features.length > 0);
     return vectorLayers;
@@ -442,7 +442,7 @@ class ExportModel {
     var layers = this.map.getLayers().getArray();
     return layers
       .filter(
-        (layer) => layer.getSource() instanceof WMTS && layer.getVisible()
+        (layer) => layer.getSource() instanceof WMTS && layer.getVisible(),
       )
       .map((layer) => {
         var s = layer.getSource();

@@ -13,9 +13,9 @@ import {
 } from "@mui/material";
 
 import { Box } from "@mui/system";
-import FeatureItem from "./FeatureItem.js";
-import DigitalPlanItem from "./DigitalPlanItem.js";
-import ReportDialog from "./ReportDialog.js";
+import FeatureItem from "./FeatureItem";
+import DigitalPlanItem from "./DigitalPlanItem";
+import ReportDialog from "./ReportDialog";
 
 function PropertyItem({
   clickedPointsCoordinates,
@@ -65,7 +65,7 @@ function PropertyItem({
             disabled={
               controlledLayers.filter(
                 (l) =>
-                  l.propertyName === features.markerFeature.get("fastighet")
+                  l.propertyName === features.markerFeature.get("fastighet"),
               ).length === 0
             }
             onClick={() => {

@@ -11,7 +11,7 @@ export default function useProductParameters(groupName, workspaceName, model) {
       setError(false);
       const { error, parameters } = await model.getProductParameters(
         groupName,
-        workspaceName
+        workspaceName,
       );
       if (error) {
         setError(true);

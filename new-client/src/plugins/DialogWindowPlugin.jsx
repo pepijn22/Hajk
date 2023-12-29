@@ -151,7 +151,7 @@ class DialogWindowPlugin extends React.PureComponent {
       >
         {this.props.children}
       </Dialog>,
-      document.getElementById("windows-container")
+      document.getElementById("windows-container"),
     );
   }
 
@@ -181,7 +181,7 @@ class DialogWindowPlugin extends React.PureComponent {
           <ListItemText primary={this.title} />
         </ListItem>
       </Hidden>,
-      document.getElementById("plugin-buttons")
+      document.getElementById("plugin-buttons"),
     );
   }
 
@@ -196,7 +196,7 @@ class DialogWindowPlugin extends React.PureComponent {
           abstract={this.description}
         />
       </Hidden>,
-      document.getElementById(id)
+      document.getElementById(id),
     );
   }
 
@@ -211,7 +211,7 @@ class DialogWindowPlugin extends React.PureComponent {
           abstract={this.description}
         />
       </Hidden>,
-      document.getElementById("plugin-control-buttons")
+      document.getElementById("plugin-control-buttons"),
     );
   }
 

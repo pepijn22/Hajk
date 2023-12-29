@@ -168,7 +168,7 @@ class SearchBar extends React.PureComponent {
 
   getHighlightedAutoCompleteEntryElement = (
     lastHighlightInformation,
-    autocompleteEntry
+    autocompleteEntry,
   ) => {
     let { index, length } = lastHighlightInformation;
     return (
@@ -182,7 +182,7 @@ class SearchBar extends React.PureComponent {
   //Highlights everything in autocomplete entry up until the last occurrence of a match in string.
   renderHighlightedAutocompleteEntry = (
     highlightInformation,
-    autocompleteEntry
+    autocompleteEntry,
   ) => {
     const countOfHighlightInformation = highlightInformation.length;
     //We get lastHighlightInformation because we want to highlight everything up to last word that matches
@@ -192,7 +192,7 @@ class SearchBar extends React.PureComponent {
     if (countOfHighlightInformation > 0) {
       return this.getHighlightedAutoCompleteEntryElement(
         lastHighlightInformation,
-        autocompleteEntry
+        autocompleteEntry,
       );
     }
   };
@@ -205,7 +205,7 @@ class SearchBar extends React.PureComponent {
       .map((searchWord) => {
         return this.getAllStartingIndexForOccurencesInString(
           autocompleteEntry,
-          searchWord
+          searchWord,
         ).map((index) => {
           return {
             index: index,
@@ -220,7 +220,7 @@ class SearchBar extends React.PureComponent {
         {highlightInformation.length > 0
           ? this.renderHighlightedAutocompleteEntry(
               highlightInformation,
-              autocompleteEntry
+              autocompleteEntry,
             )
           : autocompleteEntry}
       </Typography>
@@ -325,7 +325,7 @@ class SearchBar extends React.PureComponent {
                   <Grid item xs={12}>
                     {this.getHighlightedACE(
                       searchString,
-                      decodeCommas(option.autocompleteEntry)
+                      decodeCommas(option.autocompleteEntry),
                     )}
                   </Grid>
                   <Grid item xs={12}>

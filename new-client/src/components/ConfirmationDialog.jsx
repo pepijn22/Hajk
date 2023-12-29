@@ -38,7 +38,7 @@ const ConfirmationDialog = ({
         </Button>
       </DialogActions>
     </Dialog>,
-    document.getElementById("map")
+    document.getElementById("map"),
   );
 };
 

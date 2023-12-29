@@ -170,7 +170,7 @@ class FirSearchResultsView extends React.PureComponent {
         if (data.active === false) {
           this.setState({ addFeatureByMapClickActive: data.active });
         }
-      }
+      },
     );
     this.localObserver.subscribe(
       "fir.search.results.removeFeatureByMapClick",
@@ -178,7 +178,7 @@ class FirSearchResultsView extends React.PureComponent {
         if (data.active === false) {
           this.setState({ removeFeatureByMapClickActive: data.active });
         }
-      }
+      },
     );
     this.localObserver.subscribe("fir.results.filtered", (list) => {
       this.setState({ results: { list: list } });
@@ -204,7 +204,7 @@ class FirSearchResultsView extends React.PureComponent {
           ? 1
           : b.get(sortProp) > a.get(sortProp)
             ? -1
-            : 0
+            : 0,
       );
     }
 

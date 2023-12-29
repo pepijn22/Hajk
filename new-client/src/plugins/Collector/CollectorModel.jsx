@@ -44,7 +44,7 @@ class CollectorModel {
           obj[field.name] = this.valueByDataType(field);
           return obj;
         },
-        {}
+        {},
       );
     } else {
       this.formValues = {};
@@ -86,7 +86,7 @@ class CollectorModel {
       features.inserts,
       features.updates,
       features.deletes,
-      options
+      options,
     );
   }
 
@@ -306,7 +306,7 @@ class CollectorModel {
       .getLayers()
       .getArray()
       .filter(
-        (layer) => layer.getProperties().caption === this.editSource.caption
+        (layer) => layer.getProperties().caption === this.editSource.caption,
       );
 
     mapLayers.forEach((mapLayer) => {

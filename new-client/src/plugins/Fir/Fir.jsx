@@ -44,7 +44,7 @@ class Fir extends React.PureComponent {
 
     this.layerController = new FirLayerController(
       this.model,
-      this.localObserver
+      this.localObserver,
     );
 
     this.import = new FirImport({

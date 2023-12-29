@@ -123,7 +123,7 @@ export default class MapClickModel {
         AppModel.setClickLocationData(
           e.coordinate[0],
           e.coordinate[1],
-          this.map.getView().getZoom()
+          this.map.getView().getZoom(),
         );
         this.#handleClick(e, callback);
       }
@@ -174,32 +174,32 @@ export default class MapClickModel {
             case "application/geojson":
             case "application/json": {
               olFeatures = parseGeoJsonFeatures(
-                await response.value.requestResponse.json()
+                await response.value.requestResponse.json(),
               );
               break;
             }
             case "text/xml": {
               olFeatures = parseWmsGetFeatureInfoXml(
-                await response.value.requestResponse.text()
+                await response.value.requestResponse.text(),
               );
               break;
             }
             case "application/vnd.ogc.gml": {
               olFeatures = parseGMLFeatures(
-                await response.value.requestResponse.text()
+                await response.value.requestResponse.text(),
               );
               break;
             }
             case "application/vnd.esri.wms_raw_xml": {
               olFeatures = experimentalParseEsriWmsRawXml(
-                await response.value.requestResponse.text()
+                await response.value.requestResponse.text(),
               );
               break;
             }
             default:
               console.warn(
                 "Unsupported response type for GetFeatureInfo request:",
-                responseContentType
+                responseContentType,
               );
               break;
           }
@@ -210,12 +210,12 @@ export default class MapClickModel {
             // is coming from. Let's extract all that information
             const infoClickInformation = getInfoClickInfoFromLayerConfig(
               feature,
-              response.value.layer
+              response.value.layer,
             );
             // Before we create the feature collection, ensure that
             // it doesn't exist already.
             const existingLayer = getFeatureInfoResults.find(
-              (f) => f.layerId === infoClickInformation.layerId
+              (f) => f.layerId === infoClickInformation.layerId,
             );
             // If it exists…
             if (existingLayer) {
@@ -288,7 +288,7 @@ export default class MapClickModel {
             // current feature belongs to. We create it by combining the layer's name…
             const layerName = this.#getLayerNameFromVectorFeature(
               feature,
-              layer
+              layer,
             );
 
             // …with the OL layer's UID property.
@@ -298,7 +298,7 @@ export default class MapClickModel {
 
             // Next, check if we already have this layer in our collection…
             const existingLayer = queryableLayerResults.find(
-              (c) => c.layerId === layerId
+              (c) => c.layerId === layerId,
             );
 
             // …if yes…
@@ -349,7 +349,7 @@ export default class MapClickModel {
         },
         {
           hitTolerance: 10,
-        }
+        },
       );
 
       // If the operation above resulted in features that should
@@ -464,7 +464,7 @@ export default class MapClickModel {
           f.secondaryLabel = prepareLabelFromFields(
             f,
             secondaryLabelFields,
-            ""
+            "",
           );
           return f;
         });
@@ -499,7 +499,7 @@ export default class MapClickModel {
             layer instanceof ImageLayer ||
             layer instanceof VectorLayer) && // What about VectorLayer, shouldn't they be queried too?
           // And only if they're currently visible (no reason to query hidden layers)
-          layer.get("visible") === true
+          layer.get("visible") === true,
       )
       // For each layer that's left in the array
       .forEach((layer) => {
@@ -517,7 +517,7 @@ export default class MapClickModel {
                 requestResponse: response,
                 viewProjection: viewProjection,
               };
-            })
+            }),
           );
         }
       });
@@ -555,7 +555,7 @@ export default class MapClickModel {
       subLayersToQuery = subLayers
         .filter(
           (subLayer) =>
-            subLayer.queryable === true && visibleSubLayersSet.has(subLayer.id)
+            subLayer.queryable === true && visibleSubLayersSet.has(subLayer.id),
         ) // QUERY_LAYERS must not include anything that's not in LAYERS, see https://github.com/hajkmap/Hajk/issues/211
         .map((queryableSubLayer) => {
           return queryableSubLayer.id;

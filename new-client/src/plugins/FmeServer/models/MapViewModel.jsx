@@ -53,7 +53,7 @@ class MapViewModel {
         layerType: "system",
         zIndex: 5000,
         name: "pluginFmeServer",
-      }
+      },
     );
     // Then we can add the layer to the map.
     this.#map.addLayer(this.#drawLayer);
@@ -69,7 +69,7 @@ class MapViewModel {
     // Will fire when the user changes tool
     this.#localObserver.subscribe(
       "map.toggleDrawMethod",
-      this.#toggleDrawMethod
+      this.#toggleDrawMethod,
     );
     // Will fire when the user wants to reset the drawing.
     this.#localObserver.subscribe("map.resetDrawing", this.#resetDrawing);
@@ -86,7 +86,7 @@ class MapViewModel {
     // Let's style the element a bit so it looks prettier...
     this.#drawTooltipElement.setAttribute(
       "style",
-      this.#drawTooltipElementStyle
+      this.#drawTooltipElementStyle,
     );
     // Then let's create the overlay...
     this.#drawTooltip = new Overlay({
@@ -106,7 +106,7 @@ class MapViewModel {
     if (this.#drawTooltipElement) {
       // Then we can remove it
       this.#drawTooltipElement.parentNode.removeElement(
-        this.#drawTooltipElement
+        this.#drawTooltipElement,
       );
       // And clear the variable
       this.#drawTooltipElement = null;

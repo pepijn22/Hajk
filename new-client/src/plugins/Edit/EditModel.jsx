@@ -70,7 +70,7 @@ class EditModel {
       features.inserts,
       features.updates,
       features.deletes,
-      options
+      options,
     );
   }
 
@@ -456,7 +456,7 @@ class EditModel {
       .getLayers()
       .getArray()
       .filter(
-        (layer) => layer.getProperties().caption === this.editSource.caption
+        (layer) => layer.getProperties().caption === this.editSource.caption,
       );
 
     mapLayers.forEach((mapLayer) => {
@@ -484,7 +484,7 @@ class EditModel {
     // Also, let's check if there are source-specific options for this
     // map configuration and…
     const sourceSpecificOptions = this.options.activeServices.find(
-      (l) => l.id === serviceId
+      (l) => l.id === serviceId,
     );
     // …spread them on the retrieved source object.
     this.source = { ...this.source, ...sourceSpecificOptions };

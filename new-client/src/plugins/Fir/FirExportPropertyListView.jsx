@@ -128,7 +128,7 @@ class FirExportPropertyListView extends React.PureComponent {
           "Ett fel inträffade vid exporten av fastighetsförteckningen.",
           {
             variant: "error",
-          }
+          },
         );
       });
   };

@@ -151,7 +151,7 @@ class WMSLayer {
 
     // Get the list of available ratios from config and sort it correctly.
     const pixelRatios = config.customDpiList.sort((a, b) =>
-      a.pxRatio > b.pxRatio ? 1 : b.pxRatio > a.pxRatio ? -1 : 0
+      a.pxRatio > b.pxRatio ? 1 : b.pxRatio > a.pxRatio ? -1 : 0,
     );
 
     const pxRatio = window.devicePixelRatio;
@@ -279,7 +279,7 @@ class WMSLayer {
                 ? "application/geojson"
                 : "application/json",
             feature_count: 100,
-          }
+          },
         );
 
       if (url) {

@@ -23,7 +23,7 @@ class TableOfContents extends React.PureComponent {
     const tocStructure = this.createTocStructure(
       documentMenuState,
       allDocuments,
-      mode
+      mode,
     );
     Object.keys(tocStructure).forEach((key) => {
       this.setTitlesAndLevels(tocStructure[key], mode);
@@ -40,7 +40,7 @@ class TableOfContents extends React.PureComponent {
       if (menuDoc.document) {
         //get the corresponding chapters from allDocuments.
         let jsonDoc = allDocuments.find(
-          (doc) => doc.documentFileName === menuDoc.document
+          (doc) => doc.documentFileName === menuDoc.document,
         );
         //add the chapters to our doc in the menuState.
         menu[key].chapters = jsonDoc.chapters;
@@ -92,7 +92,7 @@ class TableOfContents extends React.PureComponent {
             chapter,
             levelsToShow,
             level + 1,
-            indentationLevel + 1
+            indentationLevel + 1,
           );
         });
       }
@@ -103,7 +103,7 @@ class TableOfContents extends React.PureComponent {
     chapter,
     levelsToShow,
     level,
-    indentationLevel
+    indentationLevel,
   ) => {
     if (chapter.chapters && level <= levelsToShow) {
       chapter.chapters.forEach((subChapter) => {
@@ -115,7 +115,7 @@ class TableOfContents extends React.PureComponent {
           subChapter,
           levelsToShow,
           level + 1,
-          indentationLevel + 1
+          indentationLevel + 1,
         );
       });
     }

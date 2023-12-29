@@ -182,7 +182,7 @@ class KirSearchResultsView extends React.PureComponent {
           ? 1
           : b.get(sortProp) > a.get(sortProp)
             ? -1
-            : 0
+            : 0,
       );
     }
 

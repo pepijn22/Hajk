@@ -18,7 +18,7 @@ export default class SnapHelper {
     // reflect the visibility change.
     this.globalObserver.on(
       "core.layerVisibilityChanged",
-      this.#handleLayerVisibilityChanged
+      this.#handleLayerVisibilityChanged,
     );
   }
   /**

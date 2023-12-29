@@ -79,9 +79,9 @@ class TimeSlider extends React.PureComponent {
                   () => {
                     this.localObserver.publish(
                       "toggleSlider",
-                      this.state.playing
+                      this.state.playing,
                     );
-                  }
+                  },
                 );
               },
             },

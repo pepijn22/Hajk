@@ -270,7 +270,7 @@ class AdvancedOptions extends React.PureComponent {
                 {this.renderIncludeSelect(
                   includeNorthArrow,
                   "includeNorthArrow",
-                  handleChange
+                  handleChange,
                 )}
               </FormControl>
             </Grid>
@@ -286,7 +286,7 @@ class AdvancedOptions extends React.PureComponent {
                   northArrowPlacement,
                   "northArrowPlacement",
                   handleChange,
-                  !includeNorthArrow
+                  !includeNorthArrow,
                 )}
               </FormControl>
             </Grid>
@@ -300,7 +300,7 @@ class AdvancedOptions extends React.PureComponent {
                 {this.renderIncludeSelect(
                   includeScaleBar,
                   "includeScaleBar",
-                  handleChange
+                  handleChange,
                 )}
               </FormControl>
             </Grid>
@@ -316,7 +316,7 @@ class AdvancedOptions extends React.PureComponent {
                   scaleBarPlacement,
                   "scaleBarPlacement",
                   handleChange,
-                  !includeScaleBar
+                  !includeScaleBar,
                 )}
               </FormControl>
             </Grid>
@@ -330,7 +330,7 @@ class AdvancedOptions extends React.PureComponent {
                 {this.renderIncludeSelect(
                   includeLogo,
                   "includeLogo",
-                  handleChange
+                  handleChange,
                 )}
               </FormControl>
             </Grid>
@@ -346,7 +346,7 @@ class AdvancedOptions extends React.PureComponent {
                   logoPlacement,
                   "logoPlacement",
                   handleChange,
-                  !includeLogo
+                  !includeLogo,
                 )}
               </FormControl>
             </Grid>

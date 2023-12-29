@@ -172,7 +172,7 @@ class EditView extends React.PureComponent {
         this.props.observer.publish("editFeature", model.editFeatureBackup);
         app.globalObserver.publish(
           "core.alert",
-          this.getStatusMessage(response)
+          this.getStatusMessage(response),
         );
       } else {
         model.filty = false;
@@ -181,7 +181,7 @@ class EditView extends React.PureComponent {
         this.handleNext();
         app.globalObserver.publish(
           "core.alert",
-          this.getStatusMessage(response)
+          this.getStatusMessage(response),
         );
         this.toggleActiveTool(undefined);
         model.deactivateInteraction();

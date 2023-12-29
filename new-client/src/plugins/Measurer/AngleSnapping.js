@@ -72,7 +72,7 @@ export default class AngleSnapping {
         {
           ignoreEndVertices: false,
           epsilon: 0.001, // I got no matches without a value here (hitTolerance/fuzziness)
-        }
+        },
       );
 
       if (foundClickedSegment) {
@@ -111,7 +111,7 @@ export default class AngleSnapping {
     for (let i = 0; i < clickedFeatures.length; i++) {
       clickedSegment = this.#lookForSegmentInFeature(
         clickedFeatures[i],
-        coordinate
+        coordinate,
       );
       if (clickedSegment) {
         break;
@@ -152,7 +152,7 @@ export default class AngleSnapping {
         // Get the angle of the clicked segment
         const angleRadians = Math.atan2(
           clickedSegment[0][0] - clickedSegment[1][0],
-          clickedSegment[0][1] - clickedSegment[1][1]
+          clickedSegment[0][1] - clickedSegment[1][1],
         );
 
         // Lets add a nice line on top of the segment
@@ -167,7 +167,7 @@ export default class AngleSnapping {
         segmentFeature.setStyle(
           new Style({
             stroke: segmentStroke,
-          })
+          }),
         );
 
         this.#drawModel.addFeature(segmentFeature);

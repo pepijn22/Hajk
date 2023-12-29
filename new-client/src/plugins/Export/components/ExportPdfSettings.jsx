@@ -169,7 +169,7 @@ class ExportPdfSettings extends React.PureComponent {
       paper = this.getPreviewPaperMeasures(),
       center = this.props.model.getPreviewFeature()
         ? getCenter(
-            this.props.model.getPreviewFeature().getGeometry().getExtent()
+            this.props.model.getPreviewFeature().getGeometry().getExtent(),
           )
         : map.getView().getCenter();
 
@@ -244,7 +244,7 @@ class ExportPdfSettings extends React.PureComponent {
           "Utskriften kunde inte skapas. Prova med lägre upplösning, mindre område eller färre lager i kartan.",
           {
             variant: "error",
-          }
+          },
         );
       }
 

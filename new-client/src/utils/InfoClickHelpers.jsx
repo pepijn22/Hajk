@@ -77,7 +77,7 @@ function getSimpleInfoClickInfoFromLayerConfig(layer) {
   // If the prop is missing, there's nothing we can do...
   if (!layerInfo) {
     console.error(
-      "getSimpleInfoClickInfoFromLayerConfig was invoked with bad parameters. The supplied layer is probably missing the layerInfo-property."
+      "getSimpleInfoClickInfoFromLayerConfig was invoked with bad parameters. The supplied layer is probably missing the layerInfo-property.",
     );
     return {};
   }
@@ -102,7 +102,7 @@ function getSimpleInfoClickInfoFromLayerConfig(layer) {
 export function getInfoClickInfoFromLayerConfig(feature, layer) {
   if (!feature || !layer) {
     console.error(
-      "getInfoClickInfoFromLayerConfig was called with bad parameters."
+      "getInfoClickInfoFromLayerConfig was called with bad parameters.",
     );
     return {};
   }

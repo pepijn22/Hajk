@@ -28,7 +28,7 @@ const SettingsView = (props) => {
   const { functionalCookiesOk } = useCookieStatus(props.globalObserver);
   // We're gonna need some local state as well. For example, should we show helper-snacks?
   const [showHelperSnacks, setShowHelperSnacks] = React.useState(
-    model.getShowHelperSnacks()
+    model.getShowHelperSnacks(),
   );
   // An effect that makes sure to update the model with the user-choice regarding the helper-snacks.
   // The effect also makes sure to store the setting in the LS (if allowed).

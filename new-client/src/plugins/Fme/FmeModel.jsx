@@ -82,7 +82,7 @@ export default class FmeModel {
         param.value = { $$$INIT$$$: true };
         param.listOptions.forEach((option) => {
           let found = param.defaultValue.find(
-            (defVal) => defVal === option.value
+            (defVal) => defVal === option.value,
           );
           // Prefix option.value with a letter since option.value may be a number
           param.value[this.prefixOptionValue(option.value)] = !(

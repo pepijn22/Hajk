@@ -74,7 +74,7 @@ class SearchTools extends React.PureComponent {
             });
           }}
         ></Dialog>,
-        document.getElementById("windows-container")
+        document.getElementById("windows-container"),
       );
     } else {
       return null;

@@ -111,7 +111,7 @@ class TimeSliderView extends React.PureComponent {
       () => {
         this.initiateTimeLineLayers();
         this.refreshLayers();
-      }
+      },
     );
   };
 
@@ -130,7 +130,7 @@ class TimeSliderView extends React.PureComponent {
       },
       () => {
         this.refreshLayers();
-      }
+      },
     );
   };
 
@@ -316,7 +316,7 @@ class TimeSliderView extends React.PureComponent {
           Math.abs(curr - nextDate.getMonth()) <
           Math.abs(prev - nextDate.getMonth())
             ? curr
-            : prev
+            : prev,
         );
         nextDate.setMonth(closestQuarterMonth);
         // We also want to start on the first of the month each time...
@@ -350,7 +350,7 @@ class TimeSliderView extends React.PureComponent {
     const { currentUnixTime, resolution } = this.state;
     this.localObserver.publish(
       "updateHeaderTitle",
-      this.getDateLabel(currentUnixTime, resolution)
+      this.getDateLabel(currentUnixTime, resolution),
     );
   };
 
@@ -477,7 +477,7 @@ class TimeSliderView extends React.PureComponent {
             });
           }}
         ></Dialog>,
-        document.getElementById("windows-container")
+        document.getElementById("windows-container"),
       );
     } else {
       return null;

@@ -24,7 +24,7 @@ const Bookmarks = (props) => {
         app: props.app,
         map: props.map,
         storageKey: STORAGE_KEY,
-      })
+      }),
   );
   const [bookmarks, setBookmarks] = React.useState(bookmarksModel.bookmarks);
 

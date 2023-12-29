@@ -40,11 +40,11 @@ class VectorFilter extends React.PureComponent {
     const { url, featureType } = this.props.layer.getProperties();
     hfetch(
       url +
-        `?service=WFS&request=describeFeatureType&outputFormat=application/json&typename=${featureType}`
+        `?service=WFS&request=describeFeatureType&outputFormat=application/json&typename=${featureType}`,
     ).then((response) => {
       response.json().then((featureInfo) => {
         const featureTypeInfo = featureInfo.featureTypes.find(
-          (type) => type.typeName === featureType
+          (type) => type.typeName === featureType,
         );
         if (featureTypeInfo && Array.isArray(featureTypeInfo.properties)) {
           const layerProperties = featureTypeInfo.properties

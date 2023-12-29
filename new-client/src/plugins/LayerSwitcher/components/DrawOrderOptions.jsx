@@ -67,7 +67,7 @@ export default function DrawOrderOptions({
     const mapName =
       Array.isArray(app.config.userSpecificMaps) &&
       app.config.userSpecificMaps.find(
-        (m) => m.mapConfigurationName === app.config.activeMap
+        (m) => m.mapConfigurationName === app.config.activeMap,
       )?.mapConfigurationTitle;
 
     // Next, let's put together the metadata object…
@@ -98,7 +98,7 @@ export default function DrawOrderOptions({
     // Let's be safe about parsing JSON
     try {
       const { metadata, layers } = LocalStorageHelper._experimentalGet(
-        "layerswitcher.savedLayers"
+        "layerswitcher.savedLayers",
       );
 
       map
@@ -123,11 +123,11 @@ export default function DrawOrderOptions({
         `${metadata.numberOfLayers} lager återställdes från tidigare session`,
         {
           variant: "success",
-        }
+        },
       );
     } catch (error) {
       enqueueSnackbar(
-        "Innan du kan återställa måste du spara dina befintliga lager först."
+        "Innan du kan återställa måste du spara dina befintliga lager först.",
       );
     }
   };

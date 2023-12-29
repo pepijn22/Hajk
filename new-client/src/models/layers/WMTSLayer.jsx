@@ -42,7 +42,7 @@ class WMTSLayer {
     this.proxyUrl = proxyUrl;
     this.map = map;
     this.resolutions = this.resolutions = config.resolutions.map((r) =>
-      Number(r)
+      Number(r),
     );
     this.projection = config.projection;
 
@@ -95,7 +95,7 @@ class WMTSLayer {
         resolutions: this.resolutions,
         projection: this.projection,
         constrainResolution: view.getConstrainResolution(),
-      })
+      }),
     );
   }
 }

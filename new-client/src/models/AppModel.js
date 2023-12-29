@@ -76,7 +76,7 @@ class AppModel {
     this.config = config;
     this.decorateConfig();
     this.coordinateSystemLoader = new CoordinateSystemLoader(
-      config.mapConfig.projections
+      config.mapConfig.projections,
     );
     this.globalObserver = globalObserver;
     register(this.coordinateSystemLoader.getProj4());
@@ -126,7 +126,7 @@ class AppModel {
     // Finally, announce to everyone who cares
     this.globalObserver.publish(
       "core.pluginHistoryChanged",
-      this.pluginHistory
+      this.pluginHistory,
     );
   }
 
@@ -245,7 +245,7 @@ class AppModel {
         .then((module) => {
           const toolConfig =
             this.config.mapConfig.tools.find(
-              (plug) => plug.type.toLowerCase() === plugin.toLowerCase()
+              (plug) => plug.type.toLowerCase() === plugin.toLowerCase(),
             ) || {};
 
           const toolOptions =
@@ -265,7 +265,7 @@ class AppModel {
                 sortOrder: sortOrder,
                 options: toolOptions,
                 component: module.default,
-              })
+              }),
             );
           }
         })
@@ -386,13 +386,13 @@ class AppModel {
     this.map.clickLock = new Set();
 
     const infoclickOptions = config.tools.find(
-      (t) => t.type === "infoclick"
+      (t) => t.type === "infoclick",
     )?.options;
     if (infoclickOptions?.useNewInfoclick === true) {
       const mapClickModel = new MapClickModel(
         this.map,
         this.globalObserver,
-        infoclickOptions
+        infoclickOptions,
       );
 
       mapClickModel.bindMapClick((featureCollections) => {
@@ -404,7 +404,7 @@ class AppModel {
         // window if no features are to be shown).
         this.globalObserver.publish(
           "mapClick.featureCollections",
-          featureCollectionsToBeHandledByMapClickViewer
+          featureCollectionsToBeHandledByMapClickViewer,
         );
 
         // Next, handle search results features.
@@ -412,13 +412,13 @@ class AppModel {
         // and if we do, announce it to the search component so it can
         // show relevant feature in the search results list.
         const searchResultFeatures = featureCollections.find(
-          (c) => c.type === "SearchResults"
+          (c) => c.type === "SearchResults",
         )?.features;
 
         if (searchResultFeatures?.length > 0) {
           this.globalObserver.publish(
             "infoClick.searchResultLayerClick",
-            searchResultFeatures // Clicked features sent to the search-component for display
+            searchResultFeatures, // Clicked features sent to the search-component for display
           );
         }
       });
@@ -439,19 +439,19 @@ class AppModel {
         const searchResultFeatures = mapClickDataResult.features.filter(
           (feature) => {
             return feature?.layer.get("name") === "pluginSearchResults";
-          }
+          },
         );
         const infoclickFeatures = mapClickDataResult.features.filter(
           (feature) => {
             return feature?.layer.get("name") !== "pluginSearchResults";
-          }
+          },
         );
 
         // If there are any results from search layer, send an event about that.
         if (searchResultFeatures.length > 0) {
           this.globalObserver.publish(
             "infoClick.searchResultLayerClick",
-            searchResultFeatures // Clicked features sent to the search-component for display
+            searchResultFeatures, // Clicked features sent to the search-component for display
           );
         }
 
@@ -477,7 +477,7 @@ class AppModel {
 
     // See if Search is configured in map config
     const searchConfigIndex = this.config.mapConfig.tools.findIndex(
-      (t) => t.type === "search"
+      (t) => t.type === "search",
     );
 
     // If it is, go on and add the search model to App model
@@ -485,7 +485,7 @@ class AppModel {
       this.searchModel = new SearchModel(
         this.config.mapConfig.tools[searchConfigIndex].options,
         this.getMap(),
-        this
+        this,
       );
     }
 
@@ -512,7 +512,7 @@ class AppModel {
       .filter(
         (l) =>
           l.getVisible() === true &&
-          ["layer", "group"].includes(l.get("layerType"))
+          ["layer", "group"].includes(l.get("layerType")),
       )
       .forEach((l) => {
         l.setVisible(false);
@@ -534,7 +534,7 @@ class AppModel {
         layerItem = new WMSLayer(
           layerConfig.options,
           this.config.appConfig.proxy,
-          this.globalObserver
+          this.globalObserver,
         );
         this.map.addLayer(layerItem.layer);
         break;
@@ -543,7 +543,7 @@ class AppModel {
         layerItem = new WMTSLayer(
           layerConfig.options,
           this.config.appConfig.proxy,
-          this.map
+          this.map,
         );
         this.map.addLayer(layerItem.layer);
         break;
@@ -552,7 +552,7 @@ class AppModel {
         layerItem = new WFSVectorLayer(
           layerConfig.options,
           this.config.appConfig.proxy,
-          this.map
+          this.map,
         );
         this.map.addLayer(layerItem.layer);
         break;
@@ -573,7 +573,7 @@ class AppModel {
     const matchedLayers = [];
     layers.forEach((layer) => {
       const layerConfig = this.config.layersConfig.find(
-        (lookupLayer) => lookupLayer.id === layer.id
+        (lookupLayer) => lookupLayer.id === layer.id,
       );
       // Note that "layer" below IS NOT an OL Layer, only a structure from our config.
       // Hence, no layer.set("layerType"). Instead we do this:
@@ -614,10 +614,10 @@ class AppModel {
 
   addLayers() {
     const layerSwitcherConfig = this.config.mapConfig.tools.find(
-        (tool) => tool.type === "layerswitcher"
+        (tool) => tool.type === "layerswitcher",
       ),
       infoclickConfig = this.config.mapConfig.tools.find(
-        (t) => t.type === "infoclick"
+        (t) => t.type === "infoclick",
       );
 
     // Prepare layers
@@ -627,7 +627,7 @@ class AppModel {
       if (this.layersFromParams.length > 0) {
         // Override the default visibleAtStart if a value was provided in URLSearchParams
         layer.visibleAtStart = this.layersFromParams.some(
-          (layerId) => layerId === layer.id
+          (layerId) => layerId === layer.id,
         );
 
         // groupLayersFromParams is an object where keys are layer IDs and values are
@@ -636,7 +636,7 @@ class AppModel {
         // at start (default behavior is to turn on all sublayers).
         layer.visibleAtStartSubLayers = Object.hasOwn(
           this.groupLayersFromParams,
-          layer.id
+          layer.id,
         )
           ? this.groupLayersFromParams[layer.id]?.split(",")
           : [];
@@ -741,7 +741,7 @@ class AppModel {
       } catch (error) {
         console.error(
           "Couldn't parse the group layers parameter. Attempted with this value:",
-          paramsAsPlainObject.gl
+          paramsAsPlainObject.gl,
         );
       }
     }
@@ -791,7 +791,7 @@ class AppModel {
     // to activate live hash params (#1252).
     const enableAppStateInHash = Object.hasOwn(
       paramsAsPlainObject,
-      "enableAppStateInHash"
+      "enableAppStateInHash",
     );
     if (enableAppStateInHash) {
       console.info("Activating live updating of query parameters");
@@ -887,7 +887,7 @@ class AppModel {
       // but let the search tool only see those that are specified in searchTool.options
       const wfslayers = this.overrideGlobalSearchConfig(
         searchTool,
-        layers.wfslayers
+        layers.wfslayers,
       );
 
       // See if admin wants to expose any WMS layers. selectedSources will
@@ -903,7 +903,7 @@ class AppModel {
           // Prevent crash if no layer was found, see #1206
           if (layer === undefined) {
             console.warn(
-              `WMS layer with ID "${wmslayerId}" does not exist and should be removed from config. Please contact the system administrator.`
+              `WMS layer with ID "${wmslayerId}" does not exist and should be removed from config. Please contact the system administrator.`,
             );
             return undefined;
           }
@@ -945,7 +945,7 @@ class AppModel {
               serverType: layer.serverType || "geoserver",
             };
           });
-        }
+        },
       );
 
       // Spread the WMS search layers onto the array with WFS search sources,
@@ -984,7 +984,7 @@ class AppModel {
 
           let wfstlayers = this.overrideGlobalEditConfig(
             editTool,
-            layers.wfstlayers
+            layers.wfstlayers,
           );
           editTool.options.sources = wfstlayers;
           layers.wfstlayers = wfstlayers;
@@ -996,7 +996,7 @@ class AppModel {
 
     return this.mergeConfigWithValuesFromParams(
       this.config.mapConfig,
-      Object.fromEntries(getMergedSearchAndHashParams())
+      Object.fromEntries(getMergedSearchAndHashParams()),
     );
   }
 
@@ -1047,7 +1047,7 @@ class AppModel {
         // map's config. In order to prevent a silent failure (see #1305), this check is added.
         if (olLayer === undefined) {
           console.warn(
-            `Attempt to show layer with id ${layer} failed: layer not found in current map`
+            `Attempt to show layer with id ${layer} failed: layer not found in current map`,
           );
         }
         // If it's a group layer we can use the 'layerswitcher.showLayer' event
@@ -1093,7 +1093,7 @@ class AppModel {
 
         if (olLayer === undefined) {
           console.warn(
-            `Attempt to hide layer with id ${layer} failed: layer not found in current map`
+            `Attempt to hide layer with id ${layer} failed: layer not found in current map`,
           );
         } else if (olLayer.get("layerType") === "group") {
           // Tell the LayerSwitcher about it
@@ -1135,7 +1135,7 @@ class AppModel {
         const olLayer = this.map
           .getAllLayers()
           .find(
-            (l) => l.get("name") === layer && l.get("layerType") === "group"
+            (l) => l.get("name") === layer && l.get("layerType") === "group",
           );
 
         if (olLayer !== undefined) {

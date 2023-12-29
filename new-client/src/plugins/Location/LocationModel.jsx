@@ -41,7 +41,7 @@ class LocationModel {
             width: 2,
           }),
         }),
-      })
+      }),
     );
 
     // Init geolocation layer where the point will be drawn to
@@ -57,11 +57,11 @@ class LocationModel {
     this.geolocation.on("error", this.handleGeolocationError);
     this.geolocation.on(
       "change:accuracyGeometry",
-      this.handleGeolocationChangeAccuracy
+      this.handleGeolocationChangeAccuracy,
     );
     this.geolocation.on(
       "change:position",
-      this.handleGeolocationChangePosition
+      this.handleGeolocationChangePosition,
     );
   }
 
@@ -89,7 +89,7 @@ class LocationModel {
   handleGeolocationChangePosition = (e) => {
     const coordinates = e.target.getPosition();
     this.positionFeature.setGeometry(
-      coordinates ? new Point(coordinates) : null
+      coordinates ? new Point(coordinates) : null,
     );
 
     // If we've got new coordinates, make sure to hide the loading indicator

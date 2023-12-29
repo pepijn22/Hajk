@@ -59,7 +59,7 @@ class BufferView extends React.PureComponent {
           "Du måste markera minst ett objekt i kartan för att kunna buffra",
           {
             variant: "error",
-          }
+          },
         );
         return;
       }

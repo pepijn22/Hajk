@@ -98,7 +98,7 @@ class FirSearchNeighborView extends React.PureComponent {
 
     this.localObserver.subscribe(
       "fir.results.filtered",
-      this.handleDataRefresh
+      this.handleDataRefresh,
     );
   }
 
@@ -131,7 +131,7 @@ class FirSearchNeighborView extends React.PureComponent {
     // Now we need to get previous results and publish to ResultView etc.
     this.localObserver.publish(
       "fir.search.load",
-      this.state.resultHistory.pop()
+      this.state.resultHistory.pop(),
     );
   };
 

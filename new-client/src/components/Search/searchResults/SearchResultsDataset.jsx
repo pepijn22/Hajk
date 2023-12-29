@@ -82,7 +82,7 @@ class SearchResultsDataset extends React.Component {
           return feature.featureTitle
             .toLowerCase()
             .includes(featureFilter.toLowerCase());
-        }
+        },
       );
       return filteredFeatures ?? [];
     }
@@ -96,7 +96,7 @@ class SearchResultsDataset extends React.Component {
     const featuresAtoZSorted = features.sort((a, b) =>
       a.featureTitle.localeCompare(b.featureTitle, undefined, {
         numeric: true, // Ensure that 1 < 2 < 10
-      })
+      }),
     );
 
     switch (featureSortingStrategy) {
@@ -168,7 +168,7 @@ class SearchResultsDataset extends React.Component {
                   if (!isMobile) {
                     this.props.localObserver.publish(
                       "map.setHighLightedStyle",
-                      f
+                      f,
                     );
                     this.setPreviewFeature(e, f);
                   }
@@ -177,14 +177,14 @@ class SearchResultsDataset extends React.Component {
                   if (!isMobile) {
                     // Create a list of ol_uids of selected features
                     const selectedOlUids = this.props.selectedFeatures.map(
-                      (f) => f.feature.ol_uid
+                      (f) => f.feature.ol_uid,
                     );
                     // Check if the current feature is in the list of selected features
                     if (selectedOlUids.includes(f.ol_uid)) {
                       // If so, reset the style to "selection" style for that feature…
                       this.props.localObserver.publish(
                         "map.setSelectedFeatureStyle",
-                        f
+                        f,
                       );
                     } else {
                       // …else, remove the styling entirely (fallback to default OL)
@@ -201,7 +201,7 @@ class SearchResultsDataset extends React.Component {
                   origin={featureCollection.origin}
                   visibleInMap={
                     selectedFeatures.findIndex(
-                      (item) => item.feature.getId() === f.getId()
+                      (item) => item.feature.getId() === f.getId(),
                     ) > -1
                   }
                   addFeatureToSelected={addFeatureToSelected}

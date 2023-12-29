@@ -118,7 +118,7 @@ function DrawerToggleButtons({
 
   // Check if all buttons are hidden on md screens and above.
   const areAllButtonsHiddenOnMdAndAbove = drawerButtons.every(
-    (b) => b.hideOnMdScreensAndAbove
+    (b) => b.hideOnMdScreensAndAbove,
   );
 
   return (

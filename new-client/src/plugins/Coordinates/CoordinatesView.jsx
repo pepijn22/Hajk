@@ -60,7 +60,7 @@ class CoordinatesView extends React.PureComponent {
               Stäng
             </Button>
           ),
-        }
+        },
       );
     });
 
@@ -71,7 +71,7 @@ class CoordinatesView extends React.PureComponent {
     this.localObserver.subscribe("location-permissions-denied", () => {
       this.props.enqueueSnackbar(
         LOCATION_DENIED_SNACK_MESSAGE,
-        LOCATION_DENIED_SNACK_OPTIONS
+        LOCATION_DENIED_SNACK_OPTIONS,
       );
     });
   }

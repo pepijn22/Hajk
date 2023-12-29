@@ -37,7 +37,7 @@ function query(map, layer, evt) {
     subLayersToQuery = subLayers
       .filter(
         (subLayer) =>
-          subLayer.queryable === true && visibleSubLayersSet.has(subLayer.id)
+          subLayer.queryable === true && visibleSubLayersSet.has(subLayer.id),
       ) // QUERY_LAYERS must not include anything that's not in LAYERS, see https://github.com/hajkmap/Hajk/issues/211
       .map((queryableSubLayer) => {
         return queryableSubLayer.id;
@@ -158,7 +158,7 @@ function readJsonFeatures(jsonData, layerProjection, viewProjection) {
       // so that featureInfo knows when we clicked a new feature in
       // the same layer.
       parsedJsonFeature.setId(
-        `${jsonFeature.layerName}.${parsedJsonFeature.ol_uid}`
+        `${jsonFeature.layerName}.${parsedJsonFeature.ol_uid}`,
       );
     }
     // Push the feature to the array of parsed features
@@ -203,7 +203,7 @@ function experimentalParseEsriWmsRawXml(response, xml) {
   const namespacePrefix = "esri_wms";
 
   const collections = xmlDoc.getElementsByTagName(
-    `${namespacePrefix}:FeatureInfoCollection`
+    `${namespacePrefix}:FeatureInfoCollection`,
   );
 
   // Let's loop the collections using a flat map (the resulting object must
@@ -227,12 +227,12 @@ function experimentalParseEsriWmsRawXml(response, xml) {
       Array.from(fields).forEach((field) => {
         // …grab the key…
         const attributeName = field.getElementsByTagName(
-          `${namespacePrefix}:FieldName`
+          `${namespacePrefix}:FieldName`,
         )[0].textContent;
 
         // …and the value corresponding with this attribute…
         const attributeValue = field.getElementsByTagName(
-          `${namespacePrefix}:FieldValue`
+          `${namespacePrefix}:FieldValue`,
         )[0].textContent;
 
         // …and set as OL attributes on our OL Feature.
@@ -272,7 +272,7 @@ function getFeaturesFromXmlOrGml(response, text) {
     }
     if (!feature.getId()) {
       feature.setId(
-        `${response.layer.getProperties().layerInfo.name}.${feature.ol_uid}`
+        `${response.layer.getProperties().layerInfo.name}.${feature.ol_uid}`,
       );
     }
     feature.layer = response.layer;
@@ -302,7 +302,7 @@ export function handleClick(evt, map, callback) {
         // Only certain layer types are relevant
         (layer instanceof TileLayer || layer instanceof ImageLayer) &&
         // And only if they're currently visible (no reason to query hidden layers)
-        layer.get("visible") === true
+        layer.get("visible") === true,
     )
     // For each layer that's left in the array
     .forEach((layer) => {
@@ -318,7 +318,7 @@ export function handleClick(evt, map, callback) {
               requestResponse: response,
               viewProjection: viewProjection,
             };
-          })
+          }),
         );
       }
     });
@@ -348,16 +348,16 @@ export function handleClick(evt, map, callback) {
                       jsonData.features.length > 0
                     ) {
                       features.push(
-                        ...getFeaturesFromJson(response.value, jsonData)
+                        ...getFeaturesFromJson(response.value, jsonData),
                       );
                     }
                   })
                   .catch((err) => {
                     console.error(
                       "GetFeatureInfo couldn't retrieve correct data for the clicked object.",
-                      err
+                      err,
                     );
-                  })
+                  }),
               );
               break;
             case "application/vnd.esri.wms_raw_xml":
@@ -366,14 +366,14 @@ export function handleClick(evt, map, callback) {
                   .text()
                   .then((text) => {
                     features.push(
-                      ...experimentalParseEsriWmsRawXml(response.value, text)
+                      ...experimentalParseEsriWmsRawXml(response.value, text),
                     );
                   })
                   .catch((err) => {
                     console.error(
-                      "GetFeatureInfo couldn't retrieve correct data for the clicked object. "
+                      "GetFeatureInfo couldn't retrieve correct data for the clicked object. ",
                     );
-                  })
+                  }),
               );
               break;
             case "text/xml":
@@ -383,14 +383,14 @@ export function handleClick(evt, map, callback) {
                   .text()
                   .then((text) => {
                     features.push(
-                      ...getFeaturesFromXmlOrGml(response.value, text)
+                      ...getFeaturesFromXmlOrGml(response.value, text),
                     );
                   })
                   .catch((err) => {
                     console.error(
-                      "GetFeatureInfo couldn't retrieve correct data for the clicked object. "
+                      "GetFeatureInfo couldn't retrieve correct data for the clicked object. ",
                     );
-                  })
+                  }),
               );
               break;
             // For any other Content-Type, just ignore - we can't parse any
@@ -425,7 +425,7 @@ export function handleClick(evt, map, callback) {
             },
             {
               hitTolerance: 10,
-            }
+            },
           );
 
           document.querySelector("body").style.cursor = "initial";

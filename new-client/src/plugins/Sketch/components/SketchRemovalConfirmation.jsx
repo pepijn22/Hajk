@@ -34,7 +34,7 @@ const SketchRemovalConfirmation = ({ open, handleConfirm, handleAbort }) => {
         </Button>
       </DialogActions>
     </Dialog>,
-    document.getElementById("map")
+    document.getElementById("map"),
   );
 };
 

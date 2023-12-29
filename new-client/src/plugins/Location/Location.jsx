@@ -32,7 +32,7 @@ class Location extends React.PureComponent {
         defaultTooltip={`Positionera: Visa min position i kartan`}
         model={this.model}
       />,
-      document.getElementById("plugin-control-buttons")
+      document.getElementById("plugin-control-buttons"),
     );
   }
 

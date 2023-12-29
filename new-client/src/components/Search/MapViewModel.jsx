@@ -97,7 +97,7 @@ class MapViewModel {
         zIndex: 5000,
         name: "pluginSearchResults",
         caption: "Search results",
-      }
+      },
     );
     this.drawSource = this.getNewVectorSource();
     this.drawLayer = this.getNewVectorLayer(
@@ -108,7 +108,7 @@ class MapViewModel {
         zIndex: 5000,
         name: "pluginSearchDraw",
         caption: "Search draw",
-      }
+      },
     );
     this.map.addLayer(this.drawLayer);
     this.map.addLayer(this.resultsLayer);
@@ -120,7 +120,7 @@ class MapViewModel {
     this.localObserver.subscribe("map.zoomToFeatures", this.zoomToFeatures);
     this.localObserver.subscribe(
       "map.addFeaturesToResultsLayer",
-      this.addFeaturesToResultsLayer
+      this.addFeaturesToResultsLayer,
     );
     this.localObserver.subscribe("map.setSelectedStyle", this.setSelectedStyle);
 
@@ -130,19 +130,19 @@ class MapViewModel {
     // name matches!).
     this.localObserver.subscribe(
       "map.setSelectedFeatureStyle",
-      this.setSelectedStyleForFeature
+      this.setSelectedStyleForFeature,
     );
     this.localObserver.subscribe(
       "map.addAndHighlightFeatureInSearchResultLayer",
-      this.addAndHighlightFeatureInSearchResultLayer
+      this.addAndHighlightFeatureInSearchResultLayer,
     );
     this.localObserver.subscribe(
       "map.updateFeaturesAfterFilterChange",
-      this.updateFeaturesAfterFilterChange
+      this.updateFeaturesAfterFilterChange,
     );
     this.localObserver.subscribe(
       "map.setHighLightedStyle",
-      this.setHighLightedStyle
+      this.setHighLightedStyle,
     );
     this.localObserver.subscribe("map.zoomToFeature", this.zoomToFeature);
     // Global subscriptions
@@ -171,7 +171,7 @@ class MapViewModel {
         // need it here (as these search options are purely click/touch-based)
         // so we ensure that it's hidden by blurring the focus.
         document.activeElement.blur();
-      }
+      },
     );
   };
 
@@ -271,7 +271,7 @@ class MapViewModel {
     }
     const mapFeature = this.getFeatureFromResultSourceById(feature.getId());
     return mapFeature?.setStyle(
-      this.featureStyle.getFeatureStyle(mapFeature, "highlight")
+      this.featureStyle.getFeatureStyle(mapFeature, "highlight"),
     );
   };
 
@@ -297,10 +297,10 @@ class MapViewModel {
     this.resetStyleForFeaturesInResultSource();
     featuresInfo.map((featureInfo) => {
       const feature = this.getFeatureFromResultSourceById(
-        featureInfo.feature.getId()
+        featureInfo.feature.getId(),
       );
       return feature?.setStyle(
-        this.featureStyle.getFeatureStyle(feature, "selection")
+        this.featureStyle.getFeatureStyle(feature, "selection"),
       );
     });
   };
@@ -322,14 +322,14 @@ class MapViewModel {
     //BoundingExtent-function gave wrong coordinates for some
     featuresInfo.forEach((featureInfo) => {
       const feature = this.getFeatureFromResultSourceById(
-        featureInfo.feature.getId()
+        featureInfo.feature.getId(),
       );
       if (feature) {
         extend(
           extent,
           this.getFeatureFromResultSourceById(featureInfo.feature.getId())
             .getGeometry()
-            .getExtent()
+            .getExtent(),
         );
       }
     });

@@ -78,7 +78,7 @@ class GeosuiteExportModel {
           featureName: "geoteknisk_utredning",
         },
         spatialFilter: this.#getSpatialFilter(
-          this.#options.services?.wfs?.projects?.spatialFilter
+          this.#options.services?.wfs?.projects?.spatialFilter,
         ),
         attributes: {
           title:
@@ -104,7 +104,7 @@ class GeosuiteExportModel {
           featureName: "borrhal",
         },
         spatialFilter: this.#getSpatialFilter(
-          this.#options.services?.wfs?.boreholes?.spatialFilter
+          this.#options.services?.wfs?.boreholes?.spatialFilter,
         ),
         attributes: {
           external_id:
@@ -235,7 +235,7 @@ class GeosuiteExportModel {
         (!projectIds || projectIds.size === 0))
     ) {
       throw new TypeError(
-        "Cannot export without an e-mail address and at least one external identity"
+        "Cannot export without an e-mail address and at least one external identity",
       );
     }
     if (!boreholeIds) {
@@ -256,12 +256,12 @@ class GeosuiteExportModel {
       signal,
       this.#options?.services?.trimble?.exportMethod ?? "/export",
       "POST",
-      body
+      body,
     )
       .then((response) => {
         if (!response.ok) {
           console.warn(
-            "GeosuiteExportModel: orderGeoSuiteExport: API query rejected"
+            "GeosuiteExportModel: orderGeoSuiteExport: API query rejected",
           );
           throw new TypeError("Rejected");
         }
@@ -279,7 +279,7 @@ class GeosuiteExportModel {
       this.#config.boreholes,
       selectionGeometry,
       this.#selectBoreHole,
-      this.#updateSelectedProjectsDetailsFromTrimbleApi
+      this.#updateSelectedProjectsDetailsFromTrimbleApi,
     );
   };
 
@@ -288,7 +288,7 @@ class GeosuiteExportModel {
       this.#config.projects,
       selectionGeometry,
       this.#selectDocument,
-      this.#updateDocumentDetails
+      this.#updateDocumentDetails,
     );
   };
 
@@ -346,7 +346,7 @@ class GeosuiteExportModel {
     wfsConfig,
     selectionGeometry,
     featureSelectCallback,
-    postFeatureSelectionCallback
+    postFeatureSelectionCallback,
   ) => {
     if (!selectionGeometry) {
       return;
@@ -366,7 +366,7 @@ class GeosuiteExportModel {
     const spatialFilter = filter(
       wfsConfig.layer.geometryField,
       filterGeometry,
-      layerSrs
+      layerSrs,
     );
 
     const wfsGetFeatureOtions = {
@@ -384,7 +384,7 @@ class GeosuiteExportModel {
     }
 
     const wfsBoreholesBodyXml = new XMLSerializer().serializeToString(
-      this.#wfsParser.writeGetFeature(wfsGetFeatureOtions)
+      this.#wfsParser.writeGetFeature(wfsGetFeatureOtions),
     );
     const controller = new AbortController();
     const signal = controller.signal;
@@ -402,7 +402,7 @@ class GeosuiteExportModel {
       .then((response) => {
         if (!response.ok) {
           console.warn(
-            "GeosuiteExportModel: #updateSelectionStateFromWfs: WFS query rejected"
+            "GeosuiteExportModel: #updateSelectionStateFromWfs: WFS query rejected",
           );
           throw new TypeError("Rejected"); // E.g. CORS error or similar
         }
@@ -425,7 +425,7 @@ class GeosuiteExportModel {
       .catch((error) => {
         console.warn(
           "GeosuiteExportModel: #updateSelectionStateFromWfs: WFS error",
-          error
+          error,
         );
       });
   };
@@ -447,7 +447,7 @@ class GeosuiteExportModel {
         "GeoSuiteExportModel: #selectDocument: WFS is missing feature id, title (%s) or link attribute (%s). Check attribute names in admin. Feature=",
         this.#config.projects.attributes.title,
         this.#config.projects.attributes.link,
-        feature
+        feature,
       );
       // Don't throw an error on invidiual document selection failure, since we can handle other links/results
       return;
@@ -470,10 +470,10 @@ class GeosuiteExportModel {
         "GeoSuiteExportModel: #selectBoreHole: WFS is missing id (%s) or project id attribute (%s). Check attribute names in admin. Feature=",
         this.#config.boreholes.attributes.external_id,
         this.#config.boreholes.attributes.external_project_id,
-        feature
+        feature,
       );
       throw new TypeError(
-        "Internal error, required borehole identities missing from WFS."
+        "Internal error, required borehole identities missing from WFS.",
       );
     }
     const project = this.#getBoreholeProjectById(projectId);
@@ -502,7 +502,7 @@ class GeosuiteExportModel {
         // Optimized Trimble API usage: only fetch if we don't have the project details
         const project = this.#getBoreholeProjectById(projectId);
         return !project || !project.numBoreHolesTotal;
-      }
+      },
     );
 
     /*
@@ -517,7 +517,7 @@ class GeosuiteExportModel {
         this.#trimbleApiFetch(
           signal,
           projectDetailsMethod.concat("/", projectId),
-          "GET"
+          "GET",
         )
           .then((response) => {
             if (!response.ok) {
@@ -553,7 +553,7 @@ class GeosuiteExportModel {
           .catch((error) => {
             console.warn(
               "GeosuiteExportModel: #updateSelectedProjectsDetailsFromTrimbleApi: Trimble API response failure",
-              error
+              error,
             );
             this.#localObserver.publish("borehole-selection-failed");
           });
@@ -561,7 +561,7 @@ class GeosuiteExportModel {
       .catch((error) => {
         console.warn(
           "GeosuiteExportModel: #updateSelectedProjectsDetailsFromTrimbleApi: Trimble API request failure",
-          error
+          error,
         );
         this.#localObserver.publish("borehole-selection-failed");
       });
@@ -655,20 +655,20 @@ class GeosuiteExportModel {
   #initWfsLayers = () => {
     const projectsLayerByRefOrDefaults = this.#getVectorLayerByRefOrDefaults(
       this.#config.projects.layer.id,
-      this.#config.projects.layer
+      this.#config.projects.layer,
     );
     const boreholesLayerByRefOrDefaults = this.#getVectorLayerByRefOrDefaults(
       this.#config.boreholes.layer.id,
-      this.#config.boreholes.layer
+      this.#config.boreholes.layer,
     );
     // Override tool config (or defaults) with actual layer properties
     this.#config.projects.layer = Object.assign(
       this.#config.projects.layer,
-      projectsLayerByRefOrDefaults
+      projectsLayerByRefOrDefaults,
     );
     this.#config.boreholes.layer = Object.assign(
       this.#config.boreholes.layer,
-      boreholesLayerByRefOrDefaults
+      boreholesLayerByRefOrDefaults,
     );
   };
 
@@ -679,7 +679,7 @@ class GeosuiteExportModel {
     if (!layer) {
       console.warn(
         "GeosuiteExport: Layer not found, please configure as vector layer via admin. Using defaults. Reference id=%s.",
-        id
+        id,
       );
       layer = defaults;
     }
@@ -739,7 +739,9 @@ class GeosuiteExportModel {
       .then((blob) => {
         saveAs(
           blob,
-          "Geotekniska_utredningar_" + new Date().toJSON().slice(0, 10) + ".zip"
+          "Geotekniska_utredningar_" +
+            new Date().toJSON().slice(0, 10) +
+            ".zip",
         );
         this.#localObserver.publish("document-save-done");
       })

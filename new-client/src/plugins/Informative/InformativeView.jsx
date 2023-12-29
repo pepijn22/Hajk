@@ -312,7 +312,7 @@ class Informative extends React.PureComponent {
         foundParent = this.findParentInToc(
           lookupChapter,
           chapter.chapters,
-          chapter
+          chapter,
         );
       }
       if (lookupChapter === chapter && !foundParent) {

@@ -127,7 +127,7 @@ export default function DrawOrderListItem({ changeOrder, layer }) {
     return (
       layer.layersInfo !== undefined &&
       Object.values(layer.layersInfo).findIndex(
-        (sl) => sl.queryable === true
+        (sl) => sl.queryable === true,
       ) !== -1
     );
   };

@@ -278,7 +278,7 @@ class LayerGroupItem extends Component {
     if (bListen && !this.zoomEndListener) {
       this.zoomEndListener = model.globalObserver.subscribe(
         eventName,
-        this.zoomEndHandler
+        this.zoomEndHandler,
       );
     } else {
       if (this.zoomEndListener) {
@@ -345,7 +345,7 @@ class LayerGroupItem extends Component {
     if (chapters && chapters.length > 0) {
       const chaptersWithLayer = this.findChapters(
         this.props.layer.get("name"),
-        chapters
+        chapters,
       );
       if (chaptersWithLayer.length > 0) {
         return (
@@ -394,7 +394,7 @@ class LayerGroupItem extends Component {
   isInfoEmpty() {
     const chaptersWithLayer = this.findChapters(
       this.props.layer.get("name"),
-      this.props.chapters
+      this.props.chapters,
     );
     const { infoCaption, infoUrl, infoOwner, infoText } = this.state;
     return !(
@@ -563,7 +563,7 @@ class LayerGroupItem extends Component {
   toggleLayerVisible = (subLayer) => (e) => {
     var visibleSubLayers = [...this.state.visibleSubLayers],
       isVisible = visibleSubLayers.some(
-        (visibleSubLayer) => visibleSubLayer === subLayer
+        (visibleSubLayer) => visibleSubLayer === subLayer,
       ),
       layerVisibility;
 
@@ -574,7 +574,7 @@ class LayerGroupItem extends Component {
 
     if (isVisible) {
       visibleSubLayers = visibleSubLayers.filter(
-        (visibleSubLayer) => visibleSubLayer !== subLayer
+        (visibleSubLayer) => visibleSubLayer !== subLayer,
       );
     } else {
       visibleSubLayers.push(subLayer);
@@ -605,7 +605,7 @@ class LayerGroupItem extends Component {
       let visibleSubLayersStyles = [];
       visibleSubLayers.forEach((subLayer) => {
         visibleSubLayersStyles.push(
-          this.props.layer.layersInfo[subLayer].style
+          this.props.layer.layersInfo[subLayer].style,
         );
       });
 
@@ -671,7 +671,7 @@ class LayerGroupItem extends Component {
   renderSubLayer(layer, subLayer, index) {
     const { visibleSubLayers } = this.state;
     const visible = visibleSubLayers.some(
-      (visibleSubLayer) => visibleSubLayer === subLayer
+      (visibleSubLayer) => visibleSubLayer === subLayer,
     );
     const toggleSettings = this.toggleSubLayerSettings.bind(this, index);
     const legendIcon = layer.layersInfo[subLayer].legendIcon;
@@ -741,7 +741,7 @@ class LayerGroupItem extends Component {
       return (
         <Box sx={{ marginLeft: "45px" }}>
           {layer.subLayers.map((subLayer, index) =>
-            this.renderSubLayer(layer, subLayer, index)
+            this.renderSubLayer(layer, subLayer, index),
           )}
         </Box>
       );

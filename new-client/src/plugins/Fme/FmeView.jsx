@@ -102,7 +102,7 @@ class FmeView extends React.PureComponent {
     let state_params = this.state.productParams;
     let state_param = this.model.findProductParamByName(
       state_params,
-      param.name
+      param.name,
     );
     // TODO: Add more types that FME supports
     if (param.type === "TEXT") {
@@ -134,7 +134,7 @@ class FmeView extends React.PureComponent {
       this.state.productParams,
       this.state.email,
       product.geoAttribute,
-      product.maxArea
+      product.maxArea,
     );
     let fmeServer = this.model.options.fmeServer;
 
@@ -166,18 +166,18 @@ class FmeView extends React.PureComponent {
           if (ret.serviceResponse.statusInfo.status === "success") {
             this.props.enqueueSnackbar(
               "Beställningen har mottagits! Resultatet skickas till " +
-                ret.serviceResponse.email
+                ret.serviceResponse.email,
             );
           } else {
             this.props.enqueueSnackbar(
-              "Beställningen kunde tyvärr inte utföras "
+              "Beställningen kunde tyvärr inte utföras ",
             );
           }
         })
         .catch((err) => {
           console.log("Fetch Error: ", err);
           this.props.enqueueSnackbar(
-            "Beställningen kunde tyvärr inte utföras: " + err.toString()
+            "Beställningen kunde tyvärr inte utföras: " + err.toString(),
           );
         });
 
@@ -227,7 +227,7 @@ class FmeView extends React.PureComponent {
     }
 
     let geoAttribute = this.model.findProductById(
-      this.state.productId
+      this.state.productId,
     ).geoAttribute;
 
     return (

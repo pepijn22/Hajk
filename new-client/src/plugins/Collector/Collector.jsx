@@ -33,7 +33,7 @@ class Collector extends React.Component {
   getLayerConfigById(serviceId) {
     return this.app.config.layersConfig.find(
       (layerConfig) =>
-        layerConfig.type === "edit" && layerConfig.id === serviceId
+        layerConfig.type === "edit" && layerConfig.id === serviceId,
     );
   }
 

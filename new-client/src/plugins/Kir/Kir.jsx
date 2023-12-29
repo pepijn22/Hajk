@@ -41,7 +41,7 @@ class Kir extends React.PureComponent {
 
     this.layerController = new KirLayerController(
       this.model,
-      this.localObserver
+      this.localObserver,
     );
 
     this.import = new KirImport({

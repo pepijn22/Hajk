@@ -280,7 +280,7 @@ class Page extends Component {
             options.unshift(
               <option key="-1" value="">
                 -Välj värde-
-              </option>
+              </option>,
             );
           }
         }
@@ -320,7 +320,7 @@ class Page extends Component {
 
   getFieldConfig(fieldName) {
     return this.props.serviceConfig.editableFields.find(
-      (field) => field.name === fieldName
+      (field) => field.name === fieldName,
     );
   }
 
@@ -339,7 +339,7 @@ class Page extends Component {
               if (window.innerWidth < 600) {
                 this.props.model.globalObserver.publish("core.minimizeWindow");
                 this.props.enqueueSnackbar(
-                  "Klicka i kartan för att rita objekt"
+                  "Klicka i kartan för att rita objekt",
                 );
               }
             }}
@@ -477,7 +477,7 @@ class Page extends Component {
                 },
                 () => {
                   this.props.model.observer.publish("abort");
-                }
+                },
               );
             }
           } else {
@@ -489,14 +489,14 @@ class Page extends Component {
       },
       (error) => {
         this.saveError();
-      }
+      },
     );
   };
 
   saveError = () => {
     this.props.model.globalObserver.publish(
       "core.alert",
-      "Det gick inte att spara, försök igen senare."
+      "Det gick inte att spara, försök igen senare.",
     );
   };
 

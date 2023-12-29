@@ -39,7 +39,7 @@ export default function RecentlyUsedPlugins({
         return () => {
           pluginHistoryChanged.unsubscribe();
         };
-      }
+      },
     );
   }, [globalObserver]);
 

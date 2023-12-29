@@ -40,7 +40,7 @@ class RouteModel {
 
   setTravelMode = (travelModeKey) => {
     this.travelMode = this.googleMapsApi.DirectionsTravelMode.hasOwnProperty(
-      travelModeKey
+      travelModeKey,
     )
       ? this.googleMapsApi.DirectionsTravelMode[travelModeKey]
       : "WALKING";
@@ -67,7 +67,7 @@ class RouteModel {
       var transformed = transform(
         point.getCoordinates(),
         "EPSG:4326",
-        this.olMap.getView().getProjection()
+        this.olMap.getView().getProjection(),
       );
       point.setCoordinates(transformed);
       var ft = new Feature({ geometry: point });
@@ -84,11 +84,11 @@ class RouteModel {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         this.getCurrentPositionSuccess,
-        this.getCurrentPositionError
+        this.getCurrentPositionError,
       );
     } else {
       window.alert(
-        "Kan inte få position. Skriv startposition i rutan eller tryck position på kartan."
+        "Kan inte få position. Skriv startposition i rutan eller tryck position på kartan.",
       );
     }
   };
@@ -216,7 +216,7 @@ class RouteModel {
     var lonlat = transform(
       startPoint.getGeometry().getCoordinates(),
       this.projection,
-      "EPSG:4326"
+      "EPSG:4326",
     );
     var lon = lonlat[0];
     var lat = lonlat[1];
@@ -245,7 +245,7 @@ class RouteModel {
     var lonlat = transform(
       endPoint.getGeometry().getCoordinates(),
       this.projection,
-      "EPSG:4326"
+      "EPSG:4326",
     );
     var lon = lonlat[0];
     var lat = lonlat[1];
@@ -330,7 +330,7 @@ class RouteModel {
       var transformed = transform(
         point.getCoordinates(),
         "EPSG:4326",
-        this.projection
+        this.projection,
       );
       point.setCoordinates(transformed);
 
@@ -365,7 +365,7 @@ class RouteModel {
       {
         dataProjection: "EPSG:4326",
         featureProjection: this.projection,
-      }
+      },
     );
 
     layer_drawing.getSource().clear();
@@ -381,7 +381,7 @@ class RouteModel {
     this.olMap
       .getView()
       .setCenter(
-        transform([centerLon, centerLat], "EPSG:4326", this.projection)
+        transform([centerLon, centerLat], "EPSG:4326", this.projection),
       );
     this.olMap
       .getView()
@@ -392,7 +392,7 @@ class RouteModel {
     var feature_number = -1;
     if (event.target.nodeName === "B") {
       feature_number = event.target.parentNode.id.substring(
-        "step_number".length
+        "step_number".length,
       );
     } else {
       feature_number = event.target.id.substring("step_number".length);

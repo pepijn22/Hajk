@@ -160,7 +160,7 @@ class PrintWindow extends React.PureComponent {
             [item.id]: this.#setNonClickedItemProperties(
               item,
               currentState,
-              clickedItem
+              clickedItem,
             ),
           };
         }
@@ -202,9 +202,9 @@ class PrintWindow extends React.PureComponent {
           },
           () => {
             this.printContents();
-          }
+          },
         );
-      }
+      },
     );
 
     this.props.localObserver.subscribe("print-submenu-clicked", (id) => {
@@ -260,7 +260,7 @@ class PrintWindow extends React.PureComponent {
               {element}
             </ComponentWithRenderCallback>
           </ThemeProvider>
-        </StyledEngineProvider>
+        </StyledEngineProvider>,
       );
     });
   };
@@ -279,7 +279,7 @@ class PrintWindow extends React.PureComponent {
         allDocuments={this.props.model.allDocuments}
         mode={this.state.tocPrintMode}
       />,
-      this.toc
+      this.toc,
     );
   };
 
@@ -292,13 +292,13 @@ class PrintWindow extends React.PureComponent {
     return Promise.allSettled(
       [...this.content.getElementsByTagName("img")].map((img) => {
         return this.loadImage(img);
-      })
+      }),
     );
   };
 
   handleNewWindowBlocked = () => {
     window.alert(
-      "Please allow opening of popup windows in order to print this document."
+      "Please allow opening of popup windows in order to print this document.",
     );
 
     this.setState({
@@ -368,7 +368,7 @@ class PrintWindow extends React.PureComponent {
               display: none;
             }
           }        
-        </style>`
+        </style>`,
     );
 
     return printWindow;
@@ -507,7 +507,7 @@ class PrintWindow extends React.PureComponent {
 
     let toggledChapter = model.getChapterById(
       newChapterInformation,
-      chapter.id
+      chapter.id,
     );
     toggledChapter.chosenForPrint = !toggledChapter.chosenForPrint;
     this.toggleSubChapters(toggledChapter, toggledChapter.chosenForPrint);
@@ -546,12 +546,12 @@ class PrintWindow extends React.PureComponent {
 
       //if a document has been removed from the printMenu, also remove its id from the children array of other documents.
       let newChildren = item.allChildren.filter(
-        (child) => !removedIds.includes(child)
+        (child) => !removedIds.includes(child),
       );
       item.allChildren = newChildren;
       //also remove its id from the menuItemIds of other documents.
       let newMenuItemIds = item.menuItemIds.filter(
-        (id) => !removedIds.includes(id)
+        (id) => !removedIds.includes(id),
       );
       item.menuItemIds = newMenuItemIds;
     });
@@ -577,7 +577,7 @@ class PrintWindow extends React.PureComponent {
       const offsetChildren = document.allChildren.map((id) => (id += idOffset));
       const offsetParents = document.allParents.map((id) => (id += idOffset));
       const offsetMenuItemIds = document.menuItemIds.map(
-        (id) => (id += idOffset)
+        (id) => (id += idOffset),
       );
 
       document.id += idOffset;
@@ -600,7 +600,7 @@ class PrintWindow extends React.PureComponent {
       if (document.document) {
         document.chapters = [];
         let documentChapters = chapterInformation.filter(
-          (chapter) => chapter.documentFileName === document.document
+          (chapter) => chapter.documentFileName === document.document,
         );
         documentChapters.forEach((chapter) => document.chapters.push(chapter));
       }
@@ -683,7 +683,7 @@ class PrintWindow extends React.PureComponent {
     let updatedMenuState = this.toggleSubDocuments(
       documentId,
       shouldPrint,
-      current
+      current,
     );
 
     if (current[documentId].parentId && shouldPrint) {
@@ -693,7 +693,7 @@ class PrintWindow extends React.PureComponent {
     if (current[documentId].parentId && !shouldPrint) {
       updatedMenuState = this.toggleParentUnchecked(
         documentId,
-        updatedMenuState
+        updatedMenuState,
       );
     }
 
@@ -741,7 +741,7 @@ class PrintWindow extends React.PureComponent {
       Array.from(div.querySelectorAll("p, h1, h2, h3, h4, h5, h6")).forEach(
         (element) => {
           elementsToRemove.push(element);
-        }
+        },
       );
       chapter.header = "";
     }
@@ -795,12 +795,12 @@ class PrintWindow extends React.PureComponent {
     const { menuInformation } = this.state;
 
     const documentIdsForPrint = Object.keys(menuInformation).filter(
-      (key) => menuInformation[key].chosenForPrint
+      (key) => menuInformation[key].chosenForPrint,
     );
 
     //create those without documents (header items) as a header item object.
     const documentNamesForPrint = documentIdsForPrint.map(
-      (id) => menuInformation[id].document
+      (id) => menuInformation[id].document,
     );
 
     //TODO - now that we get the document chapters earlier, do we need to get the document here?
@@ -809,7 +809,7 @@ class PrintWindow extends React.PureComponent {
     let docs = originalDocs.map((doc) => {
       if (doc) {
         let menuDocKey = Object.keys(menuInformation).find(
-          (key) => menuInformation[key].document === doc.documentFileName
+          (key) => menuInformation[key].document === doc.documentFileName,
         );
         return {
           documentFileName: doc.documentFileName,
@@ -828,7 +828,7 @@ class PrintWindow extends React.PureComponent {
     const docsIncludingGroupParent = docs.map((doc, index) => {
       if (doc === undefined) {
         return this.createHeaderItems(
-          menuInformation[documentIdsForPrint[index]]
+          menuInformation[documentIdsForPrint[index]],
         );
       }
       return doc;
@@ -855,7 +855,7 @@ class PrintWindow extends React.PureComponent {
     const documentsToPrint = this.getDocumentsToPrint();
     this.props.localObserver.publish(
       "append-document-components",
-      documentsToPrint
+      documentsToPrint,
     );
   };
 
@@ -902,7 +902,7 @@ class PrintWindow extends React.PureComponent {
               </DialogContentText>
             </DialogContent>
           </Dialog>,
-          document.getElementById("root")
+          document.getElementById("root"),
         )}
       </>
     );
@@ -976,7 +976,7 @@ class PrintWindow extends React.PureComponent {
 
   checkPdfLinks(pdfLinks) {
     const updatedLinks = pdfLinks?.filter(
-      (pdfLink) => pdfLink.name || pdfLink.link
+      (pdfLink) => pdfLink.name || pdfLink.link,
     );
     return updatedLinks;
   }
@@ -1017,7 +1017,7 @@ class PrintWindow extends React.PureComponent {
       <>
         {createPortal(
           <ResponsiveDialog></ResponsiveDialog>,
-          document.getElementById("root")
+          document.getElementById("root"),
         )}
       </>
     );

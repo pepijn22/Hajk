@@ -9,7 +9,7 @@ function DrawOrder({ app, map }) {
   // A Set that will hold type of OL layers that should be shown.
   // This is a user setting, changed by toggling a switch control.
   const [filterList, setFilterList] = useState(
-    new Set(["layer", "group", "base"]) // Also "system" is available, but let's start without it
+    new Set(["layer", "group", "base"]), // Also "system" is available, but let's start without it
   );
 
   // A helper that grabs all visible OL layers, filters so that
@@ -58,7 +58,7 @@ function DrawOrder({ app, map }) {
     if (direction > 0) {
       // Increasing zIndex. We want to get everything above current layer and increase it too.
       otherAffectedLayers = getSortedLayers().filter(
-        (l) => l.getZIndex() >= oldZIndex && layer !== l // Make sure to ignore current layer
+        (l) => l.getZIndex() >= oldZIndex && layer !== l, // Make sure to ignore current layer
       );
 
       // Abort if there are no layers above the current one
@@ -73,7 +73,7 @@ function DrawOrder({ app, map }) {
     } else {
       // Decreasing zIndex. Grab all layers with zIndex below the current layer's.
       otherAffectedLayers = getSortedLayers().filter(
-        (l) => l.getZIndex() <= oldZIndex && layer !== l // Make sure to ignore current layer
+        (l) => l.getZIndex() <= oldZIndex && layer !== l, // Make sure to ignore current layer
       );
 
       // Abort if there are no layers below the current one
@@ -90,7 +90,7 @@ function DrawOrder({ app, map }) {
     // layer being moved or the one below/above it. To ensure that their internal order
     // remains the same, we move them one step up/down (depending on the direction).
     otherAffectedLayers.forEach((la) =>
-      la.setZIndex(la.getZIndex() + direction)
+      la.setZIndex(la.getZIndex() + direction),
     );
 
     // Finally, the layer that is to be moved must get a new zIndex. That value is determined

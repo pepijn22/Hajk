@@ -117,8 +117,8 @@ class FirExportResidentListView extends React.PureComponent {
       filters.push(
         intersectsFilter(
           this.options.wfsRealEstateLayer.geometryField,
-          feature.getGeometry()
-        )
+          feature.getGeometry(),
+        ),
       );
     });
 
@@ -238,7 +238,7 @@ class FirExportResidentListView extends React.PureComponent {
 
       if (this.state.chBirthdate) {
         row.push(
-          this.formatBirthDate(getValue(f, mappings.birthDateFieldName))
+          this.formatBirthDate(getValue(f, mappings.birthDateFieldName)),
         );
       }
 
@@ -288,7 +288,7 @@ class FirExportResidentListView extends React.PureComponent {
           "Ett fel inträffade vid exporten av boendeförteckningen.",
           {
             variant: "error",
-          }
+          },
         );
       });
   };
@@ -321,7 +321,7 @@ class FirExportResidentListView extends React.PureComponent {
             "Kunde ej hitta några boende att exportera.",
             {
               variant: "warning",
-            }
+            },
           );
         }
       })
@@ -332,7 +332,7 @@ class FirExportResidentListView extends React.PureComponent {
           "Ett fel inträffade vid exporten.",
           {
             variant: "error",
-          }
+          },
         );
       });
   };

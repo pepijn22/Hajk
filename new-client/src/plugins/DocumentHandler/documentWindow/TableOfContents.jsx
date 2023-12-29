@@ -92,7 +92,7 @@ class TableOfContents extends React.PureComponent {
       <ListRoot aria-labelledby="nested-list-subheader">
         {Array.isArray(activeDocument?.chapters)
           ? activeDocument.chapters.map((chapter) =>
-              this.renderSubChapters(chapter, 0, (++mainChapter).toString())
+              this.renderSubChapters(chapter, 0, (++mainChapter).toString()),
             )
           : null}
       </ListRoot>
@@ -136,8 +136,8 @@ class TableOfContents extends React.PureComponent {
                 this.renderSubChapters(
                   subChapter,
                   newLevel,
-                  subChapterNumber.concat("." + ++number)
-                )
+                  subChapterNumber.concat("." + ++number),
+                ),
               )
             : null}
         </List>

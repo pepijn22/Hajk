@@ -187,7 +187,7 @@ function Announcement({ announcements = [], currentMap }) {
           variant: f?.type || "default", // Allowed variants are "default", "info", "warning", "success" and "error"
           ...(Number.isFinite(f?.timeout) && { autoHideDuration: f?.timeout }), // If timeout is Numeric, auto hide
           ...(!Number.isFinite(f?.timeout) && { persist: true, action }), // If timeout isn't Numeric, snackbar is persistent
-        }
+        },
       );
     };
 

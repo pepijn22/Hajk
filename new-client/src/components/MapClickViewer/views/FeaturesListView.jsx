@@ -95,7 +95,7 @@ const FeaturesListView = (props) => {
       <>
         <FeatureDetailView
           feature={featureCollection.features.find(
-            (f) => f.getId() === selectedFeatureId
+            (f) => f.getId() === selectedFeatureId,
           )}
           featureCollection={featureCollection}
           selectedFeatureId={selectedFeatureId}

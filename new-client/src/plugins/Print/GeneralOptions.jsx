@@ -70,7 +70,7 @@ class GeneralOptions extends React.PureComponent {
     const { handleChange, scales, scale } = this.props;
     // First we'll have to grab the closest scale option
     const closestScaleOption = scales.reduce((prev, curr) =>
-      Math.abs(curr - scale) < Math.abs(prev - scale) ? curr : prev
+      Math.abs(curr - scale) < Math.abs(prev - scale) ? curr : prev,
     );
     // Then we'll update the scale to that value
     handleChange({ target: { name: "scale", value: closestScaleOption } });

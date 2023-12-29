@@ -151,7 +151,7 @@ class WFSVectorLayer {
                 feature
                   .getGeometry()
                   .setCoordinates(
-                    coords.map((coord) => transform(coord, from, to))
+                    coords.map((coord) => transform(coord, from, to)),
                   );
                 break;
               case "Polygon":
@@ -292,7 +292,7 @@ class WFSVectorLayer {
 
         // See if filtering is needed and populate the source with resulting features
         this.vectorSource.addFeatures(
-          this.getFilteredFeatures(this.allFeatures)
+          this.getFilteredFeatures(this.allFeatures),
         );
       });
     });

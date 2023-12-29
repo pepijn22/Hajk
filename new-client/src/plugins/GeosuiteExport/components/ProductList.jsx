@@ -169,7 +169,7 @@ class ProductList extends React.PureComponent {
                               onClick={() => {
                                 handleToggleProjectExport(
                                   this.state.activeProject.id,
-                                  false
+                                  false,
                                 );
                                 this.setState({
                                   anchorEl: undefined,
@@ -186,7 +186,7 @@ class ProductList extends React.PureComponent {
                               onClick={() => {
                                 handleToggleProjectExport(
                                   this.state.activeProject.id,
-                                  true
+                                  true,
                                 );
                                 this.setState({
                                   anchorEl: undefined,

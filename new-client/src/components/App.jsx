@@ -327,7 +327,7 @@ class App extends React.PureComponent {
 
     const canRenderCustomDrawer = this.canRenderCustomDrawer(
       activeDrawerContentFromLocalStorage,
-      props.config.mapConfig.tools
+      props.config.mapConfig.tools,
     );
 
     //Check if we have customContent to render in drawer
@@ -381,7 +381,7 @@ class App extends React.PureComponent {
       if (functionalCookieOk()) {
         window.localStorage.setItem(
           "activeDrawerContent",
-          activeDrawerContentState
+          activeDrawerContentState,
         );
       }
     }
@@ -392,7 +392,7 @@ class App extends React.PureComponent {
     props.config.mapConfig.analytics && this.initiateAnalyticsModel();
 
     this.infoclickOptions = this.props.config.mapConfig.tools.find(
-      (t) => t.type === "infoclick"
+      (t) => t.type === "infoclick",
     )?.options;
 
     // We have to initialize the cookie-manager so we know how cookies should be managed.
@@ -428,7 +428,7 @@ class App extends React.PureComponent {
   checkConfigForUnsupportedTools = () => {
     // The plugin names can be fancy, but are always lower case in mapConfig:
     const lowerCaseActiveTools = this.props.activeTools.map((t) =>
-      t.toLowerCase()
+      t.toLowerCase(),
     );
 
     // Let's push some built-in core elements, that previously were plugins
@@ -453,8 +453,8 @@ class App extends React.PureComponent {
     unsupportedToolsFoundInMapConfig.length > 0 &&
       console.info(
         `The map configuration contains unavailable plugins: ${unsupportedToolsFoundInMapConfig.join(
-          ", "
-        )}. Please check your map config and buildConfig.json.  `
+          ", ",
+        )}. Please check your map config and buildConfig.json.  `,
       );
   };
   /**
@@ -468,7 +468,7 @@ class App extends React.PureComponent {
   initiateAnalyticsModel() {
     this.analytics = new Analytics(
       this.props.config.mapConfig.analytics,
-      this.globalObserver
+      this.globalObserver,
     );
   }
 
@@ -524,7 +524,7 @@ class App extends React.PureComponent {
 
           // Tell everyone that we're done loading (in case someone listens)
           this.globalObserver.publish("core.appLoaded");
-        }
+        },
       );
     });
     this.bindHandlers();
@@ -554,7 +554,7 @@ class App extends React.PureComponent {
         // Else, allow all non-scale-changing touch events, e.g.
         // we still want scroll to work.
       },
-      { passive: false } // Explicitly tell the browser that we will preventDefault inside this handler,
+      { passive: false }, // Explicitly tell the browser that we will preventDefault inside this handler,
       // which is important for smooth scrolling to work correctly.
     );
 
@@ -661,7 +661,7 @@ class App extends React.PureComponent {
           ) {
             this.globalObserver.publish(
               "search.setSearchPhrase",
-              mergedParams.get("q")
+              mergedParams.get("q"),
             );
           }
 
@@ -669,11 +669,11 @@ class App extends React.PureComponent {
           if (mergedParams.get("l") || mergedParams.get("gl")) {
             this.appModel.setLayerVisibilityFromParams(
               mergedParams.get("l"),
-              mergedParams.get("gl")
+              mergedParams.get("gl"),
             );
           }
         },
-        false
+        false,
       );
 
     // Register various global listeners.
@@ -827,7 +827,7 @@ class App extends React.PureComponent {
           features={this.state.mapClickDataResult?.features}
           options={
             this.appModel.config.mapConfig.tools.find(
-              (t) => t.type === "infoclick"
+              (t) => t.type === "infoclick",
             )?.options
           }
           map={this.appModel.getMap()}
@@ -868,7 +868,7 @@ class App extends React.PureComponent {
       if (functionalCookieOk()) {
         window.localStorage.setItem(
           "drawerPermanent",
-          this.state.drawerPermanent
+          this.state.drawerPermanent,
         );
       }
 
@@ -910,7 +910,7 @@ class App extends React.PureComponent {
 
   renderInformationPlugin() {
     const c = this.appModel.config.mapConfig.tools.find(
-      (t) => t.type === "information"
+      (t) => t.type === "information",
     );
 
     return (
@@ -936,7 +936,7 @@ class App extends React.PureComponent {
   renderDrawerHeader = () => {
     const { config } = this.props;
     const drawerTitle = this.state.drawerButtons.find(
-      (db) => db.value === this.state.activeDrawerContent
+      (db) => db.value === this.state.activeDrawerContent,
     )?.drawerTitle;
 
     // We need to be able to grab different logos depending
@@ -1050,7 +1050,7 @@ class App extends React.PureComponent {
 
     // We check if the plugin button (or any button) is empty and then subsequently hidden
     const isHiddenPluginPresent = drawerButtons.some(
-      (button) => button.hideOnMdScreensAndAbove
+      (button) => button.hideOnMdScreensAndAbove,
     );
 
     // We want to check if there's only one visible drawerButton

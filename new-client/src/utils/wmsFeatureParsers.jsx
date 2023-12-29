@@ -23,7 +23,7 @@ export function experimentalParseEsriWmsRawXml(xml) {
   const namespacePrefix = "esri_wms";
 
   const collections = xmlDoc.getElementsByTagName(
-    `${namespacePrefix}:FeatureInfoCollection`
+    `${namespacePrefix}:FeatureInfoCollection`,
   );
 
   // Let's loop the collections using a flat map (the resulting object must
@@ -47,12 +47,12 @@ export function experimentalParseEsriWmsRawXml(xml) {
       Array.from(fields).forEach((field) => {
         // …grab the key…
         const attributeName = field.getElementsByTagName(
-          `${namespacePrefix}:FieldName`
+          `${namespacePrefix}:FieldName`,
         )[0].textContent;
 
         // …and the value corresponding with this attribute…
         const attributeValue = field.getElementsByTagName(
-          `${namespacePrefix}:FieldValue`
+          `${namespacePrefix}:FieldValue`,
         )[0].textContent;
 
         // …and set as OL attributes on our OL Feature.
@@ -104,7 +104,7 @@ export function parseWmsGetFeatureInfoXml(xml) {
 
   // OPTION B: Esri's text/xml (see #1266)
   const featureInfoResponse = xmlDoc.getElementsByTagName(
-    "FeatureInfoResponse"
+    "FeatureInfoResponse",
   );
 
   if (featureInfoResponse[0]) {
@@ -113,7 +113,7 @@ export function parseWmsGetFeatureInfoXml(xml) {
 
   // If everything failed, bail out…
   console.warn(
-    "Failed to parse infoclick features from the following response:"
+    "Failed to parse infoclick features from the following response:",
   );
   console.warn(xml);
   return [];
@@ -148,7 +148,7 @@ export function parseWmsGetFeatureInfoXml(xml) {
 function wmsRasterParser(featureCollection) {
   const features = Array.from(featureCollection[0].children)
     .filter(
-      (potentialFeature) => potentialFeature.localName === "featureMember"
+      (potentialFeature) => potentialFeature.localName === "featureMember",
     )
     .map((potentialFeature, i) => {
       // 'potentialFeature' will be something like <gml:featureMember>.
@@ -179,7 +179,7 @@ function wmsRasterParser(featureCollection) {
             attrValue = attribute.textContent; // If parsing resulted in an error, just use the text value.
           }
           feature.set(attribute.localName, attrValue);
-        }
+        },
       );
       return feature;
     });
@@ -188,7 +188,7 @@ function wmsRasterParser(featureCollection) {
 
 function esriTextXmlParser(featureInfoResponse) {
   const fields = Array.from(
-    featureInfoResponse[0].getElementsByTagName("FIELDS")
+    featureInfoResponse[0].getElementsByTagName("FIELDS"),
   );
 
   const features = fields.map((f, i) => {

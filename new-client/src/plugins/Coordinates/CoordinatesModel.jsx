@@ -60,7 +60,7 @@ class CoordinatesModel {
         transformedCoords = transform(
           incomingCoords["coordinates"],
           incomingCoords["proj"],
-          this.map.getView().getProjection().getCode()
+          this.map.getView().getProjection().getCode(),
         );
       }
       this.addMarker(transformedCoords);
@@ -125,7 +125,7 @@ class CoordinatesModel {
             .getSource()
             .getFeatures()[0]
             .getGeometry()
-            .getCoordinates()
+            .getCoordinates(),
         );
     }
   };
@@ -157,7 +157,7 @@ class CoordinatesModel {
           const point = new Point([pos.coords.longitude, pos.coords.latitude]);
           point.transform(
             "EPSG:4326",
-            this.map.getView().getProjection().getCode()
+            this.map.getView().getProjection().getCode(),
           );
           this.coordinates = point.getCoordinates();
           this.localObserver.publish("newCoordinates", {
@@ -173,7 +173,7 @@ class CoordinatesModel {
             this.localObserver.publish("location-permissions-denied");
           }
         },
-        options
+        options,
       );
     }
   };

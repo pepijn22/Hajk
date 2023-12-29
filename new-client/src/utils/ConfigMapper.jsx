@@ -36,7 +36,7 @@ export default class ConfigMapper {
            */
           // Use custom legend options if specified by admin
           geoserverLegendOptions = properties.mapConfig.map.hasOwnProperty(
-            "geoserverLegendOptions"
+            "geoserverLegendOptions",
           )
             ? "&LEGEND_OPTIONS=" +
               properties.mapConfig.map.geoserverLegendOptions

@@ -128,7 +128,7 @@ function DummyView(props) {
     // component is listing to, see Dummy.js for how to subscribe to events.
     localObserver.publish(
       "dummyEvent",
-      "This has been sent from DummyView using the Observer"
+      "This has been sent from DummyView using the Observer",
     );
 
     // And we can of course access this component's state

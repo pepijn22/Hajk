@@ -34,17 +34,17 @@ class CoordinatesTransformRow extends React.PureComponent {
         const transformedCoords = transform(
           incomingCoords["coordinates"],
           incomingCoords["proj"],
-          this.props.transformation.code
+          this.props.transformation.code,
         );
         this.setState({
           errorX: "",
           errorY: "",
           wasModified: true,
           coordinateX: transformedCoords[0].toFixed(
-            this.transformation.precision
+            this.transformation.precision,
           ),
           coordinateY: transformedCoords[1].toFixed(
-            this.transformation.precision
+            this.transformation.precision,
           ),
           coordinateXFloat: transformedCoords[0],
           coordinateYFloat: transformedCoords[1],

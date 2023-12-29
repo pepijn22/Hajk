@@ -115,7 +115,7 @@ class Introduction extends React.PureComponent {
 
     this.props.globalObserver.subscribe(
       "core.showIntroduction",
-      this.showIntroduction
+      this.showIntroduction,
     );
   }
 
@@ -124,7 +124,7 @@ class Introduction extends React.PureComponent {
       for (const step of steps) {
         if (!step?.title || !step?.intro) {
           throw Error(
-            "Introduction steps missing necessary properties. Please ensure that each step contains at least the 'title' and 'intro' property."
+            "Introduction steps missing necessary properties. Please ensure that each step contains at least the 'title' and 'intro' property.",
           );
         }
       }
@@ -167,7 +167,7 @@ class Introduction extends React.PureComponent {
         title="Introduktionsguide"
         abstract="Öppna guidad tour"
       />,
-      document.getElementById("plugin-control-buttons")
+      document.getElementById("plugin-control-buttons"),
     );
   }
 

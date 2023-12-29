@@ -36,7 +36,7 @@ class PrintDialog extends React.PureComponent {
           </Button>
         </DialogActions>
       </Dialog>,
-      document.getElementById("root")
+      document.getElementById("root"),
     );
   }
 }

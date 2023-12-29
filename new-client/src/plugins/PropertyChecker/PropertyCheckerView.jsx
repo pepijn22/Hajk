@@ -1,7 +1,7 @@
 // Make sure to only import the hooks you intend to use
 import React, { useEffect, useRef, useState } from "react";
 
-import useUpdateEffect from "../../hooks/useUpdateEffect.js";
+import useUpdateEffect from "../../hooks/useUpdateEffect";
 
 import {
   Button,
@@ -19,9 +19,9 @@ import { useSnackbar } from "notistack";
 
 // import useCookieStatus from "hooks/useCookieStatus";
 
-import InfoDialog from "./views/InfoDialog.js";
-import PropertyItem from "./views/PropertyItem.js";
-import QuickLayerToggleButtons from "./views/QuickLayerToggleButtons.js";
+import InfoDialog from "./views/InfoDialog";
+import PropertyItem from "./views/PropertyItem";
+import QuickLayerToggleButtons from "./views/QuickLayerToggleButtons";
 
 const ButtonWithBottomMargin = styled(Button)(({ theme }) => ({
   marginBottom: theme.spacing(2),
@@ -110,7 +110,7 @@ function PropertyCheckerView(props) {
     localObserver.subscribe("drawModel.featureAdded", handleFeatureAdded);
     localObserver.subscribe(
       "getFeatureInfoFeatures",
-      handleNewGetFeatureInfoFeatures
+      handleNewGetFeatureInfoFeatures,
     );
     localObserver.subscribe("noFeaturesInResult", handleNoFeaturesInResult);
     return () => {
@@ -118,7 +118,7 @@ function PropertyCheckerView(props) {
       localObserver.unsubscribe("drawModel.featureAdded", handleFeatureAdded);
       localObserver.unsubscribe(
         "getFeatureInfoFeatures",
-        handleNewGetFeatureInfoFeatures
+        handleNewGetFeatureInfoFeatures,
       );
       localObserver.unsubscribe("noFeaturesInResult", handleNoFeaturesInResult);
     };
@@ -132,7 +132,7 @@ function PropertyCheckerView(props) {
       // …show the snackbar and save ID for later.
       snackbarId.current = enqueueSnackbar(
         "Klicka i kartan för att välja fastighet",
-        { variant: "info", persist: true }
+        { variant: "info", persist: true },
       );
     } else {
       // Hide the snackbar when draw interaction is inactivated.

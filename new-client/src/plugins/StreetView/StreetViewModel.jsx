@@ -39,7 +39,7 @@ class StreetViewModel {
 
     this.streetViewService = new this.googleMapsApi.StreetViewService();
     this.panorama = new this.googleMapsApi.StreetViewPanorama(
-      document.getElementById("street-view-window")
+      document.getElementById("street-view-window"),
     );
     document.querySelector(".ol-viewport").style.cursor = "crosshair";
     this.map.on("singleclick", (e) => {
@@ -47,7 +47,7 @@ class StreetViewModel {
       this.coord = transform(
         this.coordinate,
         this.map.getView().getProjection(),
-        "EPSG:4326"
+        "EPSG:4326",
       );
       this.showLocation();
       this.localObserver.publish("maximizeWindow", true);
@@ -105,19 +105,19 @@ class StreetViewModel {
     var location = new this.googleMapsApi.LatLng(this.coord[1], this.coord[0]);
     this.addMarker(
       this.coordinate,
-      (this.panorama && this.panorama.getPov().heading) || 0
+      (this.panorama && this.panorama.getPov().heading) || 0,
     );
     this.streetViewService.getPanoramaByLocation(
       location,
       50,
-      this.displayPanorama
+      this.displayPanorama,
     );
 
     setTimeout(() => {
       this.streetViewService.getPanoramaByLocation(
         location,
         50,
-        this.displayPanorama
+        this.displayPanorama,
       );
     }, 1000);
 
@@ -126,7 +126,7 @@ class StreetViewModel {
       "position_changed",
       () => {
         this.onPositionChanged();
-      }
+      },
     );
     this.googleMapsApi.event.addListener(this.panorama, "pov_changed", () => {
       this.onPositionChanged();

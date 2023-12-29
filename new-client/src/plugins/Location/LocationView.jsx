@@ -51,7 +51,7 @@ class LocationView extends React.PureComponent {
           heading,
           speed,
         });
-      }
+      },
     );
 
     this.model.localObserver.subscribe("locationStatus", (status) => {
@@ -77,14 +77,14 @@ class LocationView extends React.PureComponent {
       if (error.code === 1) {
         this.props.enqueueSnackbar(
           LOCATION_DENIED_SNACK_MESSAGE,
-          LOCATION_DENIED_SNACK_OPTIONS
+          LOCATION_DENIED_SNACK_OPTIONS,
         );
       } else {
         this.props.enqueueSnackbar(
           `Kunde inte fastställa din plats. Felkod: ${error.code}. Detaljer: "${error.message}".`,
           {
             variant: "error",
-          }
+          },
         );
       }
     });

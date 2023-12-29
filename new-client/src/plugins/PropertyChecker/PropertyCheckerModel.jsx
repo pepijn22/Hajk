@@ -3,7 +3,7 @@ import {
   parseGeoJsonFeatures,
   experimentalParseEsriWmsRawXml,
   parseWmsGetFeatureInfoXml,
-} from "utils/wmsFeatureParsers";
+} from "../../utils/wmsFeatureParsers";
 
 export default class PropertyCheckerModel {
   #app;
@@ -46,7 +46,7 @@ export default class PropertyCheckerModel {
       const l = this.#map.getAllLayers().find((l) => l.get("name") === layerId);
       if (l === undefined) {
         throw new Error(
-          `PropertyChecker error: Couldn't find layer with ID ${layerId}. Please contact system administrator.`
+          `PropertyChecker error: Couldn't find layer with ID ${layerId}. Please contact system administrator.`,
         );
       }
       return l;
@@ -99,7 +99,7 @@ export default class PropertyCheckerModel {
         default:
           console.warn(
             "Unsupported response type for GetFeatureInfo request:",
-            responseContentType
+            responseContentType,
           );
           break;
       }
@@ -118,7 +118,7 @@ export default class PropertyCheckerModel {
   #initSubscriptions = () => {
     this.#localObserver.subscribe(
       "drawModel.featureAdded",
-      this.#handleFeatureAdded
+      this.#handleFeatureAdded,
     );
   };
 
@@ -174,7 +174,7 @@ export default class PropertyCheckerModel {
             []),
           e,
         ]),
-      new Map()
+      new Map(),
     );
 
   #handleFeatureAdded = async (feature) => {
@@ -187,7 +187,7 @@ export default class PropertyCheckerModel {
 
     const digitalPlanFeatures = await this.#getOlFeaturesForCoordsAndOlLayer(
       coords,
-      this.#digitalPlansLayer
+      this.#digitalPlansLayer,
     );
     // TODO: Ensure that we use the groupedDigitalPlanFeatures in all Views that follow
     // const groupedDigitalPlanFeatures = Object.fromEntries(
@@ -199,11 +199,11 @@ export default class PropertyCheckerModel {
     // Let's grab the features from our check layer
     const checkLayerFeatures = await this.#getOlFeaturesForCoordsAndOlLayer(
       coords,
-      this.#checkLayer
+      this.#checkLayer,
     );
     const groupedFeatures = this.#groupFeaturesByAttributeName(
       checkLayerFeatures,
-      this.#groupCheckLayerByAttribute // the attribute name that we wish to group on
+      this.#groupCheckLayerByAttribute, // the attribute name that we wish to group on
     );
     // console.log("groupedFeatures in Model: ", groupedFeatures);
     // If we've got at least one feature in the response

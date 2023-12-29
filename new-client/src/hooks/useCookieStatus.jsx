@@ -21,7 +21,7 @@ export default function useCookieStatus(globalObserver) {
           functionalCookiesOk: functionalOk(),
           thirdPartyCookiesOk: thirdPartyOk(),
         });
-      }
+      },
     );
     return () => {
       cookieListener.unsubscribe();

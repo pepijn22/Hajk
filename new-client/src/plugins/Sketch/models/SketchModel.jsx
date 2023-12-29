@@ -173,7 +173,7 @@ class SketchModel {
     }
     // If it wasn't found, we'll log an error and return null.
     console.error(
-      `Could not find corresponding stroke-type from supplied line-dash. The supplied line-dash was: ${lineDash}`
+      `Could not find corresponding stroke-type from supplied line-dash. The supplied line-dash was: ${lineDash}`,
     );
     return null;
   };
@@ -233,7 +233,7 @@ class SketchModel {
       feature.setGeometry(new Point(center));
     } catch (error) {
       console.error(
-        `Could not create a geoJSON-friendly circle-geometry. Error: ${error}`
+        `Could not create a geoJSON-friendly circle-geometry. Error: ${error}`,
       );
     }
   };
@@ -265,13 +265,13 @@ class SketchModel {
       // Then we'll construct the feature-style-object and return it.
       return {
         strokeColor: this.#drawModel.parseColorString(
-          featureBaseStyle?.strokeStyle.color
+          featureBaseStyle?.strokeStyle.color,
         ),
         lineDash: featureBaseStyle?.strokeStyle.dash,
         strokeWidth: featureBaseStyle?.strokeStyle.width,
         strokeType: this.#getStrokeType(featureBaseStyle?.strokeStyle.dash),
         fillColor: this.#drawModel.parseColorString(
-          featureBaseStyle?.fillStyle.color
+          featureBaseStyle?.fillStyle.color,
         ),
         textForegroundColor: featureTextStyle?.foregroundColor,
         textBackgroundColor: featureTextStyle?.backgroundColor,
@@ -314,7 +314,7 @@ class SketchModel {
             strokeColor,
             strokeWidth,
             lineDash,
-          })
+          }),
         );
 
       // If we're dealing with a text.feature, the text-style-settings must be updated as well.
@@ -349,7 +349,7 @@ class SketchModel {
   decorateFeature = (feature) => {
     feature.set(
       "EXTRACTED_STYLE",
-      this.#drawModel.extractFeatureStyleInfo(feature)
+      this.#drawModel.extractFeatureStyleInfo(feature),
     );
     feature.set("HANDLED_AT", this.getDateTimeString());
     feature.set("HANDLED_ID", this.generateRandomString());
@@ -368,7 +368,7 @@ class SketchModel {
     const storedFeatures = inStorage["removedFeatures"] || [];
     return returnType === "FEATURES"
       ? storedFeatures.map((parsedFeature) =>
-          this.#geoJSONParser.readFeature(parsedFeature)
+          this.#geoJSONParser.readFeature(parsedFeature),
         )
       : storedFeatures;
   };
@@ -443,7 +443,7 @@ class SketchModel {
   removeFeatureFromStorage = (id) => {
     const storedFeatures = this.getRemovedFeaturesFromStorage("STRINGS");
     this.#setStoredRemovedFeatures(
-      storedFeatures.filter((f) => !f.includes(id))
+      storedFeatures.filter((f) => !f.includes(id)),
     );
   };
 
@@ -455,8 +455,8 @@ class SketchModel {
     const storedSketches = this.getSketchesFromStorage();
     this.#setStoredSketches(
       storedSketches.filter(
-        (s) => !this.equalsIgnoringCase(s.title, sketch.title)
-      )
+        (s) => !this.equalsIgnoringCase(s.title, sketch.title),
+      ),
     );
   };
 

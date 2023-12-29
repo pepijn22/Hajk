@@ -20,7 +20,7 @@ function Measurer(props) {
   const [localObserver] = React.useState(Observer());
   const [drawType, setDrawType] = useState("LineString"); // default to LineString as previous Measure tool
   const [pluginShown, setPluginShown] = React.useState(
-    props.options.visibleAtStart ?? false
+    props.options.visibleAtStart ?? false,
   );
 
   const [drawModel] = React.useState(
@@ -52,7 +52,7 @@ function Measurer(props) {
           // we use dashes while drawing and then make the lines solid in handleDrawEnd
           lineDash: [10, 10],
         },
-      })
+      }),
   );
 
   const angleSnapping = useMemo(() => {
@@ -66,7 +66,7 @@ function Measurer(props) {
       // Forward drawstart event etc. to angle snapper.
       angleSnapping.handleDrawStartEvent(e, map, drawModel);
     },
-    [angleSnapping, map, drawModel]
+    [angleSnapping, map, drawModel],
   );
 
   const handleAddFeature = useCallback(
@@ -94,7 +94,7 @@ function Measurer(props) {
         drawModel.removeFeature(feature);
       }
     },
-    [drawModel]
+    [drawModel],
   );
 
   const handleDrawEnd = useCallback(
@@ -132,7 +132,7 @@ function Measurer(props) {
 
       feature.setStyle(style);
     },
-    [angleSnapping]
+    [angleSnapping],
   );
 
   const startInteractionWithDrawType = useCallback(
@@ -145,7 +145,7 @@ function Measurer(props) {
         drawStyleSettings: { strokeStyle: { dash: null } },
       });
     },
-    [drawModel, handleAddFeature, handleDrawEnd, handleDrawStart]
+    [drawModel, handleAddFeature, handleDrawEnd, handleDrawStart],
   );
 
   const handleDrawTypeChange = (e, value) => {
@@ -221,7 +221,7 @@ function Measurer(props) {
         }
       });
     },
-    [drawType, currentHoverFeature, pluginShown, map]
+    [drawType, currentHoverFeature, pluginShown, map],
   );
 
   React.useEffect(() => {

@@ -53,7 +53,7 @@ class SearchResultsDatasetFeatureDetails extends React.PureComponent {
       globalObserver: props.app.globalObserver,
       options:
         props.app.appModel.config.mapConfig.tools.find(
-          (t) => t.type === "infoclick"
+          (t) => t.type === "infoclick",
         )?.options || [], // featurePropsParsing needs to know if FeatureInfo is configured to allow HTML or not, so we pass on its' options
     });
   }
@@ -89,8 +89,8 @@ class SearchResultsDatasetFeatureDetails extends React.PureComponent {
     const source = feature.source ?? this.props.source;
     feature.setProperties(
       this.featurePropsParsing.extractPropertiesFromJson(
-        feature.getProperties()
-      )
+        feature.getProperties(),
+      ),
     );
     this.featurePropsParsing
       .setMarkdownAndProperties({

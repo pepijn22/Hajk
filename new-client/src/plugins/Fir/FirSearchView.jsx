@@ -227,7 +227,7 @@ class FirSearchView extends React.PureComponent {
                           "fir.layers.showDesignation",
                           {
                             value: e.target.checked,
-                          }
+                          },
                         );
                       }}
                       color="primary"
@@ -247,7 +247,7 @@ class FirSearchView extends React.PureComponent {
                           "fir.layers.showSearchArea",
                           {
                             value: e.target.checked,
-                          }
+                          },
                         );
                       }}
                       color="primary"

@@ -32,7 +32,7 @@ class BookmarksModel {
         (layer) =>
           layer.getVisible() &&
           layer.getProperties().name &&
-          isValidLayerId(layer.getProperties().name)
+          isValidLayerId(layer.getProperties().name),
       )
       .map((layer) => layer.getProperties().name)
       .join(",");
@@ -46,7 +46,7 @@ class BookmarksModel {
       .filter(
         (layer) =>
           layer.getProperties().name &&
-          isValidLayerId(layer.getProperties().name)
+          isValidLayerId(layer.getProperties().name),
       )
       .forEach((layer) => {
         layer.setVisible(layers.indexOf(layer.getProperties().name) > -1);
@@ -86,7 +86,7 @@ class BookmarksModel {
     if (localStorage.getItem("bookmarks_v1.0")) {
       // TODO: Describe in https://github.com/hajkmap/Hajk/wiki/Cookies-in-Hajk and add the functionalOk() hook
       const legacyBookmarks = JSON.parse(
-        localStorage.getItem("bookmarks_v1.0")
+        localStorage.getItem("bookmarks_v1.0"),
       );
       const newBookmarks = {};
       legacyBookmarks.forEach((bookmark) => {
@@ -97,12 +97,12 @@ class BookmarksModel {
           LocalStorageHelper.setKeyName(keyName);
         } catch (error) {
           console.log(
-            `An error occurred while trying to set the bookmarks in localStorage: ${error}`
+            `An error occurred while trying to set the bookmarks in localStorage: ${error}`,
           );
         }
 
         const inStorage = LocalStorageHelper.get(
-          this.#storageKey || "bookmarks"
+          this.#storageKey || "bookmarks",
         );
         newBookmarks[keyName] = inStorage || {};
         newBookmarks[keyName][decodedBookmark.name] = {
@@ -111,7 +111,7 @@ class BookmarksModel {
 
         LocalStorageHelper.set(
           this.#storageKey || "bookmarks",
-          newBookmarks[keyName]
+          newBookmarks[keyName],
         );
       });
 

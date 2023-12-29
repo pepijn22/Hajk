@@ -101,7 +101,7 @@ export default class OlSideBySideControl extends Control {
       .filter(
         (l) =>
           l.get("isLeftCompareLayer") === true ||
-          l.get("isRightCompareLayer") === true
+          l.get("isRightCompareLayer") === true,
       )
       .forEach((l) => {
         l.set("visible", false, true);

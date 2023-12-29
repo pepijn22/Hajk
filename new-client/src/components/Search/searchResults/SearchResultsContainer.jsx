@@ -136,7 +136,7 @@ class SearchResultsContainer extends React.PureComponent {
           return feature.getId();
         });
         this.showFeatureDetails(featureIds);
-      }
+      },
     );
     this.initializeResultsInformation();
   };
@@ -163,7 +163,7 @@ class SearchResultsContainer extends React.PureComponent {
 
     // Get the clicked feature
     const feature = featureCollection.value.features.find(
-      (feature) => feature.getId() === featureId
+      (feature) => feature.getId() === featureId,
     );
 
     // If the feature has onClickName set we won't show the details
@@ -179,7 +179,7 @@ class SearchResultsContainer extends React.PureComponent {
     return featureCollections.find((featureCollection) => {
       return (
         featureCollection.value.features.findIndex(
-          (feature) => feature.getId() === featureId
+          (feature) => feature.getId() === featureId,
         ) > -1
       );
     });
@@ -285,7 +285,7 @@ class SearchResultsContainer extends React.PureComponent {
   getSelectedCollection = (selectedFeatures) => {
     const features = selectedFeatures.reduce(
       (features, featureInfo) => [...features, featureInfo.feature],
-      []
+      [],
     );
     return {
       origin: "USERSELECT",
@@ -322,7 +322,7 @@ class SearchResultsContainer extends React.PureComponent {
         },
         () => {
           this.handleFilterUpdate();
-        }
+        },
       );
     } else {
       this.setState(
@@ -331,7 +331,7 @@ class SearchResultsContainer extends React.PureComponent {
         },
         () => {
           this.handleFilterUpdate();
-        }
+        },
       );
     }
   };
@@ -419,7 +419,7 @@ class SearchResultsContainer extends React.PureComponent {
 
   getSortingStrategiesApplyingToView = (view) => {
     return this.sortingStrategies.filter((strategy) =>
-      strategy.appliesTo.includes(view)
+      strategy.appliesTo.includes(view),
     );
   };
 
@@ -469,7 +469,7 @@ class SearchResultsContainer extends React.PureComponent {
     } = this.state;
 
     const currentSortingStrategies = this.getSortingStrategiesApplyingToView(
-      activeFeatureCollection ? "features" : "featureCollections"
+      activeFeatureCollection ? "features" : "featureCollections",
     );
     return (
       <Menu
@@ -544,7 +544,7 @@ class SearchResultsContainer extends React.PureComponent {
           // sorting strategy (depending on if we have an active collection or not)
           (activeFeatureCollection
             ? featureSortingStrategy
-            : featureCollectionSortingStrategy)
+            : featureCollectionSortingStrategy),
       ).name // And it is the name value of the strategy we want to show
     }`;
 
@@ -686,7 +686,7 @@ class SearchResultsContainer extends React.PureComponent {
       const nextFeatureSelected = this.featureIsSelected(nextFeature);
       !nextFeatureSelected &&
         selectedFeatures.push(
-          this.getNextFeatureInfo(nextFeature, nextCollection, initiator)
+          this.getNextFeatureInfo(nextFeature, nextCollection, initiator),
         );
     }
     this.setState(
@@ -699,7 +699,7 @@ class SearchResultsContainer extends React.PureComponent {
       },
       () => {
         !nextCollection && this.handleFilterUpdate();
-      }
+      },
     );
     if (nextFeature) {
       if (shouldZoomToFeature) {
@@ -743,7 +743,7 @@ class SearchResultsContainer extends React.PureComponent {
         // WMS layer - so don't bother
         featureCollection?.origin !== "DOCUMENT" &&
           this.#showCorrespondingWMSLayers(featureCollection);
-      }
+      },
     );
   };
 
@@ -806,7 +806,7 @@ class SearchResultsContainer extends React.PureComponent {
     if (onClickName) {
       app.globalObserver.publish(
         `search.featureCollectionClicked.${onClickName}`,
-        featureCollection
+        featureCollection,
       );
     } else {
       this.setActiveFeatureCollection(featureCollection);
@@ -817,13 +817,13 @@ class SearchResultsContainer extends React.PureComponent {
     const { featureCollectionSortingStrategy } = this.state;
 
     const featureCollectionsAtoZSorted = featureCollections.sort((a, b) =>
-      a.source.caption.localeCompare(b.source.caption)
+      a.source.caption.localeCompare(b.source.caption),
     );
 
     switch (featureCollectionSortingStrategy) {
       case "numHits":
         return featureCollections.sort((a, b) =>
-          a.value.totalFeatures > b.value.totalFeatures ? -1 : 1
+          a.value.totalFeatures > b.value.totalFeatures ? -1 : 1,
         );
       case "ZtoA":
         return featureCollectionsAtoZSorted.reverse();
@@ -869,7 +869,7 @@ class SearchResultsContainer extends React.PureComponent {
     const filteredFeatureCollections =
       this.getFilteredFeatureCollections(featureCollections);
     const filteredFeatures = this.getFilteredFeatures(
-      filteredFeatureCollections
+      filteredFeatureCollections,
     );
     const currentFeatureIds = filteredFeatures.map((feature) => {
       return feature.getId();
@@ -907,7 +907,7 @@ class SearchResultsContainer extends React.PureComponent {
                 undefined,
                 this.state.activeFeature
                   ? this.state.activeFeatureCollection
-                  : undefined // Supplying a value here will go back to step 2. No value will go back to step 1.
+                  : undefined, // Supplying a value here will go back to step 2. No value will go back to step 1.
               );
             }}
           >

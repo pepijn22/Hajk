@@ -61,7 +61,7 @@ export default class DocumentHandlerModel {
           localObserver: this.localObserver,
         });
         this.settings.resolveSearchInterface(
-          this.documentSearchmodel.implementSearchInterface()
+          this.documentSearchmodel.implementSearchInterface(),
         );
       })
       .then(() => {
@@ -71,7 +71,7 @@ export default class DocumentHandlerModel {
 
   warnNoCustomThemeUrl = () => {
     console.warn(
-      "Could not find valid url for custom theme in documenthandler, check customThemeUrl"
+      "Could not find valid url for custom theme in documenthandler, check customThemeUrl",
     );
   };
 
@@ -106,7 +106,7 @@ export default class DocumentHandlerModel {
       }
 
       const menuItemsWithDocumentConnection = this.flattenMenu(
-        this.settings.menu
+        this.settings.menu,
       ).filter((menuItem) => {
         return menuItem.document;
       });
@@ -115,11 +115,11 @@ export default class DocumentHandlerModel {
         menuItemsWithDocumentConnection.map((menuItem) => {
           return this.fetchJsonDocument(
             menuItem.folder,
-            menuItem.document
+            menuItem.document,
           ).then((doc) => {
             if (!doc.title) {
               console.warn(
-                `The document ${menuItem.document} is missing a title`
+                `The document ${menuItem.document} is missing a title`,
               );
             }
 
@@ -131,7 +131,7 @@ export default class DocumentHandlerModel {
               menuItemId: menuItem.id,
             };
           });
-        })
+        }),
       )
         .then((documents) => {
           resolve(documents);
@@ -146,7 +146,7 @@ export default class DocumentHandlerModel {
     let documents = [];
     fileNames.forEach((fileName) => {
       let document = this.allDocuments.find(
-        (document) => document.documentFileName === fileName
+        (document) => document.documentFileName === fileName,
       );
       documents = [...documents, document];
     });
@@ -162,7 +162,7 @@ export default class DocumentHandlerModel {
             mainChapter,
             0,
             document.documentColor,
-            document.documentFileName
+            document.documentFileName,
           );
         });
       });
@@ -203,7 +203,7 @@ export default class DocumentHandlerModel {
           subChapter,
           level,
           color,
-          documentFileName
+          documentFileName,
         );
       });
     } else {
@@ -216,10 +216,10 @@ export default class DocumentHandlerModel {
     this.chapterInfo.forEach((item) => {
       if (item.hasSubChapters && item.headerIdentifier) {
         item.chapters = this.chapterInfo.filter(
-          (chapterItem) => chapterItem.parent === item.headerIdentifier
+          (chapterItem) => chapterItem.parent === item.headerIdentifier,
         );
         this.chapterInfo = this.chapterInfo.filter(
-          (chapterItem) => chapterItem.parent !== item.headerIdentifier
+          (chapterItem) => chapterItem.parent !== item.headerIdentifier,
         );
       }
     });
@@ -249,7 +249,7 @@ export default class DocumentHandlerModel {
 
       if (text === "File not found") {
         throw new Error(
-          `Could not find document with title ${title} in folder with documents`
+          `Could not find document with title ${title} in folder with documents`,
         );
       }
 
@@ -266,7 +266,7 @@ export default class DocumentHandlerModel {
       return document;
     } catch (err) {
       console.warn(
-        `Kunde inte parsa JSON-dokumentet ${title}, kontrollera så att filen finns och är en .json-fil `
+        `Kunde inte parsa JSON-dokumentet ${title}, kontrollera så att filen finns och är en .json-fil `,
       );
       throw new Error(err);
     }
@@ -296,7 +296,7 @@ export default class DocumentHandlerModel {
   getHeaderRef = (activeDocument, headerIdentifierToFind) => {
     const foundChapters = this.findChapters(
       activeDocument.chapters,
-      headerIdentifierToFind
+      headerIdentifierToFind,
     );
 
     if (foundChapters.length > 1) {
@@ -505,7 +505,7 @@ export default class DocumentHandlerModel {
   getMaterialUIComponentsForChapter = (chapter) => {
     return htmlToMaterialUiParser(
       chapter.html,
-      this.getTagSpecificCallbacks()
+      this.getTagSpecificCallbacks(),
     ).map((component, index) => {
       return <React.Fragment key={index}>{component}</React.Fragment>;
     });

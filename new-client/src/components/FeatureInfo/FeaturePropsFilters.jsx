@@ -71,7 +71,7 @@ class PropFilters {
       } catch (err) {
         console.warn(
           `FeaturePropFilters: Could not apply filter '${filterName}' on value ${value} with args ${args},`,
-          err
+          err,
         );
       }
     }
@@ -92,7 +92,7 @@ class PropFilters {
       return this.filters[key];
     } else {
       console.warn(
-        `FeaturePropFilters: Could not find filter with name '${key}'`
+        `FeaturePropFilters: Could not find filter with name '${key}'`,
       );
     }
     return null;
@@ -132,7 +132,7 @@ filters.add("roundToDecimals", function (value, numDecimals) {
   }
   // We need to double wrap for toLocaleString to work as toFixed returns a string.
   return parseFloat(
-    parseFloat(value).toFixed(parseInt(numDecimals))
+    parseFloat(value).toFixed(parseInt(numDecimals)),
   ).toLocaleString();
 });
 
@@ -456,10 +456,10 @@ filters.add(
       Number(this.properties[xProp]),
       Number(this.properties[yProp]),
       targetProjection,
-      numDecimals
+      numDecimals,
     );
     return coordinates[xOrY.toLowerCase()];
-  }
+  },
 );
 
 export default filters;

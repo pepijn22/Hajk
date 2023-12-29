@@ -50,7 +50,7 @@ const OpacitySlider = ({ opacity, handleOpacityChange }) => {
     <Grid item xs={12}>
       <Paper style={{ padding: 8, marginTop: 8 }}>
         <Typography variant="caption">{`Opacitet: ${Math.floor(
-          opacity * 100
+          opacity * 100,
         )}%`}</Typography>
         <Slider
           size="small"
@@ -106,7 +106,7 @@ const AccordionSummaryContents = (props) => {
             typeof props.color === "string"
               ? 100
               : Math.floor(
-                  (!isNaN(props.color?.a) ? props.color?.a : 100) * 100
+                  (!isNaN(props.color?.a) ? props.color?.a : 100) * 100,
                 )
           }%`}</Typography>
         )}

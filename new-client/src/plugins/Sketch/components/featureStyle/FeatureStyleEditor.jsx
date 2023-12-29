@@ -25,7 +25,7 @@ const FeatureTextEditor = ({ text, onChange }) => {
 const FeatureStyleEditor = ({ feature, model, drawModel }) => {
   // We're gonna need to keep track of the feature-style
   const [featureStyle, setFeatureStyle] = React.useState(
-    model.getFeatureStyle(feature)
+    model.getFeatureStyle(feature),
   );
   // We're gonna need to keep track of the eventual feature-text.
   // This only applies to text-features obviously.

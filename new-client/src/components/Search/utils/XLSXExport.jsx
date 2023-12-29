@@ -21,7 +21,7 @@ export default class XLSXExport {
       ) {
         const results = await this.#createUserSelectedExport(
           featureCollections[0],
-          fileName
+          fileName,
         );
         return results;
       }
@@ -43,7 +43,7 @@ export default class XLSXExport {
   #getFileName = (featureCollections) => {
     return featureCollections?.length === 1
       ? `${this.#getSheetName(
-          featureCollections[0]
+          featureCollections[0],
         )}-${new Date().toLocaleString()}.xlsx`
       : `Sökexport-${new Date().toLocaleString()}.xlsx`;
   };
@@ -57,7 +57,7 @@ export default class XLSXExport {
       Object.keys(groupedFeatures).forEach((key) => {
         const sheetName = key.slice(0, 30);
         const exportArray = this.#getUserSelectedExportArray(
-          groupedFeatures[key]
+          groupedFeatures[key],
         );
         const sheet = xlsx.utils.aoa_to_sheet(exportArray);
         xlsx.utils.book_append_sheet(workBook, sheet, sheetName);

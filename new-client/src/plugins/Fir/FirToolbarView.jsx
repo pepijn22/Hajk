@@ -262,7 +262,7 @@ class FirToolbarView extends React.PureComponent {
       if (e.target.files.length > 0) {
         this.localObserver.publish(
           `${this.prefix}.file.import`,
-          e.target.files[0]
+          e.target.files[0],
         );
         setTimeout(() => {
           e.target.value = "";
@@ -412,7 +412,7 @@ class FirToolbarView extends React.PureComponent {
                   `${this.prefix}.layers.bufferValueChanged`,
                   {
                     value: bufferValue,
-                  }
+                  },
                 );
               }}
               onFocus={(e) => {

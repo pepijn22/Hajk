@@ -137,7 +137,7 @@ class AttributeEditor extends React.Component {
       },
       () => {
         this.updateFeature();
-      }
+      },
     );
   }
 
@@ -156,7 +156,7 @@ class AttributeEditor extends React.Component {
       },
       () => {
         this.updateFeature();
-      }
+      },
     );
   }
 
@@ -176,7 +176,7 @@ class AttributeEditor extends React.Component {
       },
       () => {
         this.updateFeature();
-      }
+      },
     );
   }
 
@@ -199,7 +199,7 @@ class AttributeEditor extends React.Component {
       },
       () => {
         this.updateFeature();
-      }
+      },
     );
   }
 
@@ -212,7 +212,7 @@ class AttributeEditor extends React.Component {
       },
       () => {
         this.updateFeature();
-      }
+      },
     );
   }
 
@@ -225,7 +225,7 @@ class AttributeEditor extends React.Component {
       },
       () => {
         this.updateFeature();
-      }
+      },
     );
   }
 
@@ -238,7 +238,7 @@ class AttributeEditor extends React.Component {
       },
       () => {
         this.updateFeature();
-      }
+      },
     );
   }
 
@@ -252,7 +252,7 @@ class AttributeEditor extends React.Component {
       },
       () => {
         this.updateFeature();
-      }
+      },
     );
   }
 

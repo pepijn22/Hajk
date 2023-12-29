@@ -36,7 +36,7 @@ const CustomControlButtonView = React.memo(
     const [selected, setSelected] = React.useState(false);
     const [tooltip, setTooltip] = React.useState(defaultTooltip);
     const [currentIcon, setCurrentIcon] = React.useState(
-      <LocationSearchingIcon />
+      <LocationSearchingIcon />,
     );
 
     // Handler for the "geoLocationChange" event. Makes sure to format the raw input data
@@ -111,7 +111,7 @@ const CustomControlButtonView = React.memo(
             break;
         }
       },
-      [defaultTooltip]
+      [defaultTooltip],
     );
 
     // Handler for the "locationError" event. Makes sure to prompt the user with information
@@ -122,18 +122,18 @@ const CustomControlButtonView = React.memo(
         if (error.code === 1) {
           enqueueSnackbar(
             LOCATION_DENIED_SNACK_MESSAGE,
-            LOCATION_DENIED_SNACK_OPTIONS
+            LOCATION_DENIED_SNACK_OPTIONS,
           );
         } else {
           enqueueSnackbar(
             `Kunde inte fastställa din plats. Felkod: ${error.code}. Detaljer: "${error.message}".`,
             {
               variant: "error",
-            }
+            },
           );
         }
       },
-      [enqueueSnackbar]
+      [enqueueSnackbar],
     );
 
     // This effect makes sure to subscribe to all events that could be sent on the local-observer.
@@ -142,14 +142,14 @@ const CustomControlButtonView = React.memo(
       // We have to catch the local-observer events and update the view accordingly.
       const changeListener = model.localObserver.subscribe(
         "geolocationChange",
-        handleGeoLocationChange
+        handleGeoLocationChange,
       );
 
       // We are submitting events on the local-observer when the geoLocation is toggled off/on etc.
       // We have to catch the local-observer events and update the view accordingly.
       const statusListener = model.localObserver.subscribe(
         "locationStatus",
-        handleStatusChange
+        handleStatusChange,
       );
 
       // We are submitting events on the local-observer if the geoLocation-api encounters some
@@ -157,7 +157,7 @@ const CustomControlButtonView = React.memo(
       // are caught here.
       const errorListener = model.localObserver.subscribe(
         "geolocationError",
-        handleLocationError
+        handleLocationError,
       );
 
       // We have to make sure to clean up all listeners on eventual effect trigger.
@@ -191,7 +191,7 @@ const CustomControlButtonView = React.memo(
         </StyledPaper>
       </Tooltip>
     );
-  }
+  },
 );
 
 export default CustomControlButtonView;

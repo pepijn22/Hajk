@@ -23,12 +23,12 @@ class DocumentWindowBase extends React.PureComponent {
     if (headerIdentifier) {
       localObserver.publish(
         "scroll-to-chapter",
-        model.getHeaderRef(document, headerIdentifier)
+        model.getHeaderRef(document, headerIdentifier),
       );
     } else {
       localObserver.publish(
         "scroll-to-top",
-        model.getHeaderRef(document, headerIdentifier)
+        model.getHeaderRef(document, headerIdentifier),
       );
     }
   };
@@ -46,9 +46,9 @@ class DocumentWindowBase extends React.PureComponent {
           });
 
           console.warn(
-            "Could not fetch document, link to document probably reference a document not present in panelmenu"
+            "Could not fetch document, link to document probably reference a document not present in panelmenu",
           );
-        }
+        },
       );
     }
   };
@@ -85,12 +85,12 @@ class DocumentWindowBase extends React.PureComponent {
           localObserver={this.props.localObserver}
           aTag={aTag}
           bottomMargin={false}
-        ></CustomLink>
+        ></CustomLink>,
       );
     } else {
       console.error(
         "Could not render DocumentHandler link for payload:",
-        infoClickEvent.payload
+        infoClickEvent.payload,
       );
       // Must resolve with a value, even null will do, but something more helpful could be nice.
       // The reason we must do it is because this value is used in React's render, and undefined will not render.
@@ -102,13 +102,13 @@ class DocumentWindowBase extends React.PureComponent {
     const { localObserver, app } = this.props;
     app.globalObserver.subscribe(
       "core.info-click-documenthandler",
-      this.handleInfoClickRequest
+      this.handleInfoClickRequest,
     );
     localObserver.subscribe("set-active-document", this.showHeaderInDocument);
     localObserver.subscribe("maplink-loading", this.displayMaplinkLoadingBar);
     localObserver.subscribe(
       "map-animation-complete",
-      this.closeMaplinkLoadingBar
+      this.closeMaplinkLoadingBar,
     );
   };
 

@@ -115,18 +115,18 @@ const FeatureItem = (props) => {
         olLayer.get("name") === d.id &&
         setLoadStatus(d.status);
     },
-    [loadStatus, olLayer]
+    [loadStatus, olLayer],
   );
 
   useEffect(() => {
     globalObserver.subscribe(
       "layerswitcher.wmsLayerLoadStatus",
-      layerLoadErrorHandler
+      layerLoadErrorHandler,
     );
     return () => {
       globalObserver.unsubscribe(
         "layerswitcher.wmsLayerLoadStatus",
-        layerLoadErrorHandler
+        layerLoadErrorHandler,
       );
     };
   }, [layerLoadErrorHandler, globalObserver]);

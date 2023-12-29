@@ -87,7 +87,7 @@ class KirLayerController {
     this.observer.subscribe("kir.search.clear", this.handleClearSearch);
     this.observer.subscribe(
       "kir.search.results.delete",
-      this.handleRemoveFeature
+      this.handleRemoveFeature,
     );
 
     this.observer.subscribe("kir.layers.showSearchArea", (data) => {

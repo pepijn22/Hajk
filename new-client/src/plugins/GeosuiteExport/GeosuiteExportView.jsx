@@ -191,7 +191,7 @@ class GeosuiteExportView extends React.PureComponent {
 
   toggleEntireProject = (projectId, shouldExportAll) => {
     const projectToUpdate = this.state.projects.find(
-      (project) => project.id === projectId
+      (project) => project.id === projectId,
     );
 
     const updatedProject = { ...projectToUpdate, exportAll: shouldExportAll };
@@ -216,7 +216,7 @@ class GeosuiteExportView extends React.PureComponent {
     });
 
     this.props.model.updateBoreholeSelection(
-      this.props.model.getSelectedGeometry()
+      this.props.model.getSelectedGeometry(),
     );
   };
 
@@ -229,7 +229,7 @@ class GeosuiteExportView extends React.PureComponent {
     });
 
     this.props.model.updateDocumentSelection(
-      this.props.model.getSelectedGeometry()
+      this.props.model.getSelectedGeometry(),
     );
   };
 
@@ -968,7 +968,7 @@ class GeosuiteExportView extends React.PureComponent {
     if (prevState.documents !== this.state.documents) {
       if (this.state.selectedProduct === "document") {
         const selectedForOrder = this.state.documents.filter(
-          (doc) => doc.selected
+          (doc) => doc.selected,
         );
         this.toggleStepEnabled(3, selectedForOrder.length > 0);
       }
@@ -981,11 +981,11 @@ class GeosuiteExportView extends React.PureComponent {
     ) {
       //toggle availabilty of Beställ knapp based on if there are any orders selected.
       const selectedForOrder = this.state.projects.filter(
-        (proj) => proj.selected
+        (proj) => proj.selected,
       );
       this.toggleStepEnabled(
         3,
-        selectedForOrder.length && this.state.emailValid
+        selectedForOrder.length && this.state.emailValid,
       );
     }
   }

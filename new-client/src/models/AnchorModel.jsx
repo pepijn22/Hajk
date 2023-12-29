@@ -30,7 +30,7 @@ class AnchorModel {
           url: await this.getAnchor(),
           source: "search",
         });
-      }
+      },
     );
 
     // C: A plugin based on BaseWindowPlugin changes visibility
@@ -41,7 +41,7 @@ class AnchorModel {
           url: await this.getAnchor(),
           source: "pluginVisibility",
         });
-      }
+      },
     );
 
     // D: A layer's visibility changes
@@ -149,7 +149,7 @@ class AnchorModel {
       .filter(
         (w) =>
           w.state.windowVisible && // Is visible and…
-          PLUGINS_TO_IGNORE_IN_HASH_APP_STATE.indexOf(w.type) === -1 // …is not in the list of excluded plugins
+          PLUGINS_TO_IGNORE_IN_HASH_APP_STATE.indexOf(w.type) === -1, // …is not in the list of excluded plugins
       )
       .map((p) => p.type)
       .join();

@@ -34,12 +34,13 @@ class FirLayerController {
       .getLayers()
       .getArray()
       .find(
-        (layer) => layer.get("name") === this.model.config.wmsRealEstateLayer.id
+        (layer) =>
+          layer.get("name") === this.model.config.wmsRealEstateLayer.id,
       );
 
     if (!this.model.layers.wmsRealEstate) {
       console.warn(
-        `FIR: wmsRealEstateLayer with id ${this.model.config.wmsRealEstateLayer.id} could not be found in map layers.`
+        `FIR: wmsRealEstateLayer with id ${this.model.config.wmsRealEstateLayer.id} could not be found in map layers.`,
       );
     }
 
@@ -123,11 +124,11 @@ class FirLayerController {
     this.observer.subscribe("fir.search.clear", this.handleClearSearch);
     this.observer.subscribe(
       "fir.search.results.delete",
-      this.handleRemoveFeature
+      this.handleRemoveFeature,
     );
     this.observer.subscribe(
       "fir.search.results.highlight",
-      this.handleHighlight
+      this.handleHighlight,
     );
     this.observer.subscribe("fir.layers.showSearchArea", (data) => {
       this.model.layers.draw.setVisible(data.value);
@@ -155,14 +156,14 @@ class FirLayerController {
         this.model.layers.wmsRealEstate.setVisible(data.active);
         this.model.layers.wmsRealEstate.setOpacity(1.0);
         this.removeIsActive = false;
-      }
+      },
     );
     this.observer.subscribe(
       "fir.search.results.removeFeatureByMapClick",
       (data) => {
         this.clickLock(data.active);
         this.removeIsActive = data.active;
-      }
+      },
     );
     this.observer.subscribe("fir.zoomToFeature", (feature) => {
       this.zoomToFeature(feature);
@@ -188,7 +189,7 @@ class FirLayerController {
 
   clickLock(bLock) {
     this.model.map.clickLock[bLock === true ? "add" : "delete"](
-      "fir-addremove-feature"
+      "fir-addremove-feature",
     );
   }
 
@@ -226,7 +227,7 @@ class FirLayerController {
       arr.forEach((feature) => {
         if (
           this.previousFeatures.indexOf(
-            feature.get(this.model.config.wmsRealEstateLayer.idField)
+            feature.get(this.model.config.wmsRealEstateLayer.idField),
           ) > -1
         ) {
           feature.setStyle(this.styles.getPreviousResultStyle());
@@ -279,7 +280,7 @@ class FirLayerController {
         .getFeatures()
         .forEach((o) => {
           previousFeatures.push(
-            o.get(this.model.config.wmsRealEstateLayer.idField)
+            o.get(this.model.config.wmsRealEstateLayer.idField),
           );
         });
     }
@@ -318,7 +319,7 @@ class FirLayerController {
       this.model.layers.highlight.getSource().addFeature(clone);
       this.observer.publish("fir.search.feature.selected", feature);
       this.markerFeature.setGeometry(
-        new Point(feature.getGeometry().getInteriorPoint().getCoordinates())
+        new Point(feature.getGeometry().getInteriorPoint().getCoordinates()),
       );
       this.model.layers.marker.setVisible(true);
     }
@@ -338,7 +339,7 @@ class FirLayerController {
         view.getProjection().getCode(),
         {
           INFO_FORMAT: "application/json",
-        }
+        },
       );
 
     hfetch(url)

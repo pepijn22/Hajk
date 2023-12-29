@@ -69,7 +69,7 @@ class RoutingView extends React.PureComponent {
         "Välj start- och stoppunkt för att kunna navigera.",
         {
           variant: "error",
-        }
+        },
       );
     });
 
@@ -78,7 +78,7 @@ class RoutingView extends React.PureComponent {
         "Kunde inte navigera. Kontakta systemadministratör och påtala att giltig licens för Google Maps API saknas.",
         {
           variant: "error",
-        }
+        },
       );
     });
 
@@ -87,7 +87,7 @@ class RoutingView extends React.PureComponent {
         "Kunde inte hitta vägbeskrivning mellan valda punkter och för det valda transportslaget. Prova att byta färdsätt och sök igen.",
         {
           variant: "warning",
-        }
+        },
       );
     });
 
@@ -97,7 +97,7 @@ class RoutingView extends React.PureComponent {
         "Ett fel har inträffat. Vänligen försök igen.",
         {
           variant: "warning",
-        }
+        },
       );
     });
   }
@@ -117,7 +117,7 @@ class RoutingView extends React.PureComponent {
       case "manual":
         this.selectStartSnackbar = this.props.enqueueSnackbar(
           "Klicka i kartan för att välja startpunkt.",
-          { variant: "info", persist: true }
+          { variant: "info", persist: true },
         );
         this.props.model.activateStartMode();
         break;
@@ -132,7 +132,7 @@ class RoutingView extends React.PureComponent {
       this.setState({ endSelectionInProgress: true }, (e) => {
         this.selectEndSnackbar = this.props.enqueueSnackbar(
           "Klicka i kartan för att välja din destination.",
-          { variant: "info", persist: true }
+          { variant: "info", persist: true },
         );
         this.props.model.activateEndMode();
       });

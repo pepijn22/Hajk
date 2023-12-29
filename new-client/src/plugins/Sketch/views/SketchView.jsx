@@ -41,16 +41,16 @@ const SketchView = (props) => {
 
   // We're gonna need to keep track of some draw-styling...
   const [drawStyle, setDrawStyle] = React.useState(
-    model.getDrawStyleSettings()
+    model.getDrawStyleSettings(),
   );
   // ...and some text-styling.
   const [textStyle, setTextStyle] = React.useState(
-    model.getTextStyleSettings()
+    model.getTextStyleSettings(),
   );
   // We want to keep track of the last removed features so that the user can restore
   // features that they potentially removed by mistake.
   const [removedFeatures, setRemovedFeatures] = React.useState(
-    model.getRemovedFeaturesFromStorage()
+    model.getRemovedFeaturesFromStorage(),
   );
   // We want to keep track of the recently imported kml-files so that the user can remove or hide
   // all features from an imported kml-file.The array will contain objects with an id (this id will
@@ -89,14 +89,14 @@ const SketchView = (props) => {
       model.addFeatureToStorage(feature);
       // Then we'll update the state
       setRemovedFeatures(
-        [feature, ...removedFeatures].slice(0, MAX_REMOVED_FEATURES)
+        [feature, ...removedFeatures].slice(0, MAX_REMOVED_FEATURES),
       );
       // We also have to make sure to remove eventual uploads where all its features
       // has been removed. (It does not make sense to have a list of imports where all the
       // features from the import has been removed).
       refreshUploadsList();
     },
-    [model, removedFeatures, functionalCookiesOk, refreshUploadsList]
+    [model, removedFeatures, functionalCookiesOk, refreshUploadsList],
   );
 
   // Handler making sure to keep the removed features updated when the user has pressed "removed all features".
@@ -134,7 +134,7 @@ const SketchView = (props) => {
       // features from the import has been removed).
       refreshUploadsList();
     },
-    [model, removedFeatures, functionalCookiesOk, refreshUploadsList]
+    [model, removedFeatures, functionalCookiesOk, refreshUploadsList],
   );
 
   // Handler for when a feature is added to the draw-source via the addFeature-method
@@ -148,13 +148,13 @@ const SketchView = (props) => {
         // If we're restoring a feature from the list of removed features, we have to update the list
         // of removed features obviously.
         setRemovedFeatures(
-          removedFeatures.filter((f) => f.get("HANDLED_ID") !== handledId)
+          removedFeatures.filter((f) => f.get("HANDLED_ID") !== handledId),
         );
         // We also have to remove the restored feature from the storage
         model.removeFeatureFromStorage(handledId);
       }
     },
-    [model, removedFeatures]
+    [model, removedFeatures],
   );
 
   // Handles when a kml-file has been added to the map via the drag-and-drop
@@ -175,7 +175,7 @@ const SketchView = (props) => {
         },
       ]);
     },
-    [model]
+    [model],
   );
 
   // This effect makes sure to update the draw-style-settings in the draw-model when

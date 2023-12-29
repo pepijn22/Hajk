@@ -279,7 +279,7 @@ class FmeServerModel {
     // First, we're gonna have to prepare the parameters to send.
     const parametersToSend = this.#getParametersToSend(
       product,
-      productParameters
+      productParameters,
     );
     // Let's create the request url
     const url = this.#createSubmitProductRequestUrl(product);
@@ -311,7 +311,7 @@ class FmeServerModel {
     const requestUrlString = this.#createRequestUrlString(
       product,
       productParameters,
-      userEmail
+      userEmail,
     );
     // Then we try to fetch with this information
     try {

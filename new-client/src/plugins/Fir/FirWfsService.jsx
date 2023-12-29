@@ -20,8 +20,8 @@ class FirWfsService {
       filters.push(
         intersectsFilter(
           params.searchType.geometryField || "geom",
-          feature.getGeometry()
-        )
+          feature.getGeometry(),
+        ),
       );
     });
 
@@ -54,7 +54,7 @@ class FirWfsService {
         "*",
         ".",
         "!",
-        false
+        false,
       );
     }
 
@@ -78,7 +78,7 @@ class FirWfsService {
       rootFilter = equalToFilter(
         params.searchType.searchProp,
         designations[0],
-        false
+        false,
       );
     } else {
       let filters = [];

@@ -47,7 +47,7 @@ class PopPanel extends Component {
             this.setState({
               placement: "right-start",
             });
-          }
+          },
         );
       });
     }

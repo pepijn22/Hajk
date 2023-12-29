@@ -29,7 +29,7 @@ function Dummy(props) {
   // But we can also keep just one variable, allowing us to keep naming etc. clean. The pluginShown state
   // keeps track of wether the plugin is shown or not, and is obviously initiated to the visibleAtStart-option set in admin.
   const [pluginShown, setPluginShown] = React.useState(
-    props.options.visibleAtStart ?? false
+    props.options.visibleAtStart ?? false,
   );
   // Another state variable we need to keep track off is the current draw-interaction. (Used to tell the drawModel
   // what we want to draw). Since this is an example, we'll keep it simple: It will either be set to "Polygon" or "" (off).
@@ -63,7 +63,7 @@ function Dummy(props) {
         localObserver: localObserver,
         app: props.app,
         map: props.map,
-      })
+      }),
   );
   // There are some core models that can be used as well. The core models take care of logic that is used in several places in the application.
   // Some example core models are: SearchModel (for searching in WFS etc.), DrawModel (for drawing on the map), KmlModel (for importing/exporting .kml).
@@ -75,7 +75,7 @@ function Dummy(props) {
         map: props.map,
         observer: localObserver,
         measurementSettings: DEFAULT_MEASUREMENT_SETTINGS,
-      })
+      }),
   );
 
   // Subscriptions to events etc. should be done in the useEffect hooks. Pay attention to the

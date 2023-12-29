@@ -31,7 +31,7 @@ class MapSwitcher extends React.PureComponent {
     let { activeMap } = this.appModel.config;
 
     maps.sort((a, b) =>
-      a.mapConfigurationTitle.localeCompare(b.mapConfigurationTitle)
+      a.mapConfigurationTitle.localeCompare(b.mapConfigurationTitle),
     );
 
     // Save fetched map configs to global variable
@@ -86,7 +86,7 @@ class MapSwitcher extends React.PureComponent {
     if (this.appModel.config.mapConfig.map?.enableAppStateInHash === true) {
       // If live changing of hash params is enabled, grab the old hash
       const oldHash = new URLSearchParams(
-        window.location.hash.replaceAll("#", "")
+        window.location.hash.replaceAll("#", ""),
       );
 
       // Set the m param to the new map's name
@@ -123,7 +123,7 @@ class MapSwitcher extends React.PureComponent {
       const z = this.map.getView().getZoom();
 
       window.location.assign(
-        `${window.location.origin}${window.location.pathname}?m=${selectedMap}&x=${x}&y=${y}&z=${z}`
+        `${window.location.origin}${window.location.pathname}?m=${selectedMap}&x=${x}&y=${y}&z=${z}`,
       );
     }
   };

@@ -194,7 +194,7 @@ class FeatureInfoContainer extends React.PureComponent {
       },
       () => {
         this.showFeatureInMap();
-      }
+      },
     );
   }
 

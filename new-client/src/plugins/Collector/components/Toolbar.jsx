@@ -153,7 +153,7 @@ class Toolbar extends Component {
       this.props.model.refreshEditingLayer();
       this.props.app.globalObserver.publish(
         "core.alert",
-        this.getStatusMessage(response)
+        this.getStatusMessage(response),
       );
     });
   }

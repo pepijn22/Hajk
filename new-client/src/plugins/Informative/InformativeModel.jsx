@@ -28,7 +28,7 @@ class InformativeModel {
       .filter(
         (l) =>
           chapter.layers &&
-          chapter.layers.some((layer) => layer === l.getProperties()["name"])
+          chapter.layers.some((layer) => layer === l.getProperties()["name"]),
       );
 
     layers.forEach((layer) => {
@@ -68,7 +68,7 @@ class InformativeModel {
         (l) =>
           l.getProperties().layerInfo &&
           l.getProperties().layerInfo.layerType === "base" &&
-          l.getVisible()
+          l.getVisible(),
       );
 
     hfetch(this.exportUrl, {
@@ -102,12 +102,12 @@ class InformativeModel {
       .filter(
         (layer) =>
           layer.getProperties()["layerInfo"] &&
-          layer.getProperties()["layerInfo"]["layerType"] !== "base"
+          layer.getProperties()["layerInfo"]["layerType"] !== "base",
       )
       .forEach((layer) => {
         if (
           visibleLayers.some(
-            (visibleLayer) => visibleLayer === layer.getProperties()["name"]
+            (visibleLayer) => visibleLayer === layer.getProperties()["name"],
           )
         ) {
           if (layer.layerType === "group") {
@@ -155,7 +155,7 @@ class InformativeModel {
         options: { variant: "error" },
       });
       console.error(
-        `Couldn't load data for Informative plugin. Make sure that the URL to mapservice is correctly configured.`
+        `Couldn't load data for Informative plugin. Make sure that the URL to mapservice is correctly configured.`,
       );
     }
   }

@@ -27,7 +27,7 @@ function getColorScheme(preferredColorSchemeFromMapConfig, customTheme) {
   // If there's no global override, we can go on and
   // check if there already is a user preferred value in local storage.
   const userPreferredColorScheme = window.localStorage.getItem(
-    "userPreferredColorScheme"
+    "userPreferredColorScheme",
   );
 
   let colorScheme = null; // Will hold the return value
@@ -74,7 +74,7 @@ function getColorScheme(preferredColorSchemeFromMapConfig, customTheme) {
 function getTheme(config, customTheme) {
   const colorScheme = getColorScheme(
     config.mapConfig.map.colors?.preferredColorScheme,
-    customTheme
+    customTheme,
   );
   // Setup some app-wide defaults that differ from MUI's defaults:
   const hardCodedDefaults = {
@@ -105,7 +105,7 @@ function getTheme(config, customTheme) {
   const mergedTheme = deepMerge(
     hardCodedDefaults, // Using the hardcoded default…
     customTheme, // … overriding them with stuff from customTheme.json (app-wide customizations, common for each maps)…
-    themeFromMapConfig // … and finally overriding them with map-specific customizations.
+    themeFromMapConfig, // … and finally overriding them with map-specific customizations.
   );
 
   return mergedTheme;
@@ -134,7 +134,7 @@ const HajkThemeProvider = ({ activeTools, config, customTheme }) => {
     if (functionalCookieOk()) {
       window.localStorage.setItem(
         "userPreferredColorScheme",
-        userPreferredColorScheme
+        userPreferredColorScheme,
       );
     }
 

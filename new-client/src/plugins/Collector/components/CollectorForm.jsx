@@ -52,7 +52,7 @@ class CollectorForm extends Component {
           this.setState({
             activePage: 0,
           });
-        }
+        },
       );
     });
   }
@@ -94,7 +94,7 @@ class CollectorForm extends Component {
     } else {
       return form
         .sort((p1, p2) =>
-          p1.order === p2.order ? 0 : p1.order > p2.order ? 1 : -1
+          p1.order === p2.order ? 0 : p1.order > p2.order ? 1 : -1,
         )
         .map(
           (page, i) =>
@@ -121,7 +121,7 @@ class CollectorForm extends Component {
                   });
                 }}
               ></Page>
-            )
+            ),
         );
     }
   }

@@ -354,7 +354,7 @@ export default class PrintModel {
     contentWidth,
     contentHeight,
     pdfWidth,
-    pdfHeight
+    pdfHeight,
   ) => {
     // We must take the potential margin around the map-image into account (this.margin)
 
@@ -417,7 +417,7 @@ export default class PrintModel {
     const scaleBarLengthMetersStr = scaleBarLengthMeters.toString();
     // Here we get the lengthMeters first two numbers.
     const scaleBarFirstDigits = parseInt(
-      scaleBarLengthMetersStr.substring(0, 2)
+      scaleBarLengthMetersStr.substring(0, 2),
     );
     // We want to check if lengthMeters starts with 10 through 19 to make sure we divide correctly later.
     const startsWithDoubleDigits =
@@ -474,25 +474,25 @@ export default class PrintModel {
       scaleBarPosition.x,
       scaleBarPosition.y + 3,
       scaleBarPosition.x + scaleBarLength,
-      scaleBarPosition.y + 3
+      scaleBarPosition.y + 3,
     );
     pdf.line(
       scaleBarPosition.x,
       scaleBarPosition.y + 1,
       scaleBarPosition.x,
-      scaleBarPosition.y + 5
+      scaleBarPosition.y + 5,
     );
     pdf.line(
       scaleBarPosition.x + scaleBarLength,
       scaleBarPosition.y + 1,
       scaleBarPosition.x + scaleBarLength,
-      scaleBarPosition.y + 5
+      scaleBarPosition.y + 5,
     );
 
     // Here we get number of lines we will draw below
     const { divLinesArray } = this.getDivLinesArrayAndDivider(
       scaleBarLengthMeters,
-      scaleBarLength
+      scaleBarLength,
     );
 
     // Here we draw the dividing lines marking 10 (or 100) meters each
@@ -503,7 +503,7 @@ export default class PrintModel {
         scaleBarPosition.x + divLine,
         scaleBarPosition.y + 1.9 - largerMiddleLineValue,
         scaleBarPosition.x + divLine,
-        scaleBarPosition.y + 4.1 + largerMiddleLineValue
+        scaleBarPosition.y + 4.1 + largerMiddleLineValue,
       );
     });
 
@@ -520,7 +520,7 @@ export default class PrintModel {
           scaleBarPosition.x + divLine,
           scaleBarPosition.y + 2.25,
           scaleBarPosition.x + divLine,
-          scaleBarPosition.y + 3.85
+          scaleBarPosition.y + 3.85,
         );
       }
     }
@@ -548,7 +548,7 @@ export default class PrintModel {
     // Here we get number of lines we will draw below
     const { divLinesArray, divider } = this.getDivLinesArrayAndDivider(
       scaleBarLengthMeters,
-      scaleBarLength
+      scaleBarLength,
     );
 
     const scaleBarHasSpace = divLinesArray[0] > 10 && scaleBarLengthMeters > 10;
@@ -559,7 +559,7 @@ export default class PrintModel {
     pdf.text(
       divNrString,
       scaleBarPosition.x + divLinesArray[0] - divNrString.length,
-      scaleBarPosition.y + 8
+      scaleBarPosition.y + 8,
     );
 
     // Here we add the middle number or if no middle exists...
@@ -577,7 +577,7 @@ export default class PrintModel {
     pdf.text(
       divNrString,
       scaleBarPosition.x + divLinesArray[midIndex - 1] - divNrString.length,
-      scaleBarPosition.y + 8
+      scaleBarPosition.y + 8,
     );
 
     // Here we add a number to the first additional division line but only if scaleBar has space
@@ -593,7 +593,7 @@ export default class PrintModel {
       pdf.text(
         divNrString,
         scaleBarPosition.x + dividerNrPosition - dividerStrLength,
-        scaleBarPosition.y + 8
+        scaleBarPosition.y + 8,
       );
     }
   };
@@ -606,7 +606,7 @@ export default class PrintModel {
     scale,
     scaleBarLengthMeters,
     format,
-    orientation
+    orientation,
   ) => {
     const lengthText = this.getLengthText(scaleBarLengthMeters);
     pdf.setFontSize(8);
@@ -615,18 +615,18 @@ export default class PrintModel {
     pdf.text(
       lengthText,
       scaleBarPosition.x + scaleBarLength + 1,
-      scaleBarPosition.y + 4
+      scaleBarPosition.y + 4,
     );
 
     pdf.setFontSize(10);
     pdf.text(
       `Skala: ${this.getUserFriendlyScale(
-        scale
+        scale,
       )} (vid ${format.toUpperCase()} ${
         orientation === "landscape" ? "liggande" : "stående"
       })`,
       scaleBarPosition.x,
-      scaleBarPosition.y - 1
+      scaleBarPosition.y - 1,
     );
 
     this.addDividerLinesAndTexts({
@@ -647,7 +647,7 @@ export default class PrintModel {
     scaleBarPlacement,
     scaleResolution,
     format,
-    orientation
+    orientation,
   ) => {
     const millimetersPerInch = 25.4;
     const pixelSize = millimetersPerInch / resolution / scaleResolution;
@@ -661,7 +661,7 @@ export default class PrintModel {
       scaleBarLength + 9,
       scaleBarHeight,
       pdf.internal.pageSize.width,
-      pdf.internal.pageSize.height
+      pdf.internal.pageSize.height,
     );
 
     this.drawScaleBar(
@@ -672,7 +672,7 @@ export default class PrintModel {
       scale,
       scaleBarLengthMeters,
       format,
-      orientation
+      orientation,
     );
   };
 
@@ -684,7 +684,7 @@ export default class PrintModel {
     const desiredResolution = this.getScaleResolution(
       scale,
       resolution,
-      this.map.getView().getCenter()
+      this.map.getView().getCenter(),
     );
 
     // The desired options are OK if they result in a resolution bigger than the minimum
@@ -698,7 +698,7 @@ export default class PrintModel {
       getPointResolution(
         this.map.getView().getProjection(),
         resolution / 25.4,
-        center
+        center,
       )
     );
   };
@@ -801,7 +801,7 @@ export default class PrintModel {
       this.addedLayers.add(imageLayer);
     } catch (error) {
       console.error(
-        `Failed to exchange the supplied layer with a print-layer! Error: ${error}`
+        `Failed to exchange the supplied layer with a print-layer! Error: ${error}`,
       );
     }
   };
@@ -1037,7 +1037,7 @@ export default class PrintModel {
               this.loadImageTile(canvas, {
                 ...tile,
                 url: this.toURLString(tileUrl),
-              })
+              }),
             );
           }
           // When all image-promises has settled, we can set the image to the canvas on which we've
@@ -1052,7 +1052,7 @@ export default class PrintModel {
       });
     } catch (error) {
       console.error(
-        `Failed to update the DPI-options while creating print-image (Single-tile WMS). Error: ${error}`
+        `Failed to update the DPI-options while creating print-image (Single-tile WMS). Error: ${error}`,
       );
     }
   };
@@ -1147,7 +1147,7 @@ export default class PrintModel {
     const scaleResolution = this.getScaleResolution(
       scale,
       resolution,
-      this.map.getView().getCenter()
+      this.map.getView().getCenter(),
     );
 
     // Save some of our values that are necessary to use if user want to cancel the process
@@ -1189,7 +1189,7 @@ export default class PrintModel {
             // Apply the transform to the export map context
             CanvasRenderingContext2D.prototype.setTransform.apply(
               mapContext,
-              matrix
+              matrix,
             );
           }
           mapContext.drawImage(canvas, 0, 0);
@@ -1240,7 +1240,7 @@ export default class PrintModel {
               this.margin,
               dim[0] - this.margin * 2,
               dim[1] - this.margin * 2,
-              "S"
+              "S",
             );
           }
           // Now we check if user did choose text in margins
@@ -1264,7 +1264,7 @@ export default class PrintModel {
               dimValue * 3,
               dim[0] - dimValue * 2,
               dim[1] - dimValue * 6,
-              "S"
+              "S",
             );
           }
         }
@@ -1283,7 +1283,7 @@ export default class PrintModel {
             logoWidth,
             logoHeight,
             dim[0],
-            dim[1]
+            dim[1],
           );
 
           pdf.addImage(
@@ -1292,7 +1292,7 @@ export default class PrintModel {
             logoPlacement.x,
             logoPlacement.y,
             logoWidth,
-            logoHeight
+            logoHeight,
           );
         } catch (error) {
           // The image loading may fail due to e.g. wrong URL, so let's catch the rejected Promise
@@ -1308,7 +1308,7 @@ export default class PrintModel {
             height: arrowHeight,
           } = await this.getImageForPdfFromUrl(
             this.northArrowUrl,
-            this.northArrowMaxWidth
+            this.northArrowMaxWidth,
           );
 
           const arrowPlacement = this.getPlacement(
@@ -1316,7 +1316,7 @@ export default class PrintModel {
             arrowWidth,
             arrowHeight,
             dim[0],
-            dim[1]
+            dim[1],
           );
 
           pdf.addImage(
@@ -1325,7 +1325,7 @@ export default class PrintModel {
             arrowPlacement.x,
             arrowPlacement.y,
             arrowWidth,
-            arrowHeight
+            arrowHeight,
           );
         } catch (error) {
           // The image loading may fail due to e.g. wrong URL, so let's catch the rejected Promise
@@ -1342,7 +1342,7 @@ export default class PrintModel {
           options.scaleBarPlacement,
           scaleResolution,
           options.format,
-          options.orientation
+          options.orientation,
         );
       }
 
@@ -1386,7 +1386,7 @@ export default class PrintModel {
       if (this.date.length > 0) {
         const date = this.date.replace(
           "{date}",
-          new Date().toLocaleDateString()
+          new Date().toLocaleDateString(),
         );
         let yPos = options.useTextIconsInMargin
           ? this.textIconsMargin + this.margin / 2
@@ -1407,7 +1407,7 @@ export default class PrintModel {
         pdf.setTextColor(options.mapTextColor);
         let textLines = pdf.splitTextToSize(
           this.disclaimer,
-          dim[0] / 2 - this.margin - 8
+          dim[0] / 2 - this.margin - 8,
         );
         let textLinesDims = pdf.getTextDimensions(textLines, { fontSize: 8 });
         pdf.text(
@@ -1416,7 +1416,7 @@ export default class PrintModel {
           dim[1] - 6 - yPos - textLinesDims.h,
           {
             align: "right",
-          }
+          },
         );
       }
 
@@ -1441,7 +1441,7 @@ export default class PrintModel {
 
     // Get print center from preview feature's center coordinate
     const printCenter = getCenter(
-      this.previewFeature.getGeometry().getExtent()
+      this.previewFeature.getGeometry().getExtent(),
     );
 
     // Hide our preview feature so it won't get printed
@@ -1472,7 +1472,7 @@ export default class PrintModel {
       return { pdfjs };
     } catch (error) {
       throw new Error(
-        `Failed to import required dependencies. Error: ${error}`
+        `Failed to import required dependencies. Error: ${error}`,
       );
     }
   };
@@ -1549,7 +1549,7 @@ export default class PrintModel {
           return this.#saveToPng(pdf, fileName, width);
         default:
           throw new Error(
-            `Supplied type could not be handled. The supplied type was ${type} and currently only PDF and PNG is supported.`
+            `Supplied type could not be handled. The supplied type was ${type} and currently only PDF and PNG is supported.`,
           );
       }
     } catch (error) {

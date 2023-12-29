@@ -230,7 +230,7 @@ class DrawModel {
   // initiation of the draw-model.
   #handleInitiationParametersMissing = () => {
     throw new Error(
-      "Failed to initiate Draw-model, - required parameters missing. \n Required parameters: map, layerName"
+      "Failed to initiate Draw-model, - required parameters missing. \n Required parameters: map, layerName",
     );
   };
 
@@ -315,7 +315,7 @@ class DrawModel {
     // Let's style the element a bit so it looks prettier...
     this.#drawTooltipElement.setAttribute(
       "style",
-      this.#drawTooltipElementStyle
+      this.#drawTooltipElementStyle,
     );
     // Then let's create the overlay...
     this.#drawTooltip = new Overlay({
@@ -335,7 +335,7 @@ class DrawModel {
     if (this.#drawTooltipElement) {
       // Then we can remove it
       this.#drawTooltipElement.parentNode.removeElement(
-        this.#drawTooltipElement
+        this.#drawTooltipElement,
       );
       // And clear the variable
       this.#drawTooltipElement = null;
@@ -495,7 +495,7 @@ class DrawModel {
   #shouldShowText = (feature) => {
     if (!feature) {
       console.warn(
-        "Could not evaluate '#shouldShowText' since no feature was supplied."
+        "Could not evaluate '#shouldShowText' since no feature was supplied.",
       );
       return false;
     }
@@ -632,13 +632,13 @@ class DrawModel {
                 ? settings.strokeStyle.color
                 : baseColor
                   ? baseColor
-                  : this.#drawStyleSettings.strokeColor
+                  : this.#drawStyleSettings.strokeColor,
             ),
             anchor: [0.38, 0.53],
             rotateWithView: true,
             rotation: -rotation,
           }),
-        })
+        }),
       );
     });
     // And finally return the style-array.
@@ -717,7 +717,7 @@ class DrawModel {
       switch (curr.type) {
         case "COORDINATES":
           return (acc += `N: ${Math.round(curr.value[1])} E: ${Math.round(
-            curr.value[0]
+            curr.value[0],
           )}`);
         case "AREA":
         case "PERIMETER":
@@ -827,11 +827,11 @@ class DrawModel {
       case "LENGTH":
       case "PERIMETER":
         return `${Number(
-          (featureMeasure / 1e3).toFixed(precision)
+          (featureMeasure / 1e3).toFixed(precision),
         ).toLocaleString()} km`;
       default:
         return `${Number(
-          (featureMeasure / 1e6).toFixed(precision)
+          (featureMeasure / 1e6).toFixed(precision),
         ).toLocaleString()} km²`;
     }
   };
@@ -847,7 +847,7 @@ class DrawModel {
         return this.#getMeasurementString(featureMeasure, type);
       default:
         return `${Number(
-          (featureMeasure / 1e4).toFixed(precision)
+          (featureMeasure / 1e4).toFixed(precision),
         ).toLocaleString()} ha`;
     }
   };
@@ -861,11 +861,11 @@ class DrawModel {
       case "LENGTH":
       case "PERIMETER":
         return `${Number(
-          featureMeasure.toFixed(precision)
+          featureMeasure.toFixed(precision),
         ).toLocaleString()} m`;
       default:
         return `${Number(
-          featureMeasure.toFixed(precision)
+          featureMeasure.toFixed(precision),
         ).toLocaleString()} m²`;
     }
   };
@@ -1131,7 +1131,7 @@ class DrawModel {
     // Get all the drawn features (Except for arrows, these doesn't have any text
     // and shouldn't be refreshed)...
     const drawnFeatures = this.getAllDrawnFeatures().filter(
-      (f) => f.get("DRAW_METHOD") !== "Arrow"
+      (f) => f.get("DRAW_METHOD") !== "Arrow",
     );
     // Iterate the drawn features...
     drawnFeatures.forEach((feature) => {
@@ -1310,7 +1310,7 @@ class DrawModel {
             color: strokeStyle.getColor(),
           },
           fillStyle: { color: strokeStyle.getColor() },
-        })
+        }),
       );
     } catch (error) {
       console.error(`Failed to set arrow style. Error: ${error}`);
@@ -1420,7 +1420,7 @@ class DrawModel {
     const clickedFeatures = this.#map.getFeaturesAtPixel(e.pixel);
     // We only care about features that have been drawn by a user.
     const userDrawnFeatures = clickedFeatures.filter((f) =>
-      f.get("USER_DRAWN")
+      f.get("USER_DRAWN"),
     );
     // Let's make sure we found some feature(s) to remove. We're only removing
     // the first one.
@@ -1438,7 +1438,7 @@ class DrawModel {
     const clickedFeatures = this.#map.getFeaturesAtPixel(e.pixel);
     // We only care about features that have been drawn by a user.
     const userDrawnFeatures = clickedFeatures.filter((f) =>
-      f.get("USER_DRAWN")
+      f.get("USER_DRAWN"),
     );
     // Let's get the (potential) first user-drawn feature, otherwise null.
     const feature = userDrawnFeatures.length > 0 ? userDrawnFeatures[0] : null;
@@ -1715,13 +1715,13 @@ class DrawModel {
     try {
       // Try to fetch features from WMS-layers etc. (Also from all vector-layers).
       const clickResult = await new Promise((resolve) =>
-        handleClick(event, event.map, resolve)
+        handleClick(event, event.map, resolve),
       );
       // The response should contain an array of features
       const { features } = clickResult;
       // Which might contain features without geometry. We have to make sure we remove those.
       const featuresWithGeom = features.filter((feature) =>
-        feature.getGeometry()
+        feature.getGeometry(),
       );
       // If we've fetched exactly one feature, we can add it straight away...
       featuresWithGeom.length === 1 &&
@@ -1736,7 +1736,7 @@ class DrawModel {
       }
     } catch (error) {
       console.error(
-        `Failed to select features in drawModel... Error: ${error}`
+        `Failed to select features in drawModel... Error: ${error}`,
       );
     }
   };
@@ -1848,7 +1848,7 @@ class DrawModel {
       feature.setGeometry(new CircleGeometry(center, radius));
     } catch (error) {
       console.error(
-        `Failed to create 'real' Circle geometry from supplied feature, error: ${error}`
+        `Failed to create 'real' Circle geometry from supplied feature, error: ${error}`,
       );
     }
   };
@@ -1952,7 +1952,7 @@ class DrawModel {
       !f.get("DRAW_METHOD") &&
         f.set(
           "DRAW_METHOD",
-          f.get("geometryType") || f.getGeometry().getType()
+          f.get("geometryType") || f.getGeometry().getType(),
         );
       // Let's grab the style- and text-settings. (At this point they will
       // can be undefined, a string, or the actual objects). We also have to grab the userDrawn-prop
@@ -2037,13 +2037,13 @@ class DrawModel {
       const translated = transformTranslate(gjFeature, offset, 140);
       // Then we have to read the geometry from the translated geoJSON
       const translatedGeom = this.#geoJSONParser.readGeometry(
-        translated.geometry
+        translated.geometry,
       );
       // When thats done, we'll update the duplicates geometry. If we are dealing
       // with a circle, we have to create a "real" circle:
       if (isCircle) {
         duplicate.setGeometry(
-          this.#creteCircleGeomFromSimplified(translatedGeom, radius)
+          this.#creteCircleGeomFromSimplified(translatedGeom, radius),
         );
       } else {
         // Otherwise we can just set the geometry.
@@ -2059,7 +2059,7 @@ class DrawModel {
       this.refreshDrawLayer();
     } catch (error) {
       console.error(
-        `Could not duplicate the supplied feature. Error: ${error}`
+        `Could not duplicate the supplied feature. Error: ${error}`,
       );
     }
   };
@@ -2086,13 +2086,13 @@ class DrawModel {
         const translated = transformTranslate(gjFeature, length / 1000, angle);
         // When thats done, we'll read the geometry from the translated geoJSON
         const translatedGeometry = this.#geoJSONParser.readGeometry(
-          translated.geometry
+          translated.geometry,
         );
         // When thats done, we'll update the feature geometry to the translated one. If we are dealing
         // with a circle, we have to create a "real" circle:
         if (isCircle) {
           f.setGeometry(
-            this.#creteCircleGeomFromSimplified(translatedGeometry, radius)
+            this.#creteCircleGeomFromSimplified(translatedGeometry, radius),
           );
         } else {
           // Otherwise we can just set the geometry.
@@ -2318,7 +2318,7 @@ class DrawModel {
     // We're not allowing the layer to be changed while the draw interaction is active...
     if (this.#drawInteraction !== null) {
       console.warn(
-        "The layer cannot be changed. The draw interaction is currently active. Disable the draw interaction before changing layer."
+        "The layer cannot be changed. The draw interaction is currently active. Disable the draw interaction before changing layer.",
       );
       return { status: "FAILED", message: "Disable draw to change layer." };
     }

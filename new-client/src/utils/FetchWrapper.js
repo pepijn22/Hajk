@@ -62,7 +62,7 @@ class FetchWrapper {
 
     const escapeRegex = (url) => url.replace(this.urlRegex, "\\$1");
     return new RegExp(
-      "^" + ruleWithWildCard.split("*").map(escapeRegex).join(".*") + "$"
+      "^" + ruleWithWildCard.split("*").map(escapeRegex).join(".*") + "$",
     ).test(url);
   }
 
@@ -95,7 +95,7 @@ class FetchWrapper {
   overrideOptions() {
     this.options = Object.assign(
       { ...this.config.hfetch.defaultOptions },
-      this.options
+      this.options,
     );
 
     if (this.config.hfetch.useOptionOverrides) {

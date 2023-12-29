@@ -35,7 +35,7 @@ class BreadCrumb extends Component {
     };
     this.chapters = this.findChapters(
       this.props.layer.get("name"),
-      this.props.chapters
+      this.props.chapters,
     );
   }
 
@@ -61,7 +61,7 @@ class BreadCrumb extends Component {
       },
       () => {
         layer.setOpacity(this.state.hidden ? 0 : 1);
-      }
+      },
     );
   };
 
@@ -135,7 +135,7 @@ class BreadCrumb extends Component {
 
   openInformative = (chapter) => {
     const informativeWindow = this.props.app.windows.find(
-      (window) => window.type === "informative"
+      (window) => window.type === "informative",
     );
     informativeWindow.props.custom.open(chapter);
   };

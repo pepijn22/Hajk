@@ -154,7 +154,7 @@ export default class FeaturePropsParsing {
 
         return `{${
           this.pendingPromises.push(
-            this.#fetchExternal(propertyValue, pluginName)
+            this.#fetchExternal(propertyValue, pluginName),
           ) - 1
         }}`;
       }
@@ -387,7 +387,7 @@ export default class FeaturePropsParsing {
           // {intern_url_1@@documenthandler} -> {n} // n is element index in the array that will hold Promises from external components
           this.markdown = this.markdown.replace(
             placeholder,
-            this.#getPropertyValueForPlaceholder(placeholder)
+            this.#getPropertyValueForPlaceholder(placeholder),
           );
         });
 
@@ -407,7 +407,7 @@ export default class FeaturePropsParsing {
       // formatting if only certain strings were to be removed, but all line endings would remain.
       this.markdown = this.markdown.replace(
         /{{(?<condition>\w+)[\s/]?(?<attributes>[^}}]+)?}}(?<content>[^{{]+)?(?:{{\/\1}}\n?)/gi,
-        this.#conditionalReplacer
+        this.#conditionalReplacer,
       );
 
       // Special precautious must be taken to accommodate white space in Markdown links. We can
@@ -423,7 +423,7 @@ export default class FeaturePropsParsing {
       // The following regex does just that.
       this.markdown = this.markdown.replace(
         /\[(?<text>[^[]+)\]\((?<href>[^")]+)(?<title>".*")?\)/gm,
-        this.#markdownHrefEncoder
+        this.#markdownHrefEncoder,
       );
 
       // Back in #getPropertyValueForPlaceholder we encode all equal signs ("=") as "&equal;",
@@ -434,7 +434,7 @@ export default class FeaturePropsParsing {
       // The final step is to await for all promises that might exist (if we fetch from
       // external components) to fulfill. We can't render before that!
       this.resolvedPromisesWithComponents = await Promise.all(
-        this.pendingPromises
+        this.pendingPromises,
       );
 
       // If admin wants to allow HTML in Markdown, add rehypeRaw plugin.

@@ -17,7 +17,7 @@ const Markdown = (props) => {
       .setMarkdownAndProperties({
         markdown: featureCollection.infoclickDefinition,
         properties: featurePropsParsing.extractPropertiesFromJson(
-          feature.getProperties()
+          feature.getProperties(),
         ),
       })
       .mergeFeaturePropsWithMarkdown()

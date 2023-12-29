@@ -39,7 +39,7 @@ class Information extends React.PureComponent {
       if (
         this.options.showInfoOnce === true &&
         parseInt(
-          window.localStorage.getItem("pluginInformationMessageShown")
+          window.localStorage.getItem("pluginInformationMessageShown"),
         ) === 1
       ) {
         dialogOpen = false;
@@ -84,7 +84,7 @@ class Information extends React.PureComponent {
         open={this.state.dialogOpen}
         onClose={this.onClose}
       />,
-      document.getElementById("windows-container")
+      document.getElementById("windows-container"),
     );
   }
 

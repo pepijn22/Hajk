@@ -30,7 +30,7 @@ export default function SimpleDialog({ globalObserver }) {
         setTitle(title);
         setContent(content);
         setOpen(true);
-      }
+      },
     );
   }, [globalObserver]);
 

@@ -274,7 +274,7 @@ class Window extends React.PureComponent {
           y: Math.round(this.top),
           x: Math.round(this.left),
         });
-      }
+      },
     );
   }
 

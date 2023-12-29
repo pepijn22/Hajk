@@ -70,7 +70,7 @@ class Toolbar extends Component {
     this.props.toggleActiveTool("point");
     this.changeTool(
       "add",
-      this.props.editSource.editMultiPoint ? "MultiPoint" : "Point"
+      this.props.editSource.editMultiPoint ? "MultiPoint" : "Point",
     );
   }
 
@@ -79,7 +79,7 @@ class Toolbar extends Component {
     this.props.toggleActiveTool("linestring");
     this.changeTool(
       "add",
-      this.props.editSource.editMultiLine ? "MultiLineString" : "LineString"
+      this.props.editSource.editMultiLine ? "MultiLineString" : "LineString",
     );
   }
 
@@ -88,7 +88,7 @@ class Toolbar extends Component {
     this.props.toggleActiveTool("polygon");
     this.changeTool(
       "add",
-      this.props.editSource.editMultiPolygon ? "MultiPolygon" : "Polygon"
+      this.props.editSource.editMultiPolygon ? "MultiPolygon" : "Polygon",
     );
   }
 

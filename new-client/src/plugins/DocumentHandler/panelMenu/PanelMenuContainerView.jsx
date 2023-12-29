@@ -31,17 +31,17 @@ class PanelMenuView extends React.PureComponent {
     localObserver.subscribe("submenu-clicked", this.#handleSubMenuClicked);
     localObserver.subscribe(
       "document-link-clicked",
-      this.#handleOpenDocumentFromLink
+      this.#handleOpenDocumentFromLink,
     );
     localObserver.subscribe("document-clicked", this.#openEventualConnections);
     localObserver.subscribe("link-clicked", this.#handleExternalLinkClicked);
     localObserver.subscribe(
       "document-maplink-clicked",
-      this.#handleShowMapLayersFromLink
+      this.#handleShowMapLayersFromLink,
     );
     localObserver.subscribe(
       "maplink-clicked",
-      this.#handleShowMapLayersFromPanelMenu
+      this.#handleShowMapLayersFromPanelMenu,
     );
     localObserver.subscribe("document-window-closed", this.#clearPanel);
   };
@@ -207,7 +207,7 @@ class PanelMenuView extends React.PureComponent {
             [item.id]: this.#setNonClickedItemProperties(
               item,
               currentState,
-              clickedItem
+              clickedItem,
             ),
           };
         }

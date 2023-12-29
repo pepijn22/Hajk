@@ -7,7 +7,7 @@ export default class DocumentSearchModel {
   constructor(settings) {
     this.globalSearchModel = settings.globalSearchModel;
     this.documentCollections = this.createDocumentCollectionsToSearch(
-      settings.allDocuments
+      settings.allDocuments,
     );
     this.localObserver = settings.localObserver;
     this.app = settings.app;
@@ -25,7 +25,7 @@ export default class DocumentSearchModel {
           documentName: searchResultClick.properties.documentFileName,
           headerIdentifier: searchResultClick.properties.headerIdentifier,
         });
-      }
+      },
     );
   };
 
@@ -39,7 +39,7 @@ export default class DocumentSearchModel {
           features: [
             ...this.getFeatures(document.chapters, document),
             this.getSpecialTitleFeature(
-              document
+              document,
             ) /*We need to add a special feature that is not working the same way 
             when autocomplete is initiated and when a search is initiated.*/,
           ],
@@ -174,12 +174,12 @@ export default class DocumentSearchModel {
       // by selecting an alternative in the autocomplete.
       possibleSearchCombinations =
         this.decodePotentialSpecialCharsFromFeatureProps(
-          possibleSearchCombinations
+          possibleSearchCombinations,
         );
 
       resolve({
         featureCollections: this.getFeatureCollectionsForMatchingDocuments(
-          possibleSearchCombinations
+          possibleSearchCombinations,
         ),
         errors: [],
       });
@@ -231,7 +231,7 @@ export default class DocumentSearchModel {
 
       feature.matchedSearchValues = this.getMatchedSearchValues(
         possibleSearchCombinations,
-        feature.searchValues
+        feature.searchValues,
       );
 
       return feature.matchedSearchValues.length > 0
@@ -243,7 +243,7 @@ export default class DocumentSearchModel {
   createFeatureCollection = (
     matchedFeatures,
     searchFields,
-    docFeatureCollection
+    docFeatureCollection,
   ) => {
     return {
       value: {
@@ -275,20 +275,20 @@ export default class DocumentSearchModel {
       (featureCollections, documentCollection) => {
         const matchedFeatures = this.getMatchedFeatures(
           documentCollection,
-          possibleSearchCombinations
+          possibleSearchCombinations,
         );
         const searchFields = this.getSearchFields(matchedFeatures);
         const featureCollection = this.createFeatureCollection(
           matchedFeatures,
           searchFields,
-          documentCollection
+          documentCollection,
         );
 
         return featureCollection
           ? [...featureCollections, featureCollection]
           : featureCollections;
       },
-      []
+      [],
     );
   };
 

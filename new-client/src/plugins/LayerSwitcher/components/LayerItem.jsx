@@ -151,7 +151,7 @@ class LayerItem extends React.PureComponent {
           this.setState({
             status: d.status,
           });
-      }
+      },
     );
   }
 
@@ -201,13 +201,13 @@ class LayerItem extends React.PureComponent {
     if (bListen && !this.zoomEndListener) {
       this.zoomEndListener = this.props.app.globalObserver.subscribe(
         eventName,
-        this.zoomEndHandler
+        this.zoomEndHandler,
       );
     } else {
       if (this.zoomEndListener) {
         this.props.app.globalObserver.unsubscribe(
           eventName,
-          this.zoomEndListener
+          this.zoomEndListener,
         );
         this.zoomEndListener = null;
       }
@@ -241,7 +241,7 @@ class LayerItem extends React.PureComponent {
         onClose: () => {
           this.zoomWarningSnack = null;
         },
-      }
+      },
     );
   }
 
@@ -599,7 +599,7 @@ class LayerItem extends React.PureComponent {
       console.log(this);
       this.props.enqueueSnackbar(
         `Serverfel: attributtabellen för lagret "${this.caption}" kunde inte visas`,
-        { variant: "error" }
+        { variant: "error" },
       );
     }
   };
@@ -626,7 +626,7 @@ class LayerItem extends React.PureComponent {
           cqlFilterVisible={cqlFilterVisible}
           onOpenChapter={(chapter) => {
             const informativeWindow = app.windows.find(
-              (window) => window.type === "informative"
+              (window) => window.type === "informative",
             );
             informativeWindow.props.custom.open(chapter);
           }}

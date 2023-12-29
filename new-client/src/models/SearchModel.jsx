@@ -45,7 +45,7 @@ class SearchModel {
     // Validate
     if (!searchPluginOptions || !map || !app) {
       throw new Error(
-        "One of the required parameters for SearchModel is missing."
+        "One of the required parameters for SearchModel is missing.",
       );
     }
 
@@ -66,7 +66,7 @@ class SearchModel {
   getResults = async (
     searchString,
     searchSources = this.getSources(),
-    searchOptions = this.getSearchOptions()
+    searchOptions = this.getSearchOptions(),
   ) => {
     searchString = searchString.trim();
 
@@ -76,7 +76,7 @@ class SearchModel {
     const { featureCollections, errors } = await this.#getRawResults(
       searchString, // Ensure that the search string isn't surrounded by whitespace
       searchSources,
-      searchOptions
+      searchOptions,
     );
 
     // If the method was initiated by an actual search (not just autocomplete),
@@ -130,7 +130,7 @@ class SearchModel {
   #getRawResults = async (
     searchString = "",
     searchSources = this.getSources(),
-    searchOptions = null
+    searchOptions = null,
   ) => {
     // If searchSources is explicitly provided as an empty Array, something's wrong. Abort.
     if (Array.isArray(searchSources) && searchSources.length === 0) {
@@ -160,7 +160,7 @@ class SearchModel {
       const { promise, controller } = this.#lookup(
         searchString,
         searchSource,
-        searchOptions
+        searchOptions,
       );
 
       // If #lookup returned actual Promise and Controller objects, push
@@ -200,7 +200,7 @@ class SearchModel {
           default:
             return Promise.reject("Output format now allowed");
         }
-      })
+      }),
     );
 
     // Prepare two arrays that will hold our successful and
@@ -273,7 +273,7 @@ class SearchModel {
     let orFilter = new Or(
       ...searchSource.searchFields.map((searchField) => {
         return this.#getIsLikeFilter(searchField, word, searchOptions);
-      })
+      }),
     );
     return orFilter;
   };
@@ -285,7 +285,7 @@ class SearchModel {
       WILDCARD_CHAR, // wildcard char
       SINGLE_CHAR, // single char
       ESCAPE_CHAR, // escape char
-      searchOptions.matchCase // match case
+      searchOptions.matchCase, // match case
     );
   };
 
@@ -304,7 +304,7 @@ class SearchModel {
         return this.#getIsLikeFilter(
           searchSource.searchFields[0],
           word,
-          searchOptions
+          searchOptions,
         );
       });
       if (isLikeFilters.length > 1) {
@@ -366,7 +366,7 @@ class SearchModel {
         this.#getPossibleForwardCombinations(
           i,
           wordsInTextField,
-          possibleSearchCombinations
+          possibleSearchCombinations,
         );
       }
     }
@@ -375,7 +375,7 @@ class SearchModel {
     // the possible combos array for the same search string
     this.#possibleSearchCombinations.set(
       searchString,
-      possibleSearchCombinations
+      possibleSearchCombinations,
     );
 
     return Array.from(possibleSearchCombinations);
@@ -384,7 +384,7 @@ class SearchModel {
   #getPossibleForwardCombinations = (
     index,
     stringArray,
-    possibleSearchCombinations
+    possibleSearchCombinations,
   ) => {
     const wordsBeforeCurrent = stringArray.slice(0, index);
 
@@ -439,12 +439,12 @@ class SearchModel {
           this.getPossibleSearchCombinations(searchString);
       } else {
         possibleSearchCombinations.push(
-          this.#splitAndTrimOnCommas(searchString)
+          this.#splitAndTrimOnCommas(searchString),
         );
       }
 
       possibleSearchCombinations = this.#decodePotentialSpecialChars(
-        possibleSearchCombinations
+        possibleSearchCombinations,
       );
 
       const searchFilters = possibleSearchCombinations.map((combination) => {
@@ -452,14 +452,14 @@ class SearchModel {
           wordInCombination = this.#escapeSpecialChars(wordInCombination);
           wordInCombination = this.#addPotentialWildCards(
             wordInCombination,
-            searchOptions
+            searchOptions,
           );
           return wordInCombination;
         });
         return this.#getSearchFilters(
           searchWordsForCombination,
           searchSource,
-          searchOptions
+          searchOptions,
         );
       });
 
@@ -556,7 +556,7 @@ class SearchModel {
     };
     const promise = hfetch(
       this.#app.config.appConfig.searchProxy + searchSource.url,
-      request
+      request,
     );
 
     return { promise, controller };

@@ -143,7 +143,7 @@ class BufferModel {
                 {
                   INFO_FORMAT: "application/json",
                   QUERY_LAYERS: subLayersToQuery.join(","), // Use the layer names we got earlier in the query
-                }
+                },
               );
 
             const response = await hfetch(url);

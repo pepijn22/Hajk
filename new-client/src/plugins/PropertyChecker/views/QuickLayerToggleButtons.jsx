@@ -31,7 +31,7 @@ function QuickLayerTogglerButtons({ map, options }) {
         .split(",")
         .map((id) => map.getAllLayers().find((l) => l.get("name") === id))
         .filter((l) => l !== undefined),
-    [map]
+    [map],
   );
 
   // Prepare a collection for each type of layer that should be toggleble.
@@ -74,7 +74,7 @@ function QuickLayerTogglerButtons({ map, options }) {
   // });
 
   const [selectedButtons, setSelectedButtons] = React.useState(
-    initialVisibilityForLayers
+    initialVisibilityForLayers,
   );
 
   const handleToggleButtons = (event, newStates) => {
@@ -93,7 +93,7 @@ function QuickLayerTogglerButtons({ map, options }) {
       // Call our helper that updates relevant layers' visibility
       setVisibilityForOlLayers(
         layersCollection[button], // OL Layers live here
-        selectedButtons.includes(button) // Visibility is determined by toggle button status
+        selectedButtons.includes(button), // Visibility is determined by toggle button status
       );
     });
   }, [layersCollection, selectedButtons]);

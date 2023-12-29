@@ -56,7 +56,7 @@ export default class KmlExport {
     // Reset the current style before applying new one
     gjFeature.setStyle();
     gjFeature.setStyle(
-      this.#featureStyle.getFeatureStyle(gjFeature, "selection")
+      this.#featureStyle.getFeatureStyle(gjFeature, "selection"),
     );
     return gjFeature;
   };
@@ -87,8 +87,8 @@ export default class KmlExport {
           style: JSON.stringify(
             this.#extractStyle(
               feature.getStyle()[1] || feature.getStyle()[0],
-              circleRadius
-            )
+              circleRadius,
+            ),
           ),
           geometryType:
             feature.getGeometryName() === "geometry"
@@ -106,7 +106,7 @@ export default class KmlExport {
         new Blob([postData], {
           type: "application/vnd.google-earth.kml+xml;charset=utf-8",
         }),
-        `Sökexport - ${new Date().toLocaleString()}.kml`
+        `Sökexport - ${new Date().toLocaleString()}.kml`,
       );
     }
   };

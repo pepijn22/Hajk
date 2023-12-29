@@ -32,7 +32,7 @@ const FeatureTextSetter = ({ drawModel, localObserver }) => {
       }
       setFeature(null);
     },
-    [drawModel, feature]
+    [drawModel, feature],
   );
 
   // If the user aborts, we make sure to remove the feature from the source
@@ -63,7 +63,7 @@ const FeatureTextSetter = ({ drawModel, localObserver }) => {
           onClose={handleCloseClick}
           onAbort={handleAbortClick}
         />,
-        document.getElementById("map")
+        document.getElementById("map"),
       )
     : null;
 };

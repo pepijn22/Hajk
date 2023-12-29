@@ -55,7 +55,7 @@ class FirView extends React.PureComponent {
         {
           variant: "error",
           style: { whiteSpace: "pre-line" },
-        }
+        },
       );
     });
   }

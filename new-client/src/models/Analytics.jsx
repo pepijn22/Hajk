@@ -43,14 +43,14 @@ export default class Analytics {
         // These events should be called like this and subscribed to by
         // any analytics service. Below we define two events:
         globalObserver.subscribe("analytics.trackPageView", () =>
-          plausible.trackPageview()
+          plausible.trackPageview(),
         );
 
         globalObserver.subscribe(
           "analytics.trackEvent",
           ({ eventName, ...rest }) => {
             plausible.trackEvent(eventName, { props: rest });
-          }
+          },
         );
         break;
       case "matomo":
@@ -120,7 +120,7 @@ export default class Analytics {
               name: value,
               value: 0,
             });
-          }
+          },
         );
         break;
 

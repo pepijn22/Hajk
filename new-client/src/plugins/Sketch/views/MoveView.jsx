@@ -55,7 +55,7 @@ const FeatureMoveSelector = (props) => {
     // Then we trigger the action in the draw-model
     props.drawModel.translateSelectedFeatures(
       props.movementLength,
-      props.movementAngle
+      props.movementAngle,
     );
     // Then we'll update the last-moves-state.
     props.setLastMoves([...props.lastMoves, { length, angle }]);

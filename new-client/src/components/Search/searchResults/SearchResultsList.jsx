@@ -51,7 +51,7 @@ class SearchResultsList extends React.PureComponent {
     if (activeFeature.onClickName) {
       app.globalObserver.publish(
         `search.featureClicked.${activeFeature.onClickName}`,
-        activeFeature
+        activeFeature,
       );
     } else {
       const source = activeFeatureCollection?.source;
@@ -76,7 +76,7 @@ class SearchResultsList extends React.PureComponent {
     if (feature.onClickName) {
       app.globalObserver.publish(
         `search.featureClicked.${feature.onClickName}`,
-        feature
+        feature,
       );
     } else {
       setActiveFeature(feature);

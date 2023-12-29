@@ -57,7 +57,7 @@ class BackgroundSwitcher extends React.PureComponent {
    */
   componentDidMount() {
     const backgroundVisibleFromStart = this.props.layers.find(
-      (layer) => layer.visible
+      (layer) => layer.visible,
     );
     backgroundVisibleFromStart &&
       this.setState({
@@ -92,7 +92,7 @@ class BackgroundSwitcher extends React.PureComponent {
         this.setState({
           selectedLayerId: layer.get("name"),
         });
-      }
+      },
     );
   }
 
@@ -227,8 +227,8 @@ class BackgroundSwitcher extends React.PureComponent {
             name: WHITE_BACKROUND_LAYER_ID,
             caption: "Vit",
           },
-          Number(WHITE_BACKROUND_LAYER_ID)
-        )
+          Number(WHITE_BACKROUND_LAYER_ID),
+        ),
       );
     }
     if (backgroundSwitcherBlack) {
@@ -238,8 +238,8 @@ class BackgroundSwitcher extends React.PureComponent {
             name: BLACK_BACKROUND_LAYER_ID,
             caption: "Svart",
           },
-          Number(BLACK_BACKROUND_LAYER_ID)
-        )
+          Number(BLACK_BACKROUND_LAYER_ID),
+        ),
       );
     }
 
@@ -247,8 +247,8 @@ class BackgroundSwitcher extends React.PureComponent {
       defaults.push(
         this.renderRadioButton(
           { name: OSM_BACKGROUND_LAYER_ID, caption: "OpenStreetMap" },
-          Number(OSM_BACKGROUND_LAYER_ID)
-        )
+          Number(OSM_BACKGROUND_LAYER_ID),
+        ),
       );
 
     /**
@@ -264,7 +264,7 @@ class BackgroundSwitcher extends React.PureComponent {
           const validLayerId = isValidLayerId(layer.name);
           if (!validLayerId) {
             console.warn(
-              `Backgroundlayer with id ${layer.name} has a non-valid id`
+              `Backgroundlayer with id ${layer.name} has a non-valid id`,
             );
           }
           return validLayerId;

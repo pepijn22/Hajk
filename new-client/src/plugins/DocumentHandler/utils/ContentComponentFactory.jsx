@@ -32,7 +32,7 @@ const StyledAccordion = styled(Accordion)(
     position: "inherit",
     backgroundColor: backgroundcolor,
     border: dividercolor && `solid 2px ${dividercolor}`,
-  })
+  }),
 );
 
 const StyledAccordionTypography = styled(Typography)({
@@ -61,7 +61,7 @@ const StyledAccordionSummary = styled(AccordionSummary)(
     },
     opacity: expanded === "true" ? 0.6 : 1,
     padding: dividercolor && "0 15px",
-  })
+  }),
 );
 
 const ELEMENT_NODE = 1;
@@ -89,7 +89,7 @@ const renderChild = (child) => {
       // the inner text portion of Element
       console.warn(
         "Unsupported DOMElement encountered. Rendering only innerText",
-        child
+        child,
       );
       return child.innerText;
     }
@@ -177,7 +177,7 @@ export const OLComponent = ({ olComponent }) => {
                   marginRight: (theme) =>
                     getIndentationValue(
                       theme.typography.body1.fontSize,
-                      index < 9 ? 1 : 0.5
+                      index < 9 ? 1 : 0.5,
                     ),
                   padding: 0,
                   marginBottom: index < 9 ? 1 : "inherit",
@@ -237,7 +237,7 @@ export const BlockQuote = ({ blockQuoteTag, defaultColors }) => {
     return getTextArea(
       blockQuoteTag,
       theme.palette.mode === "light" && defaultColors, // Only supply defaultColors if we're in light mode
-      false
+      false,
     );
   } else {
     return null;
@@ -329,7 +329,7 @@ export const AccordionSection = ({ blockQuoteTag, defaultColors }) => {
     blockQuoteTag,
     theme.palette.mode === "light" && defaultColors,
     expanded,
-    setExpanded
+    setExpanded,
   );
 };
 
@@ -602,7 +602,7 @@ export const Source = ({ sourceTag }) => {
       array.push(
         <React.Fragment key={index}>
           <source src={src} type={type}></source>
-        </React.Fragment>
+        </React.Fragment>,
       );
     });
     return array;
@@ -622,7 +622,7 @@ export const Strong = ({ strongTag }) => {
       array.push(
         <React.Fragment key={index}>
           <strong key={index}>{renderChild(child)}</strong>
-        </React.Fragment>
+        </React.Fragment>,
       );
     });
     return array;
@@ -642,7 +642,7 @@ export const Underline = ({ uTag }) => {
       array.push(
         <React.Fragment key={index}>
           <u>{renderChild(child)}</u>
-        </React.Fragment>
+        </React.Fragment>,
       );
     });
     return array;
@@ -661,7 +661,7 @@ export const Italic = ({ emTag }) => {
       array.push(
         <React.Fragment key={index}>
           <em>{renderChild(child)}</em>
-        </React.Fragment>
+        </React.Fragment>,
       );
     });
     return array;

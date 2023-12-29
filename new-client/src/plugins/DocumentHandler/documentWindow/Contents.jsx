@@ -36,7 +36,7 @@ class Contents extends React.PureComponent {
          */
         if (document.isGroupHeader) {
           headerChapter.push(
-            this.createGroupHeadingTag(document.title, document.id)
+            this.createGroupHeadingTag(document.title, document.id),
           );
           chapters.push(headerChapter);
           headerChapter = [];

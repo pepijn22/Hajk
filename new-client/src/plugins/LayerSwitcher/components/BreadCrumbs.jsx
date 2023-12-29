@@ -111,7 +111,7 @@ class BreadCrumbs extends Component {
         // ... minus the layers that has been deactivated recently!
         const visibleLayers = allLayers.filter((l) => {
           return !this.removedLayerBuffer.some(
-            (removedLayer) => l === removedLayer
+            (removedLayer) => l === removedLayer,
           );
         });
         // Let's update the state with the currently visible layers!
@@ -162,7 +162,7 @@ class BreadCrumbs extends Component {
   // Returns all active layers except background layers
   getBreadCrumbCompatibleLayers = () => {
     return this.state.visibleLayers.filter((layer) =>
-      ["layer", "group"].includes(layer.get("layerType"))
+      ["layer", "group"].includes(layer.get("layerType")),
     );
   };
 

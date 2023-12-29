@@ -42,14 +42,14 @@ export default function ReportDialog({
               (l.subcaption !== null ? ` (${l.subcaption})` : "") +
               (getLayerNotesAsArray(l.id).length > 0
                 ? `\n   Notering: ${getLayerNotesAsArray(l.id)?.join(" ")}`
-                : "")
+                : ""),
         )
         .join("\n") + // Finally, join the array into a string using new line as join character.
       "\n\n" +
       getUserDetailsText() +
       "\n\n" +
       `Rapporten utgår från data som var känd per ${new Date().toLocaleDateString(
-        "sv-SE"
+        "sv-SE",
       )}.`
     );
   };
@@ -75,13 +75,13 @@ export default function ReportDialog({
                 .map((s) => s)
                 .join("<br>") +
               "</li>"
-            : ""
+            : "",
         )
         .join("") + // Finally, join the array into a string using new line as join character.
       "</ul>" +
       `<p>${getUserDetailsText()}</p>` +
       `<p>Rapporten utgår från data som var känd per ${new Date().toLocaleDateString(
-        "sv-SE"
+        "sv-SE",
       )}.</p>`
     );
   };
@@ -104,7 +104,7 @@ export default function ReportDialog({
       () => {
         alert("Rapporten har kopierats till urklipp");
       },
-      () => {}
+      () => {},
     );
   };
 

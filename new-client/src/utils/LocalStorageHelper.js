@@ -117,7 +117,7 @@ class LocalStorageHelper {
       JSON.stringify({
         ...JSON.parse(window.localStorage.getItem(mapName)),
         [key]: value,
-      })
+      }),
     );
   }
 }

@@ -145,7 +145,7 @@ class BaseWindowPlugin extends React.PureComponent {
         runCallback === true &&
           typeof this.props.custom.onWindowShow === "function" &&
           this.props.custom.onWindowShow();
-      }
+      },
     );
   };
 
@@ -165,7 +165,7 @@ class BaseWindowPlugin extends React.PureComponent {
 
         typeof this.props.custom.onWindowHide === "function" &&
           this.props.custom.onWindowHide();
-      }
+      },
     );
   };
   /**
@@ -207,7 +207,7 @@ class BaseWindowPlugin extends React.PureComponent {
           position={this.position}
           mode="window"
           layerswitcherConfig={this.props.app.config.mapConfig.tools.find(
-            (t) => t.type === "layerswitcher"
+            (t) => t.type === "layerswitcher",
           )}
         >
           {/* We have to pass windowVisible down to the children so that we can conditionally render
@@ -258,7 +258,7 @@ class BaseWindowPlugin extends React.PureComponent {
           <ListItemText primary={this.title} />
         </ListItem>
       </Hidden>,
-      document.getElementById("plugin-buttons")
+      document.getElementById("plugin-buttons"),
     );
   }
 
@@ -273,7 +273,7 @@ class BaseWindowPlugin extends React.PureComponent {
           abstract={this.description}
         />
       </Hidden>,
-      document.getElementById(id)
+      document.getElementById(id),
     );
   }
 
@@ -288,7 +288,7 @@ class BaseWindowPlugin extends React.PureComponent {
           abstract={this.description}
         />
       </Hidden>,
-      document.getElementById("plugin-control-buttons")
+      document.getElementById("plugin-control-buttons"),
     );
   }
 

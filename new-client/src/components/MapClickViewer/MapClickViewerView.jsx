@@ -33,7 +33,7 @@ const MapClickViewerView = (props) => {
       return (
         <FeaturesListView
           featureCollection={featureCollections.find(
-            (fc) => fc.layerId === selectedFeatureCollection
+            (fc) => fc.layerId === selectedFeatureCollection,
           )}
           selectedFeatureCollection={selectedFeatureCollection}
           setSelectedFeatureCollection={setSelectedFeatureCollection}

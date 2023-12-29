@@ -99,7 +99,7 @@ class PrintView extends React.PureComponent {
         "Utskriften gick inte att spara, kontakta systemadministratören.",
         {
           variant: "error",
-        }
+        },
       );
       this.setState({ printInProgress: false });
     });
@@ -138,7 +138,7 @@ class PrintView extends React.PureComponent {
       {
         variant: "info",
         persist: true,
-      }
+      },
     );
 
     this.valuesToRestoreFrom = {
@@ -183,7 +183,7 @@ class PrintView extends React.PureComponent {
       "Du avbröt utskriften – ingen data har sparats",
       {
         variant: "warning",
-      }
+      },
     );
     this.setState({ printInProgress: false });
   };
@@ -195,7 +195,7 @@ class PrintView extends React.PureComponent {
       },
       () => {
         this.handlePotentialPrintOptionError();
-      }
+      },
     );
   };
 

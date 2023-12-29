@@ -47,11 +47,11 @@ const Sketch = (props) => {
   const [moveFeatures, setMoveFeatures] = React.useState([]);
   // We're gonna need to keep track of if the actual plugin is shown or not.
   const [pluginShown, setPluginShown] = React.useState(
-    props.options.visibleAtStart ?? false
+    props.options.visibleAtStart ?? false,
   );
   // We have to keep track of some measurement-settings
   const [measurementSettings, setMeasurementSettings] = React.useState(
-    getMeasurementSettings()
+    getMeasurementSettings(),
   );
   // We're gonna need to keep track of if we're allowed to save stuff in LS. Let's use the hook.
   const { functionalCookiesOk } = useCookieStatus(props.app.globalObserver);
@@ -66,7 +66,7 @@ const Sketch = (props) => {
         map: props.map,
         observer: localObserver,
         measurementSettings: measurementSettings,
-      })
+      }),
   );
 
   // We need a model used to interact with the map etc. We want to
@@ -80,7 +80,7 @@ const Sketch = (props) => {
         modifyDefaultEnabled: modifyEnabled,
         translateDefaultEnabled: translateEnabled,
         storageKey: STORAGE_KEY,
-      })
+      }),
   );
 
   // We'll also need a KML-model so that the user can import and export to/from .kml.
@@ -92,7 +92,7 @@ const Sketch = (props) => {
         observer: localObserver,
         drawModel: drawModel,
         enableDragAndDrop: true,
-      })
+      }),
   );
 
   // This functions handles events from the draw-model that are sent

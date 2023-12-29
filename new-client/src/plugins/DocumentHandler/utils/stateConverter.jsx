@@ -20,7 +20,7 @@ export const getNormalizedMenuState = (
   menu,
   parentId = null,
   level = 0,
-  parentIds = []
+  parentIds = [],
 ) => {
   let normalizedItemList = menu.reduce((items, menuItem) => {
     menuItem = {

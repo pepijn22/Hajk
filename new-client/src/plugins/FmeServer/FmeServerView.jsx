@@ -120,7 +120,7 @@ const FmeServerView = (props) => {
       }
       setOrderStatus(status);
     },
-    shouldPollData ? POLLING_INTERVAL : null
+    shouldPollData ? POLLING_INTERVAL : null,
   );
 
   // Memoized to prevent useless re-rendering
@@ -147,7 +147,7 @@ const FmeServerView = (props) => {
       setTotalDrawnArea(totalArea);
       setTotalAllowedArea(product.maxArea);
     },
-    [activeGroup, activeProduct, model]
+    [activeGroup, activeProduct, model],
   );
 
   // We have to make sure to reset the drawing, this function
@@ -177,7 +177,7 @@ const FmeServerView = (props) => {
             horizontal: "left",
           },
           variant: "warning",
-        }
+        },
       );
     });
     return () => {
@@ -308,7 +308,7 @@ const FmeServerView = (props) => {
     });
     // Then we sort the products alphabetically
     filteredProducts.sort((a, b) =>
-      a.name.localeCompare(b.name, undefined, { numeric: true })
+      a.name.localeCompare(b.name, undefined, { numeric: true }),
     );
     // Return the sorted products
     return filteredProducts;
@@ -448,7 +448,7 @@ const FmeServerView = (props) => {
       activeGroup,
       activeProduct,
       productParameters,
-      userEmail
+      userEmail,
     );
     // And then we update the state accordingly.
     setJobId(result.jobId);
@@ -489,7 +489,7 @@ const FmeServerView = (props) => {
     const parametersToRender = model.getParametersToRender(
       productParameters,
       activeGroup,
-      activeProduct
+      activeProduct,
     );
     // Then we'll check and get the eventual information-url, which will provide
     // the users with some information regarding the product.
@@ -771,7 +771,7 @@ const FmeServerView = (props) => {
   function renderOrderStep() {
     const shouldPromptForEmail = model.shouldPromptForEmail(
       activeGroup,
-      activeProduct
+      activeProduct,
     );
     return (
       <Grid container item xs={12}>

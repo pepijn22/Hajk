@@ -8,7 +8,7 @@ export default class FirImport {
 
     this.localObserver.subscribe(
       `${eventPrefix}.file.import`,
-      this.handleFileImport
+      this.handleFileImport,
     );
   }
 

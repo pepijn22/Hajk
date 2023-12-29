@@ -136,7 +136,7 @@ try {
       activeTools={buildConfig.activeTools}
       config={config}
       customTheme={customTheme}
-    />
+    />,
   );
 } catch (error) {
   console.error(error);
@@ -154,6 +154,6 @@ try {
       loadErrorMessage={loadErrorMessage}
       loadErrorTitle={loadErrorTitle}
       loadErrorReloadButtonText={loadErrorReloadButtonText}
-    />
+    />,
   );
 }

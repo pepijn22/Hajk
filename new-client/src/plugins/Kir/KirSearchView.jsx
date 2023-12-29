@@ -207,7 +207,7 @@ class KirSearchView extends React.PureComponent {
                           "kir.layers.showSearchArea",
                           {
                             value: e.target.checked,
-                          }
+                          },
                         );
                       }}
                       color="primary"

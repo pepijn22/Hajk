@@ -19,8 +19,8 @@ class KirWfsService {
       filters.push(
         intersectsFilter(
           params.searchType.geometryField || "geom",
-          feature.getGeometry()
-        )
+          feature.getGeometry(),
+        ),
       );
     });
 
@@ -53,7 +53,7 @@ class KirWfsService {
 
     if (specificGender) {
       filters.push(
-        equalToFilter(this.model.config.genderField, specificGender)
+        equalToFilter(this.model.config.genderField, specificGender),
       );
     }
 
@@ -61,8 +61,8 @@ class KirWfsService {
       betweenFilter(
         this.model.config.ageField,
         params.ageLower,
-        params.ageUpper >= 120 ? 999 : params.ageUpper
-      )
+        params.ageUpper >= 120 ? 999 : params.ageUpper,
+      ),
     );
     return andFilter(...filters);
   }

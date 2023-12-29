@@ -107,7 +107,7 @@ const SketchSaver = (props) => {
     // This is the original code from "nameExists" that has been moved into this functio0n.
     // Checks if input name exists in saved sketches
     let exists = props.savedSketches.some(
-      (sketch) => sketch.title.toLowerCase() === props.sketchName.toLowerCase()
+      (sketch) => sketch.title.toLowerCase() === props.sketchName.toLowerCase(),
     );
 
     // If "exists" returns true we set replaceWarning to true along with a text warning.
@@ -292,8 +292,8 @@ const SavedSketchList = ({ model, savedSketches, setSavedSketches }) => {
     model.removeSketchFromStorage(sketchToRemove);
     setSavedSketches(
       savedSketches.filter(
-        (s) => !model.equalsIgnoringCase(s.title, sketchToRemove.title)
-      )
+        (s) => !model.equalsIgnoringCase(s.title, sketchToRemove.title),
+      ),
     );
     setSketchToRemove(null);
   };
@@ -344,7 +344,7 @@ const SaveView = ({ globalObserver, model, id, functionalCookiesOk }) => {
   // We also have to keep track of all the saved sketches. Initiate the state with the sketches
   // currently stored in the local-storage.
   const [savedSketches, setSavedSketches] = React.useState(
-    model.getSketchesFromStorage()
+    model.getSketchesFromStorage(),
   );
   // We have to get some information about the current activity (view)
   const activity = model.getActivityFromId(id);

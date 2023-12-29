@@ -68,7 +68,7 @@ class DocumentHandler extends React.PureComponent {
                 },
                 () => {
                   this.addDrawerToggleButton();
-                }
+                },
               );
             });
         });
@@ -212,7 +212,7 @@ class DocumentHandler extends React.PureComponent {
             document: document,
             showPrintWindow: false,
           },
-          resolve
+          resolve,
         );
       } else {
         reject();

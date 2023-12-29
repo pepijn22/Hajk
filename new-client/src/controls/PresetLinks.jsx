@@ -31,7 +31,7 @@ class Preset extends React.PureComponent {
     super(props);
     this.type = "Preset"; // Special case - plugins that don't use BaseWindowPlugin must specify .type here
     this.config = props.appModel.config.mapConfig.tools.find(
-      (t) => t.type === "preset"
+      (t) => t.type === "preset",
     );
 
     this.appModel = props.appModel;
@@ -108,14 +108,14 @@ class Preset extends React.PureComponent {
         "Länken till platsen är tyvärr felaktig. Kontakta administratören av karttjänsten för att åtgärda felet.",
         {
           variant: "warning",
-        }
+        },
       );
       console.error(
         "Fel i verktyget Snabbval. Länken til : \n" +
           item.name +
           "\n" +
           item.presetUrl +
-          "\när tyvärr felaktig. Någon av följande parametrar saknas: &x=, &y=, &z= eller innehåller fel."
+          "\när tyvärr felaktig. Någon av följande parametrar saknas: &x=, &y=, &z= eller innehåller fel.",
       );
     }
   };
@@ -129,7 +129,7 @@ class Preset extends React.PureComponent {
           onClick={(event) => this.handleItemClick(event, item)}
         >
           {item.name}
-        </MenuItem>
+        </MenuItem>,
       );
     });
     return menuItems;
@@ -170,7 +170,7 @@ class Preset extends React.PureComponent {
 
   layerShouldBeVisible = (layer, visibleLayers) => {
     return visibleLayers.some(
-      (layerId) => layerId === layer.getProperties()["name"]
+      (layerId) => layerId === layer.getProperties()["name"],
     );
   };
 
@@ -206,7 +206,7 @@ class Preset extends React.PureComponent {
           onClose={this.closeDialog}
           onAbort={this.abortDialog}
         />,
-        document.getElementById("windows-container")
+        document.getElementById("windows-container"),
       );
     } else {
       return null;

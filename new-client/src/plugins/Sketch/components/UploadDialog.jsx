@@ -60,7 +60,7 @@ const UploadDialog = ({ open, setOpen, handleUploadedFile }) => {
       onClose={handleUploadClick}
       onAbort={handleCloseClick}
     />,
-    document.getElementById("map")
+    document.getElementById("map"),
   );
 };
 

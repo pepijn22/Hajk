@@ -55,7 +55,7 @@ const MapClickViewer = (props) => {
         } else {
           closeWindow();
         }
-      }
+      },
     );
     return () => {
       mapClickObserver.unsubscribe();

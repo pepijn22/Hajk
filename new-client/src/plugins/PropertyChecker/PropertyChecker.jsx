@@ -2,8 +2,8 @@ import React from "react";
 import BaseWindowPlugin from "../BaseWindowPlugin";
 
 // Plugin-specific imports. Most plugins will need a Model, View and Observer but make sure to only create and import whatever you need.
-import PropertyCheckerModel from "./PropertyCheckerModel.js";
-import PropertyCheckerView from "./PropertyCheckerView.js";
+import PropertyCheckerModel from "./PropertyCheckerModel";
+import PropertyCheckerView from "./PropertyCheckerView";
 import Observer from "react-event-observer";
 
 import ChecklistIcon from "@mui/icons-material/Checklist";
@@ -11,7 +11,7 @@ import HelpIcon from "@mui/icons-material/Help";
 
 // We might want to import some other classes or constants etc.
 import { DEFAULT_MEASUREMENT_SETTINGS } from "./constants";
-import DrawModel from "../../models/DrawModel.js";
+import DrawModel from "../../models/DrawModel";
 
 /**
  * @summary Main component for the Dummy-plugin.
@@ -23,7 +23,7 @@ function PropertyChecker(props) {
   // Used to keep track of the plugin's current visibility.
   // We will want to do some cleanup later on when the window is hidden.
   const [pluginShown, setPluginShown] = React.useState(
-    props.options.visibleAtStart ?? false
+    props.options.visibleAtStart ?? false,
   );
 
   // We will use the DrawModel to catch the map click, draw a point and
@@ -44,7 +44,7 @@ function PropertyChecker(props) {
         map: props.map,
         measurementSettings: DEFAULT_MEASUREMENT_SETTINGS,
         observer: localObserver,
-      })
+      }),
   );
 
   // Initiate the model
@@ -60,7 +60,7 @@ function PropertyChecker(props) {
         drawModel: drawModel,
         localObserver: localObserver,
         map: props.map,
-      })
+      }),
   );
 
   // Here's an affect that fires when the pluginShown or activeDrawType state changes. It makes sure to toggle the

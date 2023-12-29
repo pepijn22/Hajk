@@ -1,6 +1,6 @@
 export const getMergedSearchAndHashParams = () => {
   const hashParams = new URLSearchParams(
-    window.location.hash.replaceAll("#", "")
+    window.location.hash.replaceAll("#", ""),
   );
 
   // We also want to extract query params

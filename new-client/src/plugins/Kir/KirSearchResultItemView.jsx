@@ -73,7 +73,7 @@ class KirSearchResultItemView extends React.PureComponent {
         const match = m[index];
         let v = this.propFilters.applyFilters(
           props,
-          match.replace("{", "").replace("}", "")
+          match.replace("{", "").replace("}", ""),
         );
         if (v === "") {
           v = nbsp;
