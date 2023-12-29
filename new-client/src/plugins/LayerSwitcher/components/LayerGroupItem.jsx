@@ -101,6 +101,7 @@ class LayerGroupItem extends Component {
     const { layer } = props;
     const layerInfo = props.layer.get("layerInfo");
     this.state = {
+      subLayers: props.layer.subLayers,
       caption: layerInfo.caption,
       visible: props.layer.get("visible"),
       // If layer is to be shown, check if there are some specified sublayers (if yes, we'll
@@ -120,6 +121,7 @@ class LayerGroupItem extends Component {
       infoText: layerInfo.infoText,
       infoUrl: layerInfo.infoUrl,
       infoUrlText: layerInfo.infoUrlText,
+      infoOpenDataLink: layerInfo.infoOpenDataLink,
       infoOwner: layerInfo.infoOwner,
       infoExpanded: false,
       instruction: layerInfo.instruction,
@@ -431,6 +433,7 @@ class LayerGroupItem extends Component {
     }
   };
 
+  // FIXME: The second parameter, `subLayer` is never used.
   setVisible = (la, subLayer) => {
     let l,
       subLayersToShow = null;
@@ -575,11 +578,20 @@ class LayerGroupItem extends Component {
       );
     } else {
       visibleSubLayers.push(subLayer);
+      // Restore order to its former glory. Sort using original sublayer array.
+      visibleSubLayers.sort((a, b) => {
+        return (
+          this.state.subLayers.indexOf(a) - this.state.subLayers.indexOf(b)
+        );
+      });
       isNewSubLayer = true;
     }
 
     if (!visible && visibleSubLayers.length > 0) {
       layerVisibility = true;
+      // FIXME: `subLayer` below doesn't do anything since
+      // setVisible only makes use of its first parameter
+      // (see its implementation).
       this.setVisible(this.props.layer, subLayer);
     }
 
@@ -688,7 +700,9 @@ class LayerGroupItem extends Component {
               )}
             </CheckBoxWrapper>
             {legendIcon && this.renderLegendIcon(legendIcon)}
-            <Caption>{layer.layersInfo[subLayer].caption}</Caption>
+            <Caption sx={{ fontWeight: visible ? "bold" : "normal" }}>
+              {layer.layersInfo[subLayer].caption}
+            </Caption>
           </Grid>
           <SummaryButtonsContainer>
             <SummaryButtonWrapper>
@@ -760,9 +774,32 @@ class LayerGroupItem extends Component {
     if (infoUrl) {
       return (
         <InfoTextContainer>
-          <a href={infoUrl} target="_blank" rel="noopener noreferrer">
-            {infoUrlText || infoUrl}
-          </a>
+          <Typography variant="body2" component="div">
+            <a href={infoUrl} target="_blank" rel="noopener noreferrer">
+              {infoUrlText || infoUrl}
+            </a>
+          </Typography>
+        </InfoTextContainer>
+      );
+    } else {
+      return null;
+    }
+  }
+
+  renderOpenDataLink() {
+    const { infoOpenDataLink } = this.state;
+    if (infoOpenDataLink) {
+      return (
+        <InfoTextContainer>
+          <Typography variant="body2" component="div">
+            <a
+              href={this.infoOpenDataLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {this.infoOpenDataLink}
+            </a>
+          </Typography>
         </InfoTextContainer>
       );
     } else {
@@ -792,6 +829,7 @@ class LayerGroupItem extends Component {
         <div>
           {this.renderInfo()}
           {this.renderMetadataLink()}
+          {this.renderOpenDataLink()}
           {this.renderOwner()}
           <div>{this.renderChapterLinks(this.props.chapters || [])}</div>
         </div>
@@ -929,7 +967,7 @@ class LayerGroupItem extends Component {
 
   render() {
     const { cqlFilterVisible, layer } = this.props;
-    const { open, toggleSettings, infoVisible } = this.state;
+    const { open, toggleSettings, infoVisible, visible } = this.state;
 
     const legendIcon = layer.get("layerInfo").legendIcon;
     return (
@@ -958,7 +996,9 @@ class LayerGroupItem extends Component {
               >
                 <Grid item>{this.getCheckBox()}</Grid>
                 {legendIcon && this.renderLegendIcon(legendIcon)}
-                <Caption>{layer.get("caption")}</Caption>
+                <Caption sx={{ fontWeight: visible ? "bold" : "normal" }}>
+                  {layer.get("caption")}
+                </Caption>
               </Grid>
               <SummaryButtonsContainer>
                 {this.renderStatus()}

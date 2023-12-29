@@ -194,8 +194,8 @@ class WMSLayer {
     return layerType === "base"
       ? "base"
       : this.subLayers.length > 1
-      ? "group"
-      : "layer";
+        ? "group"
+        : "layer";
   }
 
   /**
@@ -241,6 +241,10 @@ class WMSLayer {
    * @instance
    */
   onImageError = async (e) => {
+    this.globalObserver.publish("layerswitcher.wmsLayerLoadStatus", {
+      id: this.layer.get("name"),
+      status: "loaderror",
+    });
     const layerSource = this.layer.getSource();
     const previousErrorExtent = e.target.get("previousErrorExtent") || [];
     const currentErrorExtent = e.image.extent;

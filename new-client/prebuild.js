@@ -7,15 +7,10 @@ function cleanUpNewlines() {
   data = data.replace(/[\n]{2,}/g, "\n");
 }
 
-let data =
-  fs.readFileSync(envLocalFile, { flag: "a+" }).toString().trim() + "\n";
-cleanUpNewlines();
-
 function updateGitHash(params) {
   const key = "VITE_APP_GIT_HASH";
   const regex = new RegExp(`${key}=.*`);
-
-  let gitHash = execSync("git rev-parse HEAD").toString();
+  const gitHash = execSync("git rev-parse HEAD").toString();
 
   if (data.indexOf(key) === -1) {
     data += `${key}=0`;
@@ -25,7 +20,7 @@ function updateGitHash(params) {
 }
 
 function updateBuildDate() {
-  const key = "VITE_APP_BUILD_DATE";
+  const key = "REACT_APP_BUILD_DATE";
   const regex = new RegExp(`${key}=.*`);
   if (data.indexOf(key) === -1) {
     data += `${key}=0`;
@@ -34,11 +29,14 @@ function updateBuildDate() {
 }
 
 function writeToEnvLocal() {
-  console.log("data: ", data);
   cleanUpNewlines();
   fs.writeFileSync(envLocalFile, data);
 }
 
+let data =
+  fs.readFileSync(envLocalFile, { flag: "a+" }).toString().trim() + "\n";
+
+cleanUpNewlines();
 updateBuildDate();
 updateGitHash();
 writeToEnvLocal();
