@@ -1,5 +1,6 @@
 {
   "activeTools": [
+    "AddExternalLayer",
     "Anchor",
     "Bookmarks",
     "Buffer",
@@ -23,6 +24,7 @@
     "TimeSlider"
   ],
   "allTools": [
+    "AddExternalLayer",
     "Anchor",
     "Bookmarks",
     "Buffer",
