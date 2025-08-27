@@ -13,6 +13,7 @@ import HajkToolTip from "components/HajkToolTip";
 import DragIndicatorOutlinedIcon from "@mui/icons-material/DragIndicatorOutlined";
 import BuildOutlinedIcon from "@mui/icons-material/BuildOutlined";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import EditIcon from "@mui/icons-material/Edit";
 
 // Custom components
 import LegendIcon from "./LegendIcon";
@@ -195,6 +196,30 @@ function LayerItem({
     globalObserver.publish("setLayerDetails", { layerId });
   };
 
+  // Handle edit layer action
+  const handleEditLayer = (e) => {
+    e.stopPropagation();
+    
+    // Open AddExternalLayer plugin and go to step 2
+    globalObserver.publish("addexternallayer.showWindow", {
+      hideOtherPluginWindows: true,
+      runCallback: true
+    });
+    
+    // Navigate to step 2 after a short delay to ensure the plugin is loaded
+    setTimeout(() => {
+      globalObserver.publish("addexternallayer.goToStep", {
+        step: 2,
+        layerId: layerId,
+        layerCaption: layerCaption,
+        layerType: layerType,
+        editMode: true
+      });
+    }, 100);
+    
+    console.log("Edit layer:", layerId, layerCaption);
+  };
+
   const drawOrderItem = () => {
     if (draggable) {
       return true;
@@ -308,6 +333,9 @@ function LayerItem({
                 right: "4px",
                 top: "1px",
                 transform: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: "2px",
               }}
             >
               {renderStatusIcon()}
@@ -318,6 +346,14 @@ function LayerItem({
                   </HajkToolTip>
                 </LsIconButton>
               ) : null}
+              {/* Edit button for layers - positioned first (rightmost) */}
+              {layerIsFakeMapLayer !== true && layerType !== "system" && (
+                <HajkToolTip title="Redigera lager">
+                  <LsIconButton size="small" onClick={handleEditLayer}>
+                    <EditIcon fontSize="small" />
+                  </LsIconButton>
+                </HajkToolTip>
+              )}
               {layerIsFakeMapLayer !== true && layerType !== "system" && (
                 <BtnShowDetails onClick={(e) => showLayerDetails(e)} />
               )}

@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useRef } from "react";
 
-import { ListItemText } from "@mui/material";
+import { ListItemText, Button, Box } from "@mui/material";
+import { Add as AddIcon } from "@mui/icons-material";
 
 import LayerGroup from "./LayerGroup.js";
 import QuickAccessView from "./QuickAccessView.js";
@@ -185,6 +186,37 @@ const LayersTab = ({
           />
         ))}
       </div>
+
+      {/* Add External Layer Button */}
+      <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider', backgroundColor: 'background.paper' }}>
+        <Button
+          variant="outlined"
+          fullWidth
+          startIcon={<AddIcon />}
+          onClick={() => {
+            // Open the AddExternalLayer plugin using the correct event name
+            globalObserver.publish("addexternallayer.showWindow", {
+              hideOtherPluginWindows: true,
+              runCallback: true
+            });
+          }}
+          sx={{
+            textTransform: 'none',
+            borderRadius: 2,
+            py: 1.5,
+            fontSize: '0.875rem',
+            fontWeight: 500,
+            color: 'primary.main',
+            borderColor: 'primary.main',
+            '&:hover': {
+              backgroundColor: 'primary.main',
+              color: 'white',
+            }
+          }}
+        >
+          Lägg till externt lager
+        </Button>
+      </Box>
     </div>
   );
 };

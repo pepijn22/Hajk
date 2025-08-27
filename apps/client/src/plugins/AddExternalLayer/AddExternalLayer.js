@@ -1,6 +1,6 @@
 import React from "react";
 import BaseWindowPlugin from "../BaseWindowPlugin";
-import AddExternalLayerView from "./AddExternalLayerView";
+import AddExternalLayerViewRefactored from "./AddExternalLayerViewRefactored";
 import Observer from "react-event-observer";
 import LayersIcon from "@mui/icons-material/Layers";
 
@@ -33,7 +33,7 @@ function AddExternalLayer(props) {
         onWindowShow: onWindowShow,
       }}
     >
-      <AddExternalLayerView
+      <AddExternalLayerViewRefactored
         app={props.app}
         map={props.map}
         localObserver={localObserver}

@@ -161,6 +161,7 @@ function parseWMTSCapabilities(xmlText, baseUrl) {
     serviceUrl: baseUrl.split("?")[0], // Remove query parameters
     serviceType: "WMTS",
     layer: layer, // Store the full layer object for later use
+    capabilities: capabilities, // Store the full capabilities for tile matrix sets
   }));
 
   return layers;

@@ -2,6 +2,12 @@
   "mapConfig": {
     "projections": [
       {
+        "code": "EPSG:28992",
+        "definition": "+proj=sterea +lat_0=52.15616055555555 +lon_0=5.38763888888889 +k=0.9999079 +x_0=155000 +y_0=463000 +ellps=bessel +towgs84=565.417,50.3319,465.552,-0.398957,0.343988,-1.8774,4.0725 +units=m +no_defs",
+        "extent": [10000, 305000, 280000, 620000],
+        "units": "m"
+      },
+      {
         "code": "EPSG:3006",
         "definition": "+proj=utm +zone=33 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs",
         "extent": [181896.33, 6101648.07, 864416, 7689478.3],
@@ -920,22 +926,23 @@
           "height": "dynamic",
           "title": "Add External Layer",
           "description": "Add WMS or WMTS layers to the map",
-          "visibleForGroups": []
+          "visibleForGroups": [],
+          "visibleAtStart": false
         },
         "index": 18
       }
     ],
     "map": {
       "target": "map",
-      "center": [576357, 6386049],
+      "center": [155000, 463000],
       "title": "Hajk 4",
-      "projection": "EPSG:3006",
+      "projection": "EPSG:28992",
       "zoom": 1,
       "maxZoom": 8,
       "minZoom": 0,
       "resolutions": [2048, 1024, 512, 256, 128, 64, 32, 16, 8],
       "origin": [0, 0],
-      "extent": [-1200000, 4700000, 2600000, 8500000],
+      "extent": [10000, 305000, 280000, 620000],
       "constrainOnlyCenter": false,
       "constrainResolution": false,
       "logo": "/logoLight.png",

@@ -5,6 +5,7 @@ import LayerGroupAccordion from "./LayerGroupAccordion.js";
 import { Typography, ListItemText, Link } from "@mui/material";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 import InfoIcon from "@mui/icons-material/Info";
+import EditIcon from "@mui/icons-material/Edit";
 import HajkToolTip from "components/HajkToolTip";
 import LsIconButton from "./LsIconButton";
 import LsCheckBox from "./LsCheckBox";
@@ -203,6 +204,30 @@ const LayerGroup = ({
     setInfoVisible(!infoVisible);
   };
 
+  // Handle edit group action
+  const handleEditGroup = (e) => {
+    e.stopPropagation();
+    
+    // Open AddExternalLayer plugin and go to step 2
+    globalObserver.publish("addexternallayer.showWindow", {
+      hideOtherPluginWindows: true,
+      runCallback: true
+    });
+    
+    // Navigate to step 2 after a short delay to ensure the plugin is loaded
+    setTimeout(() => {
+      globalObserver.publish("addexternallayer.goToStep", {
+        step: 2,
+        groupId: groupId,
+        groupName: groupName,
+        layerType: "group",
+        editMode: true
+      });
+    }, 100);
+    
+    console.log("Edit group:", groupId, groupName);
+  };
+
   // TODO Refactor the expand close to state
   let groupsExpanded = false;
   // if (subGroups?.length === 1 && subGroups[0].expanded) {
@@ -234,8 +259,8 @@ const LayerGroup = ({
         />
       }
       layerGroupTitle={
-        <div>
-          <div style={{ display: "flex", flexDirection: "row" }}>
+        <div style={{ position: "relative", width: "100%" }}>
+          <div style={{ display: "flex", alignItems: "center", paddingRight: "32px" }}>
             <GroupInfoToggler
               clickHandler={() => toggleInfo()}
               infoVisible={infoVisible}
@@ -253,10 +278,29 @@ const LayerGroup = ({
                 pl: groupIsToggable ? 0 : "3px",
                 variant: "body1",
                 fontWeight: isToggled || isSemiToggled ? "bold" : "inherit",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
               }}
               primary={name}
             />
           </div>
+          {/* Edit button for groups - positioned absolutely to the right */}
+          <HajkToolTip title="Redigera grupp">
+            <LsIconButton
+              size="small"
+              sx={{
+                position: "absolute",
+                right: "0px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                p: 0.25,
+                "& .MuiTouchRipple-root": { display: "none" },
+              }}
+              onClick={handleEditGroup}
+            >
+              <EditIcon fontSize="small" />
+            </LsIconButton>
+          </HajkToolTip>
           <GroupInfoDetails
             name={groupName}
             infoVisible={infoVisible}
